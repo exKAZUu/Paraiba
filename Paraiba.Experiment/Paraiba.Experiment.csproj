@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{21CE6D61-2E01-46BE-977A-D99D50CC2A3E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Paraiba</RootNamespace>
+    <AssemblyName>Paraiba.Experiment</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algorithm\Sort.cs" />
+    <Compile Include="Collections\DisposableList.cs" />
+    <Compile Include="Collections\FrequentCounter.cs" />
+    <Compile Include="Collections\Generic\CollectionExtensions.cs" />
+    <Compile Include="Collections\Generic\Compare\ComparerExtensions.cs" />
+    <Compile Include="Collections\Generic\Compare\ComparerWithComparison.cs" />
+    <Compile Include="Collections\Generic\Compare\ComparerWithFunc.cs" />
+    <Compile Include="Collections\Generic\Compare\CompareUtil.cs" />
+    <Compile Include="Collections\Generic\Compare\IntegratedComparer.cs" />
+    <Compile Include="Collections\Generic\Compare\NonGenericComparer.cs" />
+    <Compile Include="Collections\Generic\Compare\PartialComparer.cs" />
+    <Compile Include="Collections\Generic\Compare\ReverseComparer.cs" />
+    <Compile Include="Collections\Generic\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\EnumerableUnit.cs" />
+    <Compile Include="Collections\Generic\LinkedListExtensions.cs" />
+    <Compile Include="Collections\Generic\ListExtensions.cs" />
+    <Compile Include="Collections\Generic\Queue.cs" />
+    <Compile Include="Collections\Generic\Stack.cs" />
+    <Compile Include="Collections\Generic\TypeKeyDictionary.cs" />
+    <Compile Include="Collections\PriorityQueue.cs" />
+    <Compile Include="Collections\SortedLinkedList.cs" />
+    <Compile Include="Core\ApacheStringUtils.cs" />
+    <Compile Include="Core\ArrayExtensions.cs" />
+    <Compile Include="Core\CharExtensions.cs" />
+    <Compile Include="Core\DelegateExtensions.cs" />
+    <Compile Include="Core\EnumExtensions.cs" />
+    <Compile Include="Core\Int32Extensions.cs" />
+    <Compile Include="Core\ObjectExtensions.cs" />
+    <Compile Include="Core\RandomExtensions.cs" />
+    <Compile Include="Core\StringExtensions.cs" />
+    <Compile Include="Core\TupleExtensions.cs" />
+    <Compile Include="Core\WrapExtensions.cs" />
+    <Compile Include="Diagnostics\Benchmark.cs" />
+    <Compile Include="Drawing\Animations\AnimationManager.cs" />
+    <Compile Include="Drawing\Animations\IAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\AnimationSurface.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\ComplexAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\CopyAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\CustomCoordAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\EndlessRepeatAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\ExtendTimeAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\FrameAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\LazyFrameAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\RepeatAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\Sprites\AnimationSprite.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\Sprites\ComplexAnimationSprite.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\Sprites\CopyAnimationSprite.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\Sprites\CustomCoordAnimationSprite.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\Sprites\ExtendTimeAnimationSprite.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\Sprites\UniformMotionSprite.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\Sprites\UnmovingSprite.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\StaticAnimation.cs" />
+    <Compile Include="Drawing\Animations\Surfaces\XFrameAnimation.cs" />
+    <Compile Include="Drawing\BitmapExtensionMethod.cs" />
+    <Compile Include="Drawing\BitmapUtil.cs" />
+    <Compile Include="Drawing\GraphicsExtensionMethod.cs" />
+    <Compile Include="Drawing\ImageExtensionMethod.cs" />
+    <Compile Include="Drawing\Point.cs" />
+    <Compile Include="Drawing\Rectangle.cs" />
+    <Compile Include="Drawing\Surfaces\CopySurface.cs" />
+    <Compile Include="Drawing\Surfaces\CustomCoordSurface.cs" />
+    <Compile Include="Drawing\Surfaces\ImagePartSurface.cs" />
+    <Compile Include="Drawing\Surfaces\ImageSurface.cs" />
+    <Compile Include="Drawing\Surfaces\LayerSurface.cs" />
+    <Compile Include="Drawing\Surfaces\NullSurface.cs" />
+    <Compile Include="Drawing\Surfaces\OutlinedStringSurface.cs" />
+    <Compile Include="Drawing\Surfaces\Sprites\CopySprite.cs" />
+    <Compile Include="Drawing\Surfaces\Sprites\CustomCoordSprite.cs" />
+    <Compile Include="Drawing\Surfaces\Sprites\Sprite.cs" />
+    <Compile Include="Drawing\Surfaces\Sprites\SurfaceSprite.cs" />
+    <Compile Include="Drawing\Surfaces\StringPathSurface.cs" />
+    <Compile Include="Drawing\Surfaces\StringSurface.cs" />
+    <Compile Include="Drawing\Surfaces\Surface.cs" />
+    <Compile Include="Drawing\TwoDimension.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Geometry\Point2.cs" />
+    <Compile Include="Geometry\Point2F.cs" />
+    <Compile Include="Geometry\Polygon.cs" />
+    <Compile Include="Geometry\StraightLine.cs" />
+    <Compile Include="Geometry\TwoDimension.cs" />
+    <Compile Include="Geometry\Vector2.cs" />
+    <Compile Include="Geometry\Vector2F.cs" />
+    <Compile Include="IO\BinaryReaderExtensions.cs" />
+    <Compile Include="IO\DirectoryInfoExtensions.cs" />
+    <Compile Include="IO\FileUtility.cs" />
+    <Compile Include="IO\IniReader.cs" />
+    <Compile Include="IO\Scanner.cs" />
+    <Compile Include="IO\TextReaderExtensions.cs" />
+    <Compile Include="IO\TextWriterExtensions.cs" />
+    <Compile Include="IO\XPath.cs" />
+    <Compile Include="Linq\EnumerableExtensions.cs" />
+    <Compile Include="Linq\EnumerableExtensions2.cs" />
+    <Compile Include="Linq\Expressions\ExpressionUtil.cs" />
+    <Compile Include="Linq\Expressions\Operator.cs" />
+    <Compile Include="Mathematics\Complex.cs" />
+    <Compile Include="Monads\ListMonad.cs" />
+    <Compile Include="Monads\Maybe.cs" />
+    <Compile Include="Monads\Monad.cs" />
+    <Compile Include="Numerics\BigIntegerExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ReflectionExtension.cs" />
+    <Compile Include="Reflection\ReflectionUtil.cs" />
+    <Compile Include="SealException.cs" />
+    <Compile Include="Structures\BinaryIndexedTree.cs" />
+    <Compile Include="Structures\DisjointSets.cs" />
+    <Compile Include="TaskList\TaskList.cs" />
+    <Compile Include="Text\Gauche\GaucheGuess.cs" />
+    <Compile Include="Text\Gauche\GaucheGuess.Table.cs" />
+    <Compile Include="Text\Gauche\GuessArc.cs" />
+    <Compile Include="Text\Gauche\GuessDfa.cs" />
+    <Compile Include="Text\GuessEncoding.cs" />
+    <Compile Include="Text\StringBuilderExtensions.cs" />
+    <Compile Include="Text\XEncoding.cs" />
+    <Compile Include="Utility\CloneMaker.cs" />
+    <Compile Include="Utility\Delegates.cs" />
+    <Compile Include="Utility\Dispatcher.cs" />
+    <Compile Include="Utility\EqualityComaprer.cs" />
+    <Compile Include="Utility\Indexer.cs" />
+    <Compile Include="Utility\Interval.cs" />
+    <Compile Include="Utility\ListWrapper.cs" />
+    <Compile Include="Utility\MainLoop.cs" />
+    <Compile Include="Utility\Make.cs" />
+    <Compile Include="Utility\MappedInputer.cs" />
+    <Compile Include="Utility\ResourceManager.cs" />
+    <Compile Include="Utility\SurfaceResourceManager.cs" />
+    <Compile Include="Utility\XReadonlyDelegationList.cs" />
+    <Compile Include="Windows\Forms\AnimationSpriteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\AnimationSurfaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\BasicSpriteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\BasicSurfaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\CheckedListBoxExtensions.cs" />
+    <Compile Include="Windows\Forms\DrawableControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\Enum.cs" />
+    <Compile Include="Windows\Forms\ListBoxExtensions.cs" />
+    <Compile Include="Windows\Forms\ListViewExtensions.cs" />
+    <Compile Include="Windows\Forms\ParasiticControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\ParasiticControl.Designer.cs">
+      <DependentUpon>ParasiticControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\ParasiticControlManager.cs" />
+    <Compile Include="Windows\Forms\RichTextBoxExtensions.cs" />
+    <Compile Include="Windows\Forms\ScrollablePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\ScrollablePanel.Designer.cs">
+      <DependentUpon>ScrollablePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\SpriteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\SurfaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wrap\CastedWrap.cs" />
+    <Compile Include="Wrap\FuncWrap.cs" />
+    <Compile Include="Wrap\IMutableWrap.cs" />
+    <Compile Include="Wrap\IWrap.cs" />
+    <Compile Include="Wrap\LazyFlagWrap.cs" />
+    <Compile Include="Wrap\LazyWrap.cs" />
+    <Compile Include="Wrap\MonitoredWrap.cs" />
+    <Compile Include="Wrap\MutableLazyFlagWrap.cs" />
+    <Compile Include="Wrap\MutableLazyWrap.cs" />
+    <Compile Include="Wrap\MutableValueWrap.cs" />
+    <Compile Include="Wrap\MutableWrap.cs" />
+    <Compile Include="Wrap\ReadonlyFuncWrap.cs" />
+    <Compile Include="Wrap\ReadonlyLazyFlagWrap.cs" />
+    <Compile Include="Wrap\ReadonlyLazyWrap.cs" />
+    <Compile Include="Wrap\ValueWrap.cs" />
+    <Compile Include="Wrap\Wrap.cs" />
+    <Compile Include="XMath.cs" />
+    <Compile Include="Xml\Linq\XElementExtensions.cs" />
+    <Compile Include="Xml\Linq\XElementExtensions2.cs" />
+    <Compile Include="Xml\Linq\XElementSafeExtensions.cs" />
+    <Compile Include="Xml\Linq\XNodeExtension.cs" />
+    <Compile Include="Xml\XmlUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Windows\Forms\ScrollablePanel.resx">
+      <DependentUpon>ScrollablePanel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
