@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using Paraiba.Drawing.Surfaces;
 using Paraiba.Utility;
+using Paraiba.Wrap;
 
 namespace Paraiba.Drawing
 {

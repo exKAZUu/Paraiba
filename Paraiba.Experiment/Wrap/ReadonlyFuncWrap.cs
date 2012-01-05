@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Paraiba.Utility {
+namespace Paraiba.Wrap {
 	public class ReadonlyFuncWrap<T> : Wrap<T>
 	{
 		public ReadonlyFuncWrap(Func<T> func)

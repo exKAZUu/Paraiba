@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Paraiba.Utility {
+namespace Paraiba.Wrap {
 	public class MutableLazyWrap<T> : MutableWrap<T>
 	{
 		private Func<T> _evaluator;

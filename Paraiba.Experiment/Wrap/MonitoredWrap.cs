@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Paraiba.Utility {
+namespace Paraiba.Wrap {
 	public class MonitoredWrap<T> : MutableWrap<T> {
 		private T _value;
 		private readonly IEqualityComparer<T> _cmp;

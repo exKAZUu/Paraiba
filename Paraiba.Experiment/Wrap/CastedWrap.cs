@@ -1,4 +1,4 @@
-﻿namespace Paraiba.Utility {
+﻿namespace Paraiba.Wrap {
 	public class CastedWrap<T, TOrg> : Wrap<T>
 			where TOrg : T
 	{

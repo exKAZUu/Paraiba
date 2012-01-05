@@ -5,6 +5,7 @@ using System.Linq;
 using Paraiba.Core;
 using Paraiba.Drawing.Surfaces;
 using Paraiba.Utility;
+using Paraiba.Wrap;
 
 namespace Paraiba.Drawing.Animations.Surfaces
 {

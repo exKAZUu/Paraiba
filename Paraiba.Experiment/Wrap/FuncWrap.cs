@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Paraiba.Utility {
+namespace Paraiba.Wrap {
 	public class FuncWrap<T> : Wrap<T>
 	{
 		public FuncWrap(Func<T> func)

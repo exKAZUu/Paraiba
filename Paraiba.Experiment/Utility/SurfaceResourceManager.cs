@@ -10,6 +10,7 @@ using Paraiba.Core;
 using Paraiba.Drawing;
 using Paraiba.Drawing.Surfaces;
 using Paraiba.Linq;
+using Paraiba.Wrap;
 
 namespace Paraiba.Utility
 {

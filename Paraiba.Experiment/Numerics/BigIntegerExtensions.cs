@@ -18,7 +18,7 @@
 
 using System.Numerics;
 
-namespace UniUni.Numerics {
+namespace Paraiba.Numerics {
 	public static class BigIntegerExtensions {
 		public static byte ToForceUInt8(this BigInteger value) {
 			int result = 0;

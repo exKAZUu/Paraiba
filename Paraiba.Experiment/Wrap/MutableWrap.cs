@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Paraiba.Utility {
+namespace Paraiba.Wrap {
 	public abstract class MutableWrap<T> : Wrap<T>, IMutableWrap<T>
 	{
 		#region IMutableWrap<TValue> メンバ

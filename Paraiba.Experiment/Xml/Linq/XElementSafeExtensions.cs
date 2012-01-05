@@ -22,7 +22,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace UniUni.Xml.Linq {
+namespace Paraiba.Xml.Linq {
 	/// <summary>
 	///   レシーバーがnullであっても動作するXElementの拡張メソッドを集めたクラスです。
 	/// </summary>

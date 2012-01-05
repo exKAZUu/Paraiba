@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Paraiba.Utility {
+namespace Paraiba.Wrap {
 	public class LazyFlagWrap<T> : Wrap<T>
 	{
 		private T _value;

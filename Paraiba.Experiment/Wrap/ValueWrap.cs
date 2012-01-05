@@ -1,4 +1,4 @@
-﻿namespace Paraiba.Utility {
+﻿namespace Paraiba.Wrap {
 	public class ValueWrap<T> : Wrap<T>
 	{
 		private readonly T _value;

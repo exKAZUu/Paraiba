@@ -21,9 +21,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using UniUni.Text.Gauche;
+using Paraiba.Text.Gauche;
 
-namespace UniUni.Text {
+namespace Paraiba.Text {
 	public class GuessEncoding {
 		private static readonly Dictionary<string, string> Encodings =
 				new Dictionary<string, string>();

@@ -1,4 +1,4 @@
-namespace UniUni.Text.Gauche {
+namespace Paraiba.Text.Gauche {
 	public class GuessDfa {
 		public sbyte[,] States { get; set; }
 		public GuessArc[] Arcs { get; set; }

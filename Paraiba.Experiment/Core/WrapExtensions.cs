@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Paraiba.Collections;
 using Paraiba.Utility;
+using Paraiba.Wrap;
 
 namespace Paraiba.Core
 {

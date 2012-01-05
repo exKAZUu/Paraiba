@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Paraiba.Utility {
+namespace Paraiba.Wrap {
 	public class MutableLazyFlagWrap<T> : MutableWrap<T>
 	{
 		private T _value;

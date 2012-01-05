@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace UniUni.Text.Gauche {
+namespace Paraiba.Text.Gauche {
 	public static partial class GaucheGuess {
 		public static readonly Encoding EucJp =
 				Encoding.GetEncoding("EUC-JP");

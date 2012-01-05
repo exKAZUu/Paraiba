@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UniUni.Linq {
+namespace Paraiba.Linq {
 	public static class EnumerableExtensions {
 		/// <summary>
 		///   指定したシーケンスに対して最初の要素をシード(seed)としてAggregateを計算します．

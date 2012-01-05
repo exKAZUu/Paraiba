@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Drawing;
 using Paraiba.Utility;
+using Paraiba.Wrap;
 
 namespace Paraiba.Drawing.Surfaces
 {

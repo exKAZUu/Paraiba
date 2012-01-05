@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 
-namespace Paraiba.Utility
+namespace Paraiba.Wrap
 {
 	// 反変性のためインタフェースが必要
 	public abstract class Wrap<T> : IWrap<T>

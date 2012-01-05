@@ -1,4 +1,4 @@
-﻿namespace Paraiba.Utility {
+﻿namespace Paraiba.Wrap {
 	public class MutableValueWrap<T> : MutableWrap<T>
 	{
 		private T _value;

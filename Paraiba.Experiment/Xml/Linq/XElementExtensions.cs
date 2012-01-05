@@ -22,7 +22,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace UniUni.Xml.Linq {
+namespace Paraiba.Xml.Linq {
 	public static class XElementExtensions {
 		/// <summary>
 		///   子要素を保持しているか取得します。
