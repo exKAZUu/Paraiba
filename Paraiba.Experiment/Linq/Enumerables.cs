@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using Paraiba.Collections.Generic;
 using Paraiba.Utility;
 
 namespace Paraiba.Linq
 {
-	public static class EnumerableExtensions2
+	public static class Enumerables
 	{
 		/// <summary>
 		/// Determines whether a sequence is sorted or not sorted.
