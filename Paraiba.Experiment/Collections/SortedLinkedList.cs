@@ -1,510 +1,475 @@
+ï»¿#region License
+
+// Copyright (C) 2011-2012 Kazunori Sakamoto
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+#endregion
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Paraiba.Collections
-{
-	/// <summary>
-	/// ƒŠƒXƒg“à‚ÅÀÛ‚É•Û‚µ‚Ä‚¢‚éƒm[ƒhƒNƒ‰ƒX
-	/// ƒpƒbƒP[ƒWŠO‚©‚ç‚Íƒ|ƒCƒ“ƒ^‚Ì‚æ‚¤‚Ég—p‚·‚é‚±‚Æ‚ª‚Å‚«A
-	/// ‚±‚ê‚ğˆø”‚É‚µ‚Ä—v‘f‚Ìíœ‚â—×Úƒm[ƒh‚Ìæ“¾‚ª‰Â”\‚Å‚ ‚éB
-	/// </summary>
-	/// <typeparam name="TKey"></typeparam>
-	/// <typeparam name="TValue"></typeparam>
-	public class SortedListNode<TKey, TValue>
-	{
-		internal KeyValuePair<TKey, TValue> item_;
-		internal SortedListNode<TKey, TValue> next_;
-		internal SortedListNode<TKey, TValue> prev_;
-
-		internal SortedListNode()
-		{
-			prev_ = this;
-			next_ = this;
-		}
-
-		public SortedListNode(TKey key, TValue value)
-		{
-			item_ = new KeyValuePair<TKey, TValue>(key, value);
-		}
-
-		public KeyValuePair<TKey, TValue> Item
-		{
-			get { return item_; }
-		}
-	}
-
-	public class SortedListEnumerator<TKey, TValue> : IEnumerator<KeyValuePair<TKey, TValue>>
-	{
-		private readonly SortedLinkedList<TKey, TValue> list;
-		private SortedListNode<TKey, TValue> current;
-
-		public SortedListEnumerator(SortedLinkedList<TKey, TValue> list, SortedListNode<TKey, TValue> current)
-		{
-			this.list = list;
-			this.current = current;
-		}
-
-		#region IEnumerator<KeyValuePair<TKey,TValue>> Members
-
-		///<summary>
-		///—ñ‹“q‚ÌŒ»İˆÊ’u‚É‚ ‚éƒRƒŒƒNƒVƒ‡ƒ““à‚Ì—v‘f‚ğæ“¾‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///ƒRƒŒƒNƒVƒ‡ƒ““à‚ÌA—ñ‹“q‚ÌŒ»İˆÊ’u‚É‚ ‚é—v‘fB
-		///</returns>
-		public KeyValuePair<TKey, TValue> Current
-		{
-			get { return current.item_; }
-		}
-
-		///<summary>
-		///ƒRƒŒƒNƒVƒ‡ƒ““à‚ÌŒ»İ‚Ì—v‘f‚ğæ“¾‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///ƒRƒŒƒNƒVƒ‡ƒ““à‚ÌŒ»İ‚Ì—v‘fB
-		///</returns>
-		///<exception cref="TValue:System.InvalidOperationException">
-		///—ñ‹“q‚ªAƒRƒŒƒNƒVƒ‡ƒ“‚ÌÅ‰‚Ì—v‘f‚Ì‘OA‚Ü‚½‚ÍÅŒã‚Ì—v‘f‚ÌŒã‚ÉˆÊ’u‚µ‚Ä‚¢‚Ü‚·B
-		///‚Ü‚½‚Í 
-		///—ñ‹“q‚ªì¬‚³‚ê‚½Œã‚ÉAƒRƒŒƒNƒVƒ‡ƒ“‚ª•ÏX‚³‚ê‚Ü‚µ‚½B
-		///</exception><filterpriority>2</filterpriority>
-		object IEnumerator.Current
-		{
-			get { return current.item_; }
-		}
-
-		///<summary>
-		///ƒAƒ“ƒ}ƒl[ƒW ƒŠƒ\[ƒX‚Ì‰ğ•ú‚¨‚æ‚ÑƒŠƒZƒbƒg‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“’è‹`‚Ìƒ^ƒXƒN‚ğÀs‚µ‚Ü‚·B
-		///</summary>
-		///<filterpriority>2</filterpriority>
-		public void Dispose()
-		{
-		}
-
-		///<summary>
-		///—ñ‹“q‚ğƒRƒŒƒNƒVƒ‡ƒ“‚ÌŸ‚Ì—v‘f‚Éi‚ß‚Ü‚·B
-		///</summary>
-		///<returns>
-		///—ñ‹“q‚ªŸ‚Ì—v‘f‚É³í‚Éi‚ñ‚¾ê‡‚Í trueB—ñ‹“q‚ªƒRƒŒƒNƒVƒ‡ƒ“‚Ì––”ö‚ğ‰z‚¦‚½ê‡‚Í falseB
-		///</returns>
-		///<exception cref="TValue:System.InvalidOperationException">
-		///—ñ‹“q‚ªì¬‚³‚ê‚½Œã‚ÉAƒRƒŒƒNƒVƒ‡ƒ“‚ª•ÏX‚³‚ê‚Ü‚µ‚½B 
-		///</exception><filterpriority>2</filterpriority>
-		public bool MoveNext()
-		{
-			var nextNode = current.next_;
-			if (nextNode != list.head_)
-			{
-				current = nextNode;
-				return true;
-			}
-			return false;
-		}
-
-		///<summary>
-		///—ñ‹“q‚ğ‰ŠúˆÊ’uA‚Â‚Ü‚èƒRƒŒƒNƒVƒ‡ƒ“‚ÌÅ‰‚Ì—v‘f‚Ì‘O‚Éİ’è‚µ‚Ü‚·B
-		///</summary>
-		///<exception cref="TValue:System.InvalidOperationException">
-		///—ñ‹“q‚ªì¬‚³‚ê‚½Œã‚ÉAƒRƒŒƒNƒVƒ‡ƒ“‚ª•ÏX‚³‚ê‚Ü‚µ‚½B 
-		///</exception><filterpriority>2</filterpriority>
-		public void Reset()
-		{
-			current = list.head_;
-		}
-
-		#endregion
-
-		/// <summary>
-		/// ƒŠƒXƒg‚É—v‘f‚ğ’Ç‰Á‚·‚é
-		/// </summary>
-		/// <param name="key"></param>
-		/// <param name="value"></param>
-		public void Add(TKey key, TValue value)
-		{
-			list.Add(key, value);
-		}
-
-		/// <summary>
-		/// Current ƒvƒƒpƒeƒB‚Å¦‚³‚ê‚é—v‘f‚ğíœ‚·‚é
-		/// ‚±‚Ì‘€ì‚ğs‚Á‚Ä‚à MoveNext ƒƒ\ƒbƒh‚É‰e‹¿‚ğ—^‚¦‚È‚¢
-		/// ‚·‚È‚í‚¿AíœŒãˆê‚Â‘O‚Ì—v‘f‚ÉˆÚ“®‚·‚é
-		/// </summary>
-		/// <returns>íœ‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©</returns>
-		public bool Remove()
-		{
-			var node = current;
-			if (node != list.head_)
-			{
-				current = current.prev_;
-				list.Remove(node);
-				return true;
-			}
-			return false;
-		}
-	}
-
-	public class SortedLinkedList<TKey, TValue> : ICollection<KeyValuePair<TKey, TValue>>
-	{
-		private readonly IComparer<TKey> _cmp;
-		private int _count;
-		internal SortedListNode<TKey, TValue> head_;
-
-		public SortedLinkedList()
-			: this(Comparer<TKey>.Default)
-		{
-		}
-
-		public SortedLinkedList(IComparer<TKey> cmp)
-		{
-			_cmp = cmp;
-			_count = 0;
-			head_ = new SortedListNode<TKey, TValue>();
-		}
-
-		#region ICollection<KeyValuePair<TKey,TValue>> Members
-
-		///<summary>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚ÉŠi”[‚³‚ê‚Ä‚¢‚é—v‘f‚Ì”‚ğæ“¾‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚ÉŠi”[‚³‚ê‚Ä‚¢‚é—v‘f‚Ì”B
-		///</returns>
-		public int Count
-		{
-			get { return _count; }
-		}
-
-		#endregion
-
-		#region IEnumerable<KeyValuePair<TKey,TValue>> Members
-
-		///<summary>
-		///ƒRƒŒƒNƒVƒ‡ƒ“‚ğ”½•œˆ—‚·‚é—ñ‹“q‚ğ•Ô‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///ƒRƒŒƒNƒVƒ‡ƒ“‚ğ”½•œˆ—‚·‚é‚½‚ß‚Ég—p‚Å‚«‚é <see cref="TValue:System.Collections.Generic.IEnumerator`1" />B
-		///</returns>
-		///<filterpriority>1</filterpriority>
-		public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-		{
-			return new SortedListEnumerator<TKey, TValue>(this, head_);
-		}
-
-		///<summary>
-		///ƒRƒŒƒNƒVƒ‡ƒ“‚ğ”½•œˆ—‚·‚é—ñ‹“q‚ğ•Ô‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///ƒRƒŒƒNƒVƒ‡ƒ“‚ğ”½•œˆ—‚·‚é‚½‚ß‚Ég—p‚Å‚«‚é <see cref="TValue:System.Collections.IEnumerator" /> ƒIƒuƒWƒFƒNƒgB
-		///</returns>
-		///<filterpriority>2</filterpriority>
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return new SortedListEnumerator<TKey, TValue>(this, head_);
-		}
-
-		#endregion
-
-		public void Add(TKey key, TValue value)
-		{
-			// ”Ô•º‚Ìİ’u
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
-
-			AddPrivate(key, value, head_);
-		}
-
-		public void Add(TKey key, TValue value, SortedListNode<TKey, TValue> pivot)
-		{
-			// ”Ô•º‚Ìİ’u
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
-
-			if (_cmp.Compare(pivot.item_.Key, key) > 0)
-				AddPrivate(key, value, pivot);
-			else
-				AddPrivate(key, value, head_);
-		}
-
-		private void AddPrivate(TKey key, TValue value, SortedListNode<TKey, TValue> node)
-		{
-			do
-			{
-				node = node.prev_;
-			} while (_cmp.Compare(node.item_.Key, key) > 0);
-			Insert(node, new SortedListNode<TKey, TValue>(key, value));
-		}
-
-		public SortedListNode<TKey, TValue> FindFirstNode(TKey key)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, default(TValue));
-
-			var node = head_;
-			do
-			{
-				node = node.next_;
-			} while (_cmp.Compare(node.item_.Key, key) != 0);
-
-			return node != head_ ? node : null;
-		}
-
-		public SortedListNode<TKey, TValue> FindFirstNode(TValue value)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(default(TKey), value);
-
-			var node = head_;
-			do
-			{
-				node = node.next_;
-			} while (node.item_.Value.Equals(value) == false);
-
-			return node != head_ ? node : null;
-		}
-
-		public SortedListNode<TKey, TValue> FindFirstNode(TKey key, TValue value)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
-
-			var node = head_;
-			do
-			{
-				node = node.next_;
-			} while (_cmp.Compare(node.item_.Key, key) != 0 || node.item_.Value.Equals(value) == false);
-
-			return node != head_ ? node : null;
-		}
-
-		public SortedListNode<TKey, TValue> FindLastNode(TKey key)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, default(TValue));
-
-			var node = head_;
-			do
-			{
-				node = node.prev_;
-			} while (_cmp.Compare(node.item_.Key, key) != 0);
-
-			return node != head_ ? node : null;
-		}
-
-		public SortedListNode<TKey, TValue> FindLastNode(TValue value)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(default(TKey), value);
-			
-			var node = head_;
-			do
-			{
-				node = node.prev_;
-			} while (node.item_.Value.Equals(value) == false);
-
-			return node != head_ ? node : null;
-		}
-
-		public SortedListNode<TKey, TValue> FindLastNode(TKey key, TValue value)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
-
-			var node = head_;
-			do
-			{
-				node = node.prev_;
-			} while (_cmp.Compare(node.item_.Key, key) != 0 || node.item_.Value.Equals(value) == false);
-
-			return node != head_ ? node : null;
-		}
-
-		public SortedListNode<TKey, TValue> GetNextNode(SortedListNode<TKey, TValue> node)
-		{
-			node = node.next_;
-			return node != head_ ? node : null;
-		}
-
-		public SortedListNode<TKey, TValue> GetPrevNode(SortedListNode<TKey, TValue> node)
-		{
-			node = node.prev_;
-			return node != head_ ? node : null;
-		}
-
-		private void Insert(SortedListNode<TKey, TValue> prev, SortedListNode<TKey, TValue> newNext)
-		{
-			newNext.next_ = prev.next_;
-			newNext.prev_ = prev;
-			prev.next_.prev_ = newNext;
-			prev.next_ = newNext;
-			_count++;
-		}
-
-		public void Remove(SortedListNode<TKey, TValue> node)
-		{
-			node.prev_.next_ = node.next_;
-			node.next_.prev_ = node.prev_;
-			_count--;
-		}
-
-		public void Remove(TKey key)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, default(TValue));
-			
-			var node = head_;
-			do
-			{
-				node = node.next_;
-			} while (_cmp.Compare(node.item_.Key, key) != 0);
-
-			// ”Ô•º‚Å‚È‚¯‚ê‚Îíœ
-			if (node != head_)
-				Remove(node);
-		}
-
-		public void Remove(TValue value)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(default(TKey), value);
-			
-			var node = head_;
-			do
-			{
-				node = node.next_;
-			} while (node.item_.Value.Equals(value) == false);
-
-			// ”Ô•º‚Å‚È‚¯‚ê‚Îíœ
-			if (node != head_)
-				Remove(node);
-		}
-
-		public void Remove(TKey key, TValue value)
-		{
-			// ”Ô•º‚ğİ’u‚µ‚Ä’Tõ
-			head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
-			
-			var node = head_;
-			do
-			{
-				node = node.next_;
-			} while (_cmp.Compare(node.item_.Key, key) != 0 || node.item_.Value.Equals(value) == false);
-			
-			// ”Ô•º‚Å‚È‚¯‚ê‚Îíœ
-			if (node != head_)
-				Remove(node);
-		}
-
-		public SortedListEnumerator<TKey, TValue> GetListEnumerator()
-		{
-			return new SortedListEnumerator<TKey, TValue>(this, head_);
-		}
-
-		#region ICollection<KeyValuePair<TKey,TValue>> ƒƒ“ƒo
-
-		///<summary>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚É€–Ú‚ğ’Ç‰Á‚µ‚Ü‚·B
-		///</summary>
-		///<param name="item"><see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚É’Ç‰Á‚·‚éƒIƒuƒWƒFƒNƒgB
-		///</param>
-		///<exception cref="TValue:System.NotSupportedException"><see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚Í“Ç‚İæ‚èê—p‚Å‚·B
-		///</exception>
-		public void Add(KeyValuePair<TKey, TValue> item)
-		{
-			Add(item.Key, item.Value);
-		}
-
-		///<summary>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚©‚ç‚·‚×‚Ä‚Ì€–Ú‚ğíœ‚µ‚Ü‚·B
-		///</summary>
-		///<exception cref="TValue:System.NotSupportedException"><see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚Í“Ç‚İæ‚èê—p‚Å‚·B 
-		///</exception>
-		public void Clear()
-		{
-			head_.next_ = head_;
-			head_.prev_ = head_;
-			_count = 0;
-		}
-
-		///<summary>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚É“Á’è‚Ì’l‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///<paramref name="item" /> ‚ª <see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚É‘¶İ‚·‚éê‡‚Í trueB‚»‚êˆÈŠO‚Ìê‡‚Í falseB
-		///</returns>
-		///<param name="item"><see cref="TValue:System.Collections.Generic.ICollection`1" /> “à‚ÅŒŸõ‚·‚éƒIƒuƒWƒFƒNƒgB
-		///</param>
-		public bool Contains(KeyValuePair<TKey, TValue> item)
-		{
-			return FindFirstNode(item.Key, item.Value) != null;
-		}
-
-		///<summary>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚Ì—v‘f‚ğ <see cref="TValue:System.Array" /> ‚ÉƒRƒs[‚µ‚Ü‚·B<see cref="TValue:System.Array" /> ‚Ì“Á’è‚ÌƒCƒ“ƒfƒbƒNƒX‚©‚çƒRƒs[‚ªŠJn‚³‚ê‚Ü‚·B
-		///</summary>
-		///<param name="array"><see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚©‚ç—v‘f‚ªƒRƒs[‚³‚ê‚é 1 ŸŒ³‚Ì <see cref="TValue:System.Array" />B<see cref="TValue:System.Array" /> ‚É‚ÍA0 ‚©‚çn‚Ü‚éƒCƒ“ƒfƒbƒNƒX”Ô†‚ª•K—v‚Å‚·B
-		///</param>
-		///<param name="arrayIndex">
-		///ƒRƒs[‚ÌŠJnˆÊ’u‚Æ‚È‚éA<paramref name="array" /> ‚Ì 0 ‚©‚çn‚Ü‚éƒCƒ“ƒfƒbƒNƒX”Ô†B
-		///</param>
-		///<exception cref="TValue:System.ArgumentNullException"><paramref name="array" /> ‚ª null ‚Å‚·B
-		///</exception>
-		///<exception cref="TValue:System.ArgumentOutOfRangeException"><paramref name="arrayIndex" /> ‚ª 0 –¢–‚Å‚·B
-		///</exception>
-		///<exception cref="TValue:System.ArgumentException"><paramref name="array" /> ‚ª‘½ŸŒ³‚Å‚·B
-		///‚Ü‚½‚Í
-		///<paramref name="arrayIndex" /> ‚ª array ‚Ì’·‚³ˆÈã‚Å‚·B
-		///‚Ü‚½‚Í
-		///ƒRƒs[Œ³‚Ì <see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚Ì—v‘f”‚ªA<paramref name="arrayIndex" /> ‚©‚çƒRƒs[æ‚Ì <paramref name="array" /> ‚Ì––”ö‚Ü‚Å‚ÉŠi”[‚Å‚«‚é”‚ğ’´‚¦‚Ä‚¢‚Ü‚·B
-		///‚Ü‚½‚Í
-		///Œ^ <paramref name="TValue" /> ‚ğƒRƒs[æ‚Ì <paramref name="array" /> ‚ÌŒ^‚É©“®“I‚ÉƒLƒƒƒXƒg‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
-		///</exception>
-		public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-		{
-			if (array == null)
-				throw new ArgumentNullException();
-			if (arrayIndex < 0)
-				throw new ArgumentOutOfRangeException();
-			if (array.Length > arrayIndex + _count)
-				throw new ArgumentException();
-
-			var node = head_.next_;
-			while (node != head_)
-			{
-				array[arrayIndex++] = node.item_;
-			}
-		}
-
-		///<summary>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚ª“Ç‚İæ‚èê—p‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚ª“Ç‚İæ‚èê—p‚Ìê‡‚Í trueB‚»‚êˆÈŠO‚Ìê‡‚Í falseB
-		///</returns>
-		public bool IsReadOnly
-		{
-			get { return false; }
-		}
-
-		///<summary>
-		///<see cref="TValue:System.Collections.Generic.ICollection`1" /> “à‚ÅÅ‰‚ÉŒ©‚Â‚©‚Á‚½“Á’è‚ÌƒIƒuƒWƒFƒNƒg‚ğíœ‚µ‚Ü‚·B
-		///</summary>
-		///<returns>
-		///<paramref name="item" /> ‚ª <see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚©‚ç³í‚Éíœ‚³‚ê‚½ê‡‚Í trueB‚»‚êˆÈŠO‚Ìê‡‚Í falseB‚±‚Ìƒƒ\ƒbƒh‚ÍA<paramref name="item" /> ‚ªŒ³‚Ì <see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚ÉŒ©‚Â‚©‚ç‚È‚¢ê‡‚É‚à false ‚ğ•Ô‚µ‚Ü‚·B
-		///</returns>
-		///<param name="item"><see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚©‚çíœ‚·‚éƒIƒuƒWƒFƒNƒgB
-		///</param>
-		///<exception cref="TValue:System.NotSupportedException"><see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚Í“Ç‚İæ‚èê—p‚Å‚·B
-		///</exception>
-		public bool Remove(KeyValuePair<TKey, TValue> item)
-		{
-			var node = FindFirstNode(item.Key, item.Value);
-			if (node != null)
-			{
-				Remove(node);
-				return true;
-			}
-			return false;
-		}
-
-		#endregion
-	}
+namespace Paraiba.Collections {
+    /// <summary>
+    ///   ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½Åï¿½ï¿½Û‚É•Ûï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½mï¿½[ï¿½hï¿½Nï¿½ï¿½ï¿½X ï¿½pï¿½bï¿½Pï¿½[ï¿½Wï¿½Oï¿½ï¿½ï¿½ï¿½Íƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½Ì‚æ‚¤ï¿½Égï¿½pï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Å‚ï¿½ï¿½A ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½Ä—vï¿½fï¿½Ìíœï¿½ï¿½×Úƒmï¿½[ï¿½hï¿½Ìæ“¾ï¿½ï¿½ï¿½Â”\ï¿½Å‚ï¿½ï¿½ï¿½B
+    /// </summary>
+    /// <typeparam name="TKey"> </typeparam>
+    /// <typeparam name="TValue"> </typeparam>
+    public class SortedListNode<TKey, TValue> {
+        internal KeyValuePair<TKey, TValue> item_;
+        internal SortedListNode<TKey, TValue> next_;
+        internal SortedListNode<TKey, TValue> prev_;
+
+        internal SortedListNode() {
+            prev_ = this;
+            next_ = this;
+        }
+
+        public SortedListNode(TKey key, TValue value) {
+            item_ = new KeyValuePair<TKey, TValue>(key, value);
+        }
+
+        public KeyValuePair<TKey, TValue> Item {
+            get { return item_; }
+        }
+    }
+
+    public class SortedListEnumerator<TKey, TValue>
+            : IEnumerator<KeyValuePair<TKey, TValue>> {
+        private readonly SortedLinkedList<TKey, TValue> list;
+        private SortedListNode<TKey, TValue> current;
+
+        public SortedListEnumerator(
+                SortedLinkedList<TKey, TValue> list,
+                SortedListNode<TKey, TValue> current) {
+            this.list = list;
+            this.current = current;
+        }
+
+        #region IEnumerator<KeyValuePair<TKey,TValue>> Members
+
+        ///<summary>
+        ///  ï¿½ñ‹“qï¿½ÌŒï¿½ï¿½İˆÊ’uï¿½É‚ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌAï¿½ñ‹“qï¿½ÌŒï¿½ï¿½İˆÊ’uï¿½É‚ï¿½ï¿½ï¿½vï¿½fï¿½B </returns>
+        public KeyValuePair<TKey, TValue> Current {
+            get { return current.item_; }
+        }
+
+        ///<summary>
+        ///  ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌŒï¿½ï¿½İ‚Ì—vï¿½fï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌŒï¿½ï¿½İ‚Ì—vï¿½fï¿½B </returns>
+        ///<exception cref="TValue:System.InvalidOperationException">ï¿½ñ‹“qï¿½ï¿½ï¿½Aï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÌÅï¿½ï¿½Ì—vï¿½fï¿½Ì‘Oï¿½Aï¿½Ü‚ï¿½ï¿½ÍÅŒï¿½Ì—vï¿½fï¿½ÌŒï¿½ÉˆÊ’uï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///  ï¿½Ü‚ï¿½ï¿½ï¿½ 
+        ///  ï¿½ñ‹“qï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ÉAï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B</exception>
+        ///<filterpriority>2</filterpriority>
+        object IEnumerator.Current {
+            get { return current.item_; }
+        }
+
+        ///<summary>
+        ///  ï¿½Aï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½W ï¿½ï¿½ï¿½\ï¿½[ï¿½Xï¿½Ì‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñƒï¿½ï¿½Zï¿½bï¿½gï¿½ÉŠÖ˜Aï¿½tï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Aï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½Ìƒ^ï¿½Xï¿½Nï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<filterpriority>2</filterpriority>
+        public void Dispose() {}
+
+        ///<summary>
+        ///  ï¿½ñ‹“qï¿½ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½Ì—vï¿½fï¿½Éiï¿½ß‚Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> ï¿½ñ‹“qï¿½ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½Éï¿½ï¿½ï¿½Éiï¿½ñ‚¾ê‡ï¿½ï¿½ trueï¿½Bï¿½ñ‹“qï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ì–ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½ falseï¿½B </returns>
+        ///<exception cref="TValue:System.InvalidOperationException">ï¿½ñ‹“qï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ÉAï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B</exception>
+        ///<filterpriority>2</filterpriority>
+        public bool MoveNext() {
+            var nextNode = current.next_;
+            if (nextNode != list.head_) {
+                current = nextNode;
+                return true;
+            }
+            return false;
+        }
+
+        ///<summary>
+        ///  ï¿½ñ‹“qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½Aï¿½Â‚Ü‚ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÌÅï¿½ï¿½Ì—vï¿½fï¿½Ì‘Oï¿½Éİ’è‚µï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<exception cref="TValue:System.InvalidOperationException">ï¿½ñ‹“qï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ÉAï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B</exception>
+        ///<filterpriority>2</filterpriority>
+        public void Reset() {
+            current = list.head_;
+        }
+
+        #endregion
+
+        /// <summary>
+        ///   ï¿½ï¿½ï¿½Xï¿½gï¿½É—vï¿½fï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        /// <param name="key"> </param>
+        /// <param name="value"> </param>
+        public void Add(TKey key, TValue value) {
+            list.Add(key, value);
+        }
+
+        /// <summary>
+        ///   Current ï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½fï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì‘ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ä‚ï¿½ MoveNext ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½É‰eï¿½ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½È‚ï¿½ ï¿½ï¿½ï¿½È‚í‚¿ï¿½Aï¿½íœï¿½ï¿½ï¿½Â‘Oï¿½Ì—vï¿½fï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        /// <returns> ï¿½íœï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ </returns>
+        public bool Remove() {
+            var node = current;
+            if (node != list.head_) {
+                current = current.prev_;
+                list.Remove(node);
+                return true;
+            }
+            return false;
+        }
+            }
+
+    public class SortedLinkedList<TKey, TValue>
+            : ICollection<KeyValuePair<TKey, TValue>> {
+        private readonly IComparer<TKey> _cmp;
+        private int _count;
+        internal SortedListNode<TKey, TValue> head_;
+
+        public SortedLinkedList()
+                : this(Comparer<TKey>.Default) {}
+
+        public SortedLinkedList(IComparer<TKey> cmp) {
+            _cmp = cmp;
+            _count = 0;
+            head_ = new SortedListNode<TKey, TValue>();
+        }
+
+        #region ICollection<KeyValuePair<TKey,TValue>> Members
+
+        ///<summary>
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ÉŠiï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½vï¿½fï¿½Ìï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ÉŠiï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½vï¿½fï¿½Ìï¿½ï¿½B </returns>
+        public int Count {
+            get { return _count; }
+        }
+
+        ///<summary>
+        ///  ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ğ”½•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ‹“qï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ğ”½•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚Égï¿½pï¿½Å‚ï¿½ï¿½ï¿½ <see cref="TValue:System.Collections.Generic.IEnumerator`1" /> ï¿½B </returns>
+        ///<filterpriority>1</filterpriority>
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() {
+            return new SortedListEnumerator<TKey, TValue>(this, head_);
+        }
+
+        ///<summary>
+        ///  ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ğ”½•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ‹“qï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> ï¿½Rï¿½ï¿½ï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ğ”½•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚Égï¿½pï¿½Å‚ï¿½ï¿½ï¿½ <see cref="TValue:System.Collections.IEnumerator" /> ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½B </returns>
+        ///<filterpriority>2</filterpriority>
+        IEnumerator IEnumerable.GetEnumerator() {
+            return new SortedListEnumerator<TKey, TValue>(this, head_);
+        }
+
+        #endregion
+
+        public void Add(TKey key, TValue value) {
+            // ï¿½Ô•ï¿½ï¿½Ìİ’u
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
+
+            AddPrivate(key, value, head_);
+        }
+
+        public void Add(
+                TKey key, TValue value, SortedListNode<TKey, TValue> pivot) {
+            // ï¿½Ô•ï¿½ï¿½Ìİ’u
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
+
+            if (_cmp.Compare(pivot.item_.Key, key) > 0) {
+                AddPrivate(key, value, pivot);
+            } else {
+                AddPrivate(key, value, head_);
+            }
+        }
+
+        private void AddPrivate(
+                TKey key, TValue value, SortedListNode<TKey, TValue> node) {
+            do {
+                node = node.prev_;
+            } while (_cmp.Compare(node.item_.Key, key) > 0);
+            Insert(node, new SortedListNode<TKey, TValue>(key, value));
+        }
+
+        public SortedListNode<TKey, TValue> FindFirstNode(TKey key) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, default(TValue));
+
+            var node = head_;
+            do {
+                node = node.next_;
+            } while (_cmp.Compare(node.item_.Key, key) != 0);
+
+            return node != head_ ? node : null;
+        }
+
+        public SortedListNode<TKey, TValue> FindFirstNode(TValue value) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(default(TKey), value);
+
+            var node = head_;
+            do {
+                node = node.next_;
+            } while (node.item_.Value.Equals(value) == false);
+
+            return node != head_ ? node : null;
+        }
+
+        public SortedListNode<TKey, TValue> FindFirstNode(
+                TKey key, TValue value) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
+
+            var node = head_;
+            do {
+                node = node.next_;
+            } while (_cmp.Compare(node.item_.Key, key) != 0
+                     || node.item_.Value.Equals(value) == false);
+
+            return node != head_ ? node : null;
+        }
+
+        public SortedListNode<TKey, TValue> FindLastNode(TKey key) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, default(TValue));
+
+            var node = head_;
+            do {
+                node = node.prev_;
+            } while (_cmp.Compare(node.item_.Key, key) != 0);
+
+            return node != head_ ? node : null;
+        }
+
+        public SortedListNode<TKey, TValue> FindLastNode(TValue value) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(default(TKey), value);
+
+            var node = head_;
+            do {
+                node = node.prev_;
+            } while (node.item_.Value.Equals(value) == false);
+
+            return node != head_ ? node : null;
+        }
+
+        public SortedListNode<TKey, TValue> FindLastNode(TKey key, TValue value) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
+
+            var node = head_;
+            do {
+                node = node.prev_;
+            } while (_cmp.Compare(node.item_.Key, key) != 0
+                     || node.item_.Value.Equals(value) == false);
+
+            return node != head_ ? node : null;
+        }
+
+        public SortedListNode<TKey, TValue> GetNextNode(
+                SortedListNode<TKey, TValue> node) {
+            node = node.next_;
+            return node != head_ ? node : null;
+        }
+
+        public SortedListNode<TKey, TValue> GetPrevNode(
+                SortedListNode<TKey, TValue> node) {
+            node = node.prev_;
+            return node != head_ ? node : null;
+        }
+
+        private void Insert(
+                SortedListNode<TKey, TValue> prev,
+                SortedListNode<TKey, TValue> newNext) {
+            newNext.next_ = prev.next_;
+            newNext.prev_ = prev;
+            prev.next_.prev_ = newNext;
+            prev.next_ = newNext;
+            _count++;
+        }
+
+        public void Remove(SortedListNode<TKey, TValue> node) {
+            node.prev_.next_ = node.next_;
+            node.next_.prev_ = node.prev_;
+            _count--;
+        }
+
+        public void Remove(TKey key) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, default(TValue));
+
+            var node = head_;
+            do {
+                node = node.next_;
+            } while (_cmp.Compare(node.item_.Key, key) != 0);
+
+            // ï¿½Ô•ï¿½ï¿½Å‚È‚ï¿½ï¿½ï¿½Îíœ
+            if (node != head_) {
+                Remove(node);
+            }
+        }
+
+        public void Remove(TValue value) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(default(TKey), value);
+
+            var node = head_;
+            do {
+                node = node.next_;
+            } while (node.item_.Value.Equals(value) == false);
+
+            // ï¿½Ô•ï¿½ï¿½Å‚È‚ï¿½ï¿½ï¿½Îíœ
+            if (node != head_) {
+                Remove(node);
+            }
+        }
+
+        public void Remove(TKey key, TValue value) {
+            // ï¿½Ô•ï¿½ï¿½ï¿½İ’uï¿½ï¿½ï¿½Ä’Tï¿½ï¿½
+            head_.item_ = new KeyValuePair<TKey, TValue>(key, value);
+
+            var node = head_;
+            do {
+                node = node.next_;
+            } while (_cmp.Compare(node.item_.Key, key) != 0
+                     || node.item_.Value.Equals(value) == false);
+
+            // ï¿½Ô•ï¿½ï¿½Å‚È‚ï¿½ï¿½ï¿½Îíœ
+            if (node != head_) {
+                Remove(node);
+            }
+        }
+
+        public SortedListEnumerator<TKey, TValue> GetListEnumerator() {
+            return new SortedListEnumerator<TKey, TValue>(this, head_);
+        }
+
+        #region ICollection<KeyValuePair<TKey,TValue>> ï¿½ï¿½ï¿½ï¿½ï¿½o
+
+        ///<summary>
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½Éï¿½ï¿½Ú‚ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<param name="item"> <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½É’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½B </param>
+        ///<exception cref="TValue:System.NotSupportedException">
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" />
+        ///  ï¿½Í“Ç‚İï¿½ï¿½ï¿½pï¿½Å‚ï¿½ï¿½B</exception>
+        public void Add(KeyValuePair<TKey, TValue> item) {
+            Add(item.Key, item.Value);
+        }
+
+        ///<summary>
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ï¿½ç‚·ï¿½×‚Ä‚Ìï¿½ï¿½Ú‚ï¿½íœï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<exception cref="TValue:System.NotSupportedException">
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" />
+        ///  ï¿½Í“Ç‚İï¿½ï¿½ï¿½pï¿½Å‚ï¿½ï¿½B</exception>
+        public void Clear() {
+            head_.next_ = head_;
+            head_.prev_ = head_;
+            _count = 0;
+        }
+
+        ///<summary>
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½É“ï¿½ï¿½ï¿½Ì’lï¿½ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ğ”»’fï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> <paramref name="item" /> ï¿½ï¿½ <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½É‘ï¿½ï¿½İ‚ï¿½ï¿½ï¿½ê‡ï¿½ï¿½ trueï¿½Bï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Ìê‡ï¿½ï¿½ falseï¿½B </returns>
+        ///<param name="item"> <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ÅŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½B </param>
+        public bool Contains(KeyValuePair<TKey, TValue> item) {
+            return FindFirstNode(item.Key, item.Value) != null;
+        }
+
+        ///<summary>
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½Ì—vï¿½fï¿½ï¿½ <see cref="TValue:System.Array" /> ï¿½ÉƒRï¿½sï¿½[ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B <see
+        ///   cref="TValue:System.Array" /> ï¿½Ì“ï¿½ï¿½ï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<param name="array"> <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ï¿½ï¿½vï¿½fï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ <see
+        ///   cref="TValue:System.Array" /> ï¿½B <see cref="TValue:System.Array" /> ï¿½É‚ÍA0 ï¿½ï¿½ï¿½ï¿½nï¿½Ü‚ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½Ôï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½Å‚ï¿½ï¿½B </param>
+        ///<param name="arrayIndex"> ï¿½Rï¿½sï¿½[ï¿½ÌŠJï¿½nï¿½Ê’uï¿½Æ‚È‚ï¿½A <paramref name="array" /> ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½nï¿½Ü‚ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½Ôï¿½ï¿½B </param>
+        ///<exception cref="TValue:System.ArgumentNullException">
+        ///  <paramref name="array" />
+        ///  ï¿½ï¿½ null ï¿½Å‚ï¿½ï¿½B</exception>
+        ///<exception cref="TValue:System.ArgumentOutOfRangeException">
+        ///  <paramref name="arrayIndex" />
+        ///  ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B</exception>
+        ///<exception cref="TValue:System.ArgumentException">
+        ///  <paramref name="array" />
+        ///  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
+        ///  ï¿½Ü‚ï¿½ï¿½ï¿½
+        ///  <paramref name="arrayIndex" />
+        ///  ï¿½ï¿½ array ï¿½Ì’ï¿½ï¿½ï¿½ï¿½Èï¿½Å‚ï¿½ï¿½B
+        ///  ï¿½Ü‚ï¿½ï¿½ï¿½
+        ///  ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" />
+        ///  ï¿½Ì—vï¿½fï¿½ï¿½ï¿½ï¿½ï¿½A
+        ///  <paramref name="arrayIndex" />
+        ///  ï¿½ï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½
+        ///  <paramref name="array" />
+        ///  ï¿½Ì–ï¿½ï¿½ï¿½ï¿½Ü‚Å‚ÉŠiï¿½[ï¿½Å‚ï¿½ï¿½é”ï¿½ğ’´‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///  ï¿½Ü‚ï¿½ï¿½ï¿½
+        ///  ï¿½^
+        ///  <paramref name="TValue" />
+        ///  ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½
+        ///  <paramref name="array" />
+        ///  ï¿½ÌŒ^ï¿½Éï¿½ï¿½ï¿½ï¿½Iï¿½ÉƒLï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½é‚±ï¿½Æ‚Í‚Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B</exception>
+        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) {
+            if (array == null) {
+                throw new ArgumentNullException();
+            }
+            if (arrayIndex < 0) {
+                throw new ArgumentOutOfRangeException();
+            }
+            if (array.Length > arrayIndex + _count) {
+                throw new ArgumentException();
+            }
+
+            var node = head_.next_;
+            while (node != head_) {
+                array[arrayIndex++] = node.item_;
+            }
+        }
+
+        ///<summary>
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½pï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½pï¿½Ìê‡ï¿½ï¿½ trueï¿½Bï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Ìê‡ï¿½ï¿½ falseï¿½B </returns>
+        public bool IsReadOnly {
+            get { return false; }
+        }
+
+        ///<summary>
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ÅÅï¿½ï¿½ÉŒï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½íœï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ///</summary>
+        ///<returns> <paramref name="item" /> ï¿½ï¿½ <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ï¿½ç³ï¿½ï¿½Éíœï¿½ï¿½ï¿½ê‚½ï¿½ê‡ï¿½ï¿½ trueï¿½Bï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Ìê‡ï¿½ï¿½ falseï¿½Bï¿½ï¿½ï¿½Ìƒï¿½ï¿½\ï¿½bï¿½hï¿½ÍA <paramref
+        ///   name="item" /> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ÉŒï¿½ï¿½Â‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½É‚ï¿½ false ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B </returns>
+        ///<param name="item"> <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½B </param>
+        ///<exception cref="TValue:System.NotSupportedException">
+        ///  <see cref="TValue:System.Collections.Generic.ICollection`1" />
+        ///  ï¿½Í“Ç‚İï¿½ï¿½ï¿½pï¿½Å‚ï¿½ï¿½B</exception>
+        public bool Remove(KeyValuePair<TKey, TValue> item) {
+            var node = FindFirstNode(item.Key, item.Value);
+            if (node != null) {
+                Remove(node);
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
+            }
 }

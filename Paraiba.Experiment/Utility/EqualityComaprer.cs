@@ -1,43 +1,53 @@
-﻿using System;
+﻿#region License
+
+// Copyright (C) 2011-2012 Kazunori Sakamoto
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+#endregion
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Paraiba.Utility
-{
-	public class EqualityComparerWithFunc<T> : IEqualityComparer<T>
-	{
-		private readonly Func<T, T, bool> _equalsFunc;
-		private readonly Func<T, int> _getHashFunc;
+namespace Paraiba.Utility {
+    public class EqualityComparerWithFunc<T> : IEqualityComparer<T> {
+        private readonly Func<T, T, bool> _equalsFunc;
+        private readonly Func<T, int> _getHashFunc;
 
-		public Func<T, T, bool> EqualsFunc
-		{
-			get { return _equalsFunc; }
-		}
+        public EqualityComparerWithFunc(
+                Func<T, T, bool> equalsFunc, Func<T, int> getHashFunc) {
+            _equalsFunc = equalsFunc;
+            _getHashFunc = getHashFunc;
+        }
 
-		public Func<T, int> GetHashFunc
-		{
-			get { return _getHashFunc; }
-		}
+        #region IEqualityComparer<T> メンバ
 
-		public EqualityComparerWithFunc(Func<T, T, bool> equalsFunc, Func<T, int> getHashFunc)
-		{
-			_equalsFunc = equalsFunc;
-			_getHashFunc = getHashFunc;
-		}
+        public bool Equals(T x, T y) {
+            return _equalsFunc(x, y);
+        }
 
-		#region IEqualityComparer<T> メンバ
+        public int GetHashCode(T obj) {
+            return _getHashFunc(obj);
+        }
 
-		public bool Equals(T x, T y)
-		{
-			return _equalsFunc(x, y);
-		}
+        #endregion
 
-		public int GetHashCode(T obj)
-		{
-			return _getHashFunc(obj);
-		}
+        public Func<T, T, bool> EqualsFunc {
+            get { return _equalsFunc; }
+        }
 
-		#endregion
-	}
+        public Func<T, int> GetHashFunc {
+            get { return _getHashFunc; }
+        }
+    }
 }

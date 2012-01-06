@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011 The Unicoen Project
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,99 +21,103 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Paraiba.Linq {
-	public static class EnumerableExtensions {
-		/// <summary>
-		///   指定したシーケンスに対して最初の要素をシード(seed)としてAggregateを計算します．
-		/// </summary>
-		/// <typeparam name = "T"></typeparam>
-		/// <typeparam name = "TAccumulate"></typeparam>
-		/// <param name = "source"></param>
-		/// <param name = "firstSelector"></param>
-		/// <param name = "func"></param>
-		/// <returns></returns>
-		public static TAccumulate AggregateApartFirst<T, TAccumulate>(
-				this IEnumerable<T> source, Func<T, TAccumulate> firstSelector,
-				Func<TAccumulate, T, TAccumulate> func) {
-			using (var enumerator = source.GetEnumerator()) {
-				if (!enumerator.MoveNext())
-					throw new ArgumentException();
-				var seed = firstSelector(enumerator.Current);
-				while (enumerator.MoveNext()) {
-					seed = func(seed, enumerator.Current);
-				}
-				return seed;
-			}
-		}
+    public static class EnumerableExtensions {
+        /// <summary>
+        ///   Applies an accumulator function over a sequence without the first element. The first element is used as the initial accumulator value.
+        /// </summary>
+        /// <typeparam name="T"> The type of the elements of <c>source</c> . </typeparam>
+        /// <typeparam name="TAccumulate"> </typeparam>
+        /// <param name="source"> </param>
+        /// <param name="firstSelector"> </param>
+        /// <param name="func"> </param>
+        /// <returns> </returns>
+        public static TAccumulate AggregateApartFirst<T, TAccumulate>(
+                this IEnumerable<T> source, Func<T, TAccumulate> firstSelector,
+                Func<TAccumulate, T, TAccumulate> func) {
+            using (var enumerator = source.GetEnumerator()) {
+                if (!enumerator.MoveNext()) {
+                    throw new ArgumentException();
+                }
+                var seed = firstSelector(enumerator.Current);
+                while (enumerator.MoveNext()) {
+                    seed = func(seed, enumerator.Current);
+                }
+                return seed;
+            }
+        }
 
-		/// <summary>
-		///   指定したシーケンスに対して最初の要素をシード(seed)としてAggregateを計算します．
-		/// </summary>
-		/// <typeparam name = "T"></typeparam>
-		/// <typeparam name = "TAccumulate"></typeparam>
-		/// <typeparam name = "TResult"></typeparam>
-		/// <param name = "source"></param>
-		/// <param name = "firstSelector"></param>
-		/// <param name = "func"></param>
-		/// <param name = "resultSelector"></param>
-		/// <returns></returns>
-		public static TResult AggregateApartFirst<T, TAccumulate, TResult>(
-				this IEnumerable<T> source, Func<T, TAccumulate> firstSelector,
-				Func<TAccumulate, T, TAccumulate> func,
-				Func<TAccumulate, TResult> resultSelector) {
-			using (var enumerator = source.GetEnumerator()) {
-				if (!enumerator.MoveNext())
-					throw new ArgumentException();
-				var seed = firstSelector(enumerator.Current);
-				while (enumerator.MoveNext()) {
-					seed = func(seed, enumerator.Current);
-				}
-				return resultSelector(seed);
-			}
-		}
+        /// <summary>
+        ///   指定したシーケンスに対して最初の要素をシード(seed)としてAggregateを計算します．
+        /// </summary>
+        /// <typeparam name="T"> </typeparam>
+        /// <typeparam name="TAccumulate"> </typeparam>
+        /// <typeparam name="TResult"> </typeparam>
+        /// <param name="source"> </param>
+        /// <param name="firstSelector"> </param>
+        /// <param name="func"> </param>
+        /// <param name="resultSelector"> </param>
+        /// <returns> </returns>
+        public static TResult AggregateApartFirst<T, TAccumulate, TResult>(
+                this IEnumerable<T> source, Func<T, TAccumulate> firstSelector,
+                Func<TAccumulate, T, TAccumulate> func,
+                Func<TAccumulate, TResult> resultSelector) {
+            using (var enumerator = source.GetEnumerator()) {
+                if (!enumerator.MoveNext()) {
+                    throw new ArgumentException();
+                }
+                var seed = firstSelector(enumerator.Current);
+                while (enumerator.MoveNext()) {
+                    seed = func(seed, enumerator.Current);
+                }
+                return resultSelector(seed);
+            }
+        }
 
-		/// <summary>
-		///   指定したシーケンスを逆順にしてAggregateを計算します．
-		/// </summary>
-		/// <typeparam name = "T"></typeparam>
-		/// <param name = "source"></param>
-		/// <param name = "func"></param>
-		/// <returns></returns>
-		public static T AggregateRight<T>(
-				this IEnumerable<T> source, Func<T, T, T> func) {
-			return source.Reverse().Aggregate(func);
-		}
+        /// <summary>
+        ///   指定したシーケンスを逆順にしてAggregateを計算します．
+        /// </summary>
+        /// <typeparam name="T"> </typeparam>
+        /// <param name="source"> </param>
+        /// <param name="func"> </param>
+        /// <returns> </returns>
+        public static T AggregateRight<T>(
+                this IEnumerable<T> source, Func<T, T, T> func) {
+            return source.Reverse().Aggregate(func);
+        }
 
-		/// <summary>
-		///   指定したシーケンスを逆順にしてAggregateを計算します．
-		/// </summary>
-		/// <typeparam name = "T"></typeparam>
-		/// <typeparam name = "TAccumulate"></typeparam>
-		/// <param name = "source"></param>
-		/// <param name = "seed"></param>
-		/// <param name = "func"></param>
-		/// <returns></returns>
-		public static TAccumulate AggregateRight<T, TAccumulate>(
-				this IEnumerable<T> source, TAccumulate seed,
-				Func<TAccumulate, T, TAccumulate> func) {
-			return source.Reverse().Aggregate(seed, func);
-		}
+        /// <summary>
+        ///   指定したシーケンスを逆順にしてAggregateを計算します．
+        /// </summary>
+        /// <typeparam name="T"> </typeparam>
+        /// <typeparam name="TAccumulate"> </typeparam>
+        /// <param name="source"> </param>
+        /// <param name="seed"> </param>
+        /// <param name="func"> </param>
+        /// <returns> </returns>
+        public static TAccumulate AggregateRight<T, TAccumulate>(
+                this IEnumerable<T> source, TAccumulate seed,
+                Func<TAccumulate, T, TAccumulate> func) {
+            return source.Reverse().Aggregate(seed, func);
+        }
 
-		/// <summary>
-		///   指定したシーケンスを要素数が2個のタプル列に分解します．
-		/// </summary>
-		/// <typeparam name = "T"></typeparam>
-		/// <param name = "source"></param>
-		/// <returns></returns>
-		public static IEnumerable<Tuple<T, T>> Split2<T>(this IEnumerable<T> source) {
-			using (var enumerator = source.GetEnumerator()) {
-				while (enumerator.MoveNext()) {
-					var item1 = enumerator.Current;
-					if (!enumerator.MoveNext())
-						yield break;
-					var item2 = enumerator.Current;
-					yield return Tuple.Create(item1, item2);
-				}
-			}
-		}
-	}
+        /// <summary>
+        ///   指定したシーケンスを要素数が2個のタプル列に分解します．
+        /// </summary>
+        /// <typeparam name="T"> </typeparam>
+        /// <param name="source"> </param>
+        /// <returns> </returns>
+        public static IEnumerable<Tuple<T, T>> Split2<T>(
+                this IEnumerable<T> source) {
+            using (var enumerator = source.GetEnumerator()) {
+                while (enumerator.MoveNext()) {
+                    var item1 = enumerator.Current;
+                    if (!enumerator.MoveNext()) {
+                        yield break;
+                    }
+                    var item2 = enumerator.Current;
+                    yield return Tuple.Create(item1, item2);
+                }
+            }
+        }
+    }
 }

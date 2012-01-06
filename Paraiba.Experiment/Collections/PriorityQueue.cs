@@ -1,200 +1,203 @@
+ï»¿#region License
+
+// Copyright (C) 2011-2012 Kazunori Sakamoto
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+#endregion
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-namespace Paraiba.Collections
-{
-	/// <summary>
-	/// —Dæ“x•t‚«ƒLƒ…[‚ğ•\‚µ‚Ü‚·B
-	/// </summary>
-	/// <typeparam name="TValue"></typeparam>
-	public class PriorityQueue<T>
-	{
-		private readonly List<T> _array;
-		private readonly IComparer<T> _cmp;
+namespace Paraiba.Collections {
+    /// <summary>
+    ///   ï¿½Dï¿½ï¿½xï¿½tï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½[ï¿½ï¿½\ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+    /// </summary>
+    /// <typeparam name="TValue"> </typeparam>
+    public class PriorityQueue<T> {
+        private readonly List<T> _array;
+        private readonly IComparer<T> _cmp;
 
-		public PriorityQueue()
-			: this(Comparer<T>.Default)
-		{
-		}
+        public PriorityQueue()
+                : this(Comparer<T>.Default) {}
 
-		public PriorityQueue(IComparer<T> cmp)
-		{
-			Contract.Requires(cmp != null);
+        public PriorityQueue(IComparer<T> cmp) {
+            Contract.Requires(cmp != null);
 
-			// Å‰‚Ì—v‘f‚Í”Ô•º—p‚ÉŠm•Û
-			_array = new List<T> { default(T) };
-			_cmp = cmp;
-		}
+            // ï¿½Åï¿½ï¿½Ì—vï¿½fï¿½Í”Ô•ï¿½ï¿½pï¿½ÉŠmï¿½ï¿½
+            _array = new List<T> { default(T) };
+            _cmp = cmp;
+        }
 
-		/// <summary>
-		/// <see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚ÉŠi”[‚³‚ê‚Ä‚¢‚é—v‘f‚Ì”‚ğæ“¾‚µ‚Ü‚·B
-		/// </summary>
-		/// <returns>
-		/// <see cref="TValue:System.Collections.Generic.ICollection`1" /> ‚ÉŠi”[‚³‚ê‚Ä‚¢‚é—v‘f‚Ì”B
-		/// </returns>
-		public int Count
-		{
-			get { return _array.Count - 1; }
-		}
+        /// <summary>
+        ///   <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ÉŠiï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½vï¿½fï¿½Ìï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+        /// </summary>
+        /// <returns> <see cref="TValue:System.Collections.Generic.ICollection`1" /> ï¿½ÉŠiï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½vï¿½fï¿½Ìï¿½ï¿½B </returns>
+        public int Count {
+            get { return _array.Count - 1; }
+        }
 
-		public void Clear()
-		{
-			_array.RemoveRange(1, _array.Count - 1);
-		}
+        public void Clear() {
+            _array.RemoveRange(1, _array.Count - 1);
+        }
 
-		public bool Contains(T item)
-		{
-			return _array.IndexOf(item, 1) != -1;
-		}
+        public bool Contains(T item) {
+            return _array.IndexOf(item, 1) != -1;
+        }
 
-		public void CopyTo(T[] array, int arrayIndex)
-		{
-			Contract.Requires(0 <= arrayIndex);
-			Contract.Requires(arrayIndex + Count <= array.Length);
+        public void CopyTo(T[] array, int arrayIndex) {
+            Contract.Requires(0 <= arrayIndex);
+            Contract.Requires(arrayIndex + Count <= array.Length);
 
-			var arr = _array;
-			int n = arr.Count;
-			if (n <= 2)
-			{
-				if (n == 2)
-					array[arrayIndex] = arr[1];
-				return;
-			}
+            var arr = _array;
+            int n = arr.Count;
+            if (n <= 2) {
+                if (n == 2) {
+                    array[arrayIndex] = arr[1];
+                }
+                return;
+            }
 
-			var cmp = _cmp;
-			int endIndex = n + arrayIndex - 1;
+            var cmp = _cmp;
+            int endIndex = n + arrayIndex - 1;
 
-			for (int i = 1; i < n; i++)
-				array[endIndex - (i)] = arr[i];
+            for (int i = 1; i < n; i++) {
+                array[endIndex - (i)] = arr[i];
+            }
 
-			for (n--; n >= 3; n--)
-			{
-				// —Dæ‡ˆÊ‚ÌÅ‚à‚‚¢—v‘f‚ğ‹L‰¯‚·‚é
-				var result = array[endIndex - (1)];
+            for (n--; n >= 3; n--) {
+                // ï¿½Dï¿½æ‡ï¿½Ê‚ÌÅ‚ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½fï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                var result = array[endIndex - (1)];
 
-				// ––”ö‚Ì—v‘f‚ğª‚Æ‚µ‚Äl‚¦‚ÄƒRƒs[‚·‚é
-				var item = array[endIndex - (n)];
-				// downheap ‘€ì‚É‚æ‚èª‚Ì’l‚ğ“KØ‚ÈˆÊ’u‚ÖˆÚ“®‚·‚é
-				int i = 1, j = 2, k = j - (cmp.Compare(array[endIndex - (j + 1)], array[endIndex - (j)]) >> 31);
-				T tmp;
-				while ((j = k*2) < n && cmp.Compare(item, (tmp = array[endIndex - (j)])) > 0)
-				{
-					array[endIndex - (i)] = array[endIndex - (k)];
-					i = k;
-					k = j - (cmp.Compare(array[endIndex - (j + 1)], tmp) >> 31);
-				}
-				array[endIndex - (i)] = array[endIndex - (k)];
-				// “KØ‚ÈˆÊ’u‚É––”ö‚Ì—v‘f‚ğ”z’u
-				array[endIndex - (k)] = item;
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Älï¿½ï¿½ï¿½ÄƒRï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½
+                var item = array[endIndex - (n)];
+                // downheap ï¿½ï¿½ï¿½ï¿½É‚ï¿½èªï¿½Ì’lï¿½ï¿½Kï¿½Ø‚ÈˆÊ’uï¿½ÖˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+                int i = 1, j = 2,
+                        k = j
+                            -
+                            (cmp.Compare(
+                                    array[endIndex - (j + 1)],
+                                    array[endIndex - (j)]) >> 31);
+                T tmp;
+                while ((j = k * 2) < n
+                       && cmp.Compare(item, (tmp = array[endIndex - (j)])) > 0) {
+                    array[endIndex - (i)] = array[endIndex - (k)];
+                    i = k;
+                    k = j - (cmp.Compare(array[endIndex - (j + 1)], tmp) >> 31);
+                }
+                array[endIndex - (i)] = array[endIndex - (k)];
+                // ï¿½Kï¿½Ø‚ÈˆÊ’uï¿½É–ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½zï¿½u
+                array[endIndex - (k)] = item;
 
-				// ”Ô•º‚Æ‚µ‚Äc‚µ‚Ä‚¨‚¢‚½––”ö‚Ì—v‘f‚ÌƒRƒs[Œ³‚ÉA—Dæ‡ˆÊ‚ÌÅ‚à‚‚¢—v‘f‚ğˆÚ“®‚·‚é
-				array[endIndex - (n)] = result;
-			}
-			{
-				T item = array[endIndex - (2)];
-				array[endIndex - (2)] = array[endIndex - (1)];
-				array[endIndex - (1)] = item;
-			}
-		}
+                // ï¿½Ô•ï¿½ï¿½Æ‚ï¿½ï¿½Äcï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ÌƒRï¿½sï¿½[ï¿½ï¿½ï¿½ÉAï¿½Dï¿½æ‡ï¿½Ê‚ÌÅ‚ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½fï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½
+                array[endIndex - (n)] = result;
+            }
+            {
+                T item = array[endIndex - (2)];
+                array[endIndex - (2)] = array[endIndex - (1)];
+                array[endIndex - (1)] = item;
+            }
+        }
 
-		public T Dequeue()
-		{
-			var arr = _array;
+        public T Dequeue() {
+            var arr = _array;
 
-			// —v‘f”‚Ìƒ`ƒFƒbƒN
-			int n = arr.Count - 1;
-			if (n < 1)
-				throw new InvalidOperationException("PriorityQueue ‚ª‹ó‚Å‚·B");
+            // ï¿½vï¿½fï¿½ï¿½ï¿½Ìƒ`ï¿½Fï¿½bï¿½N
+            int n = arr.Count - 1;
+            if (n < 1) {
+                throw new InvalidOperationException("PriorityQueue ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B");
+            }
 
-			var cmp = _cmp;
+            var cmp = _cmp;
 
-			// —Dæ‡ˆÊ‚ÌÅ‚à‚‚¢—v‘f‚ğ‹L‰¯‚·‚é
-			T result = arr[1];
+            // ï¿½Dï¿½æ‡ï¿½Ê‚ÌÅ‚ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½fï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            T result = arr[1];
 
-			if (n <= 2)
-			{
-				// —v‘f‚ª2‚ÂˆÈ‰º‚Ìê‡Ac‚è‚Ì—v‘f‚ğª‚ÉˆÚ“®‚·‚é‚¾‚¯
-				arr[1] = arr[n];
-			}
-			else
-			{
-				// ––”ö‚Ì—v‘f‚ğª‚Æ‚µ‚Äl‚¦‚ÄƒRƒs[‚·‚é
-				var item = arr[n];
-				// downheap ‘€ì‚É‚æ‚èª‚Ì’l‚ğ“KØ‚ÈˆÊ’u‚ÖˆÚ“®‚·‚é
-				int i = 1, j = 2, k = j - (cmp.Compare(arr[j + 1], arr[j]) >> 31);
-				T tmp;
-				while ((j = k*2) < n && cmp.Compare(item, (tmp = arr[j])) > 0)
-				{
-					arr[i] = arr[k];
-					i = k;
-					k = j - (cmp.Compare(arr[j + 1], tmp) >> 31);
-				}
-				arr[i] = arr[k];
-				// “KØ‚ÈˆÊ’u‚É––”ö‚Ì—v‘f‚ğ”z’u
-				arr[k] = item;
-			}
+            if (n <= 2) {
+                // ï¿½vï¿½fï¿½ï¿½2ï¿½ÂˆÈ‰ï¿½ï¿½Ìê‡ï¿½Aï¿½cï¿½ï¿½Ì—vï¿½fï¿½ï¿½ï¿½ï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½é‚¾ï¿½ï¿½
+                arr[1] = arr[n];
+            } else {
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Älï¿½ï¿½ï¿½ÄƒRï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½
+                var item = arr[n];
+                // downheap ï¿½ï¿½ï¿½ï¿½É‚ï¿½èªï¿½Ì’lï¿½ï¿½Kï¿½Ø‚ÈˆÊ’uï¿½ÖˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+                int i = 1, j = 2,
+                        k = j - (cmp.Compare(arr[j + 1], arr[j]) >> 31);
+                T tmp;
+                while ((j = k * 2) < n && cmp.Compare(item, (tmp = arr[j])) > 0) {
+                    arr[i] = arr[k];
+                    i = k;
+                    k = j - (cmp.Compare(arr[j + 1], tmp) >> 31);
+                }
+                arr[i] = arr[k];
+                // ï¿½Kï¿½Ø‚ÈˆÊ’uï¿½É–ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½zï¿½u
+                arr[k] = item;
+            }
 
-			// —Dæ‡ˆÊ‚ÌÅ‚à’á‚¢—v‘f‚ÌƒRƒs[Œ³i”Ô•ºj‚ğíœ
-			arr.RemoveAt(n);
+            // ï¿½Dï¿½æ‡ï¿½Ê‚ÌÅ‚ï¿½á‚¢ï¿½vï¿½fï¿½ÌƒRï¿½sï¿½[ï¿½ï¿½ï¿½iï¿½Ô•ï¿½ï¿½jï¿½ï¿½íœ
+            arr.RemoveAt(n);
 
-			return result;
-		}
+            return result;
+        }
 
-		public void Enqueue(T item)
-		{
-			var arr = _array;
-			var cmp = _cmp;
+        public void Enqueue(T item) {
+            var arr = _array;
+            var cmp = _cmp;
 
-			// ”Ô•º
-			arr[0] = item;
-			// ‚Æ‚è‚ ‚¦‚¸––”ö‚Ì—v‘f‚Æ‚µ‚Ä”z’u‚·‚é
-			arr.Add(item);
+            // ï¿½Ô•ï¿½
+            arr[0] = item;
+            // ï¿½Æ‚è‚ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½Æ‚ï¿½ï¿½Ä”zï¿½uï¿½ï¿½ï¿½ï¿½
+            arr.Add(item);
 
-			// upheap ‘€ì‚É‚æ‚è––”ö‚Ì—v‘f‚ğ“KØ‚ÈˆÊ’u‚ÖˆÚ“®‚·‚é
-			int i = arr.Count - 1, j;
-			if (cmp.Compare(item, arr[j = i >> 1]) < 0)
-			{
-				do
-				{
-					arr[i] = arr[j];
-					i = j;
-				} while (cmp.Compare(item, arr[j = i >> 1]) < 0);
-				// “KØ‚ÈˆÊ’u‚É––”ö‚Ì—v‘f‚ğ”z’u
-				arr[i] = item;
-			}
-		}
+            // upheap ï¿½ï¿½ï¿½ï¿½É‚ï¿½è––ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½Kï¿½Ø‚ÈˆÊ’uï¿½ÖˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+            int i = arr.Count - 1, j;
+            if (cmp.Compare(item, arr[j = i >> 1]) < 0) {
+                do {
+                    arr[i] = arr[j];
+                    i = j;
+                } while (cmp.Compare(item, arr[j = i >> 1]) < 0);
+                // ï¿½Kï¿½Ø‚ÈˆÊ’uï¿½É–ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½zï¿½u
+                arr[i] = item;
+            }
+        }
 
-		public bool Exists(Predicate<T> match)
-		{
-			var arr = _array;
-			int length = arr.Count;
-			for (int i = 1; i < length; i++)
-			{
-				if (match(arr[i]))
-					return true;
-			}
-			return false;
-		}
+        public bool Exists(Predicate<T> match) {
+            var arr = _array;
+            int length = arr.Count;
+            for (int i = 1; i < length; i++) {
+                if (match(arr[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
-		public T Peek()
-		{
-			// —v‘f”‚Ìƒ`ƒFƒbƒN
-			if (_array.Count < 2)
-				throw new InvalidOperationException("PriorityQueue ‚ª‹ó‚Å‚·B");
-			return _array[1];
-		}
+        public T Peek() {
+            // ï¿½vï¿½fï¿½ï¿½ï¿½Ìƒ`ï¿½Fï¿½bï¿½N
+            if (_array.Count < 2) {
+                throw new InvalidOperationException("PriorityQueue ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B");
+            }
+            return _array[1];
+        }
 
-		public T[] ToArray()
-		{
-			var arr = new T[_array.Count - 1];
-			CopyTo(arr, 0);
-			return arr;
-		}
+        public T[] ToArray() {
+            var arr = new T[_array.Count - 1];
+            CopyTo(arr, 0);
+            return arr;
+        }
 
-		public void TrimExcess()
-		{
-			_array.TrimExcess();
-		}
-	}
+        public void TrimExcess() {
+            _array.TrimExcess();
+        }
+    }
 }
