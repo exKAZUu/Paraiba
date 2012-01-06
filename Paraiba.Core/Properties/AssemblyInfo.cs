@@ -24,10 +24,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Paraiba.Core")]
-[assembly:
-        AssemblyDescription("The core library of Paraiba that is well tested.")]
+[assembly: AssemblyDescription("The core library of Paraiba that is well tested.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Waseda University")]
+[assembly: AssemblyCompany("Kazunori Sakamoto")]
 [assembly: AssemblyProduct("Paraiba.Core")]
 [assembly: AssemblyCopyright("Copyright © Kazunori Sakamoto 2011-2012")]
 [assembly: AssemblyTrademark("")]
