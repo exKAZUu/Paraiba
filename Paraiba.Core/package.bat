@@ -1,1 +1,1 @@
-nuget pack Paraiba.Core.csproj -Prop Configuration=Release -BasePath ..\
+nuget pack Paraiba.Core.csproj -Prop Configuration=Release

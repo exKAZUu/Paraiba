@@ -31,18 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Paraiba, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Paraiba.1.0.0.0\lib\net40\Paraiba.dll</HintPath>
-    </Reference>
-    <Reference Include="Paraiba.Core.Tests, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Paraiba.1.0.0.0\lib\net40\Paraiba.Core.Tests.dll</HintPath>
-    </Reference>
-    <Reference Include="Paraiba.Experiment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Paraiba.1.0.0.0\lib\net40\Paraiba.Experiment.dll</HintPath>
-    </Reference>
-    <Reference Include="Paraiba.Experiment.Tests, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Paraiba.1.0.0.0\lib\net40\Paraiba.Experiment.Tests.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -246,9 +234,6 @@
     <EmbeddedResource Include="Windows\Forms\ScrollablePanel.resx">
       <DependentUpon>ScrollablePanel.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
