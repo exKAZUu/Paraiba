@@ -1,1 +1,0 @@
-nuget pack Paraiba.Core.csproj -Prop Configuration=Release
