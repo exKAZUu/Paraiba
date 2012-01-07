@@ -183,18 +183,18 @@ namespace Paraiba.Xml.Linq {
         }
 
         /// <summary>
-        ///   element.ElementsBeforeSelf().ElementAt(index)です。
+        ///   element.ElementsBeforeSelf().Reverse().ElementAt(index)です。
         /// </summary>
         /// <param name="element"> </param>
         /// <param name="index"> </param>
         /// <returns> </returns>
         [Pure, DebuggerStepThrough]
         public static XElement PreviousElement(this XElement element, int index) {
-            return element.ElementsBeforeSelf().ElementAt(index);
+            return element.ElementsBeforeSelf().Reverse().ElementAt(index);
         }
 
         /// <summary>
-        ///   element.ElementsBeforeSelf(name).ElementAt(index)です。
+        ///   element.ElementsBeforeSelf(name).Reverse().ElementAt(index)です。
         /// </summary>
         /// <param name="element"> </param>
         /// <param name="name"> </param>
@@ -203,11 +203,11 @@ namespace Paraiba.Xml.Linq {
         [Pure, DebuggerStepThrough]
         public static XElement PreviousElement(
                 this XElement element, string name, int index) {
-            return element.ElementsBeforeSelf(name).ElementAt(index);
+            return element.ElementsBeforeSelf(name).Reverse().ElementAt(index);
         }
 
         /// <summary>
-        ///   element.ElementsBeforeSelf().ElementAtOrDefault(index)です。
+        ///   element.ElementsBeforeSelf().Reverse().ElementAtOrDefault(index)です。
         /// </summary>
         /// <param name="element"> </param>
         /// <param name="index"> </param>
@@ -215,11 +215,11 @@ namespace Paraiba.Xml.Linq {
         [Pure, DebuggerStepThrough]
         public static XElement PreviousElementOrDefault(
                 this XElement element, int index) {
-            return element.ElementsBeforeSelf().ElementAtOrDefault(index);
+            return element.ElementsBeforeSelf().Reverse().ElementAtOrDefault(index);
         }
 
         /// <summary>
-        ///   element.ElementsBeforeSelf(name).ElementAtOrDefault(index)です。
+        ///   element.ElementsBeforeSelf(name).Reverse().ElementAtOrDefault(index)です。
         /// </summary>
         /// <param name="element"> </param>
         /// <param name="name"> </param>
@@ -229,7 +229,7 @@ namespace Paraiba.Xml.Linq {
         public static XElement PreviousElementOrDefault(
                 this XElement element,
                 string name, int index) {
-            return element.ElementsBeforeSelf(name).ElementAtOrDefault(index);
+            return element.ElementsBeforeSelf(name).Reverse().ElementAtOrDefault(index);
         }
 
         /// <summary>
