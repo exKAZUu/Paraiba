@@ -1,4 +1,4 @@
-#region License
+ï»¿#region License
 
 // Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
@@ -74,7 +74,7 @@ namespace Paraiba.Geometry {
             float d = a_ * line.b_ - line.a_ * b_;
 
             if (d != 0) {
-                // Œğ“_‚ª‘¶İ‚·‚é
+                // ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½
                 float x = (-line.b_ * c_ + b_ * line.c_) / d;
                 if (!xInterval_.InRange(x) || !line.xInterval_.InRange(x)) {
                     return false;
@@ -83,7 +83,7 @@ namespace Paraiba.Geometry {
                 float y = (+line.a_ * c_ - a_ * line.c_) / d;
                 return yInterval_.InRange(y) && line.yInterval_.InRange(y);
             } else {
-                // •½s‚Å‚ ‚éiŒğ“_‚ª‘¶İ‚µ‚È‚¢j
+                // ï¿½ï¿½ï¿½sï¿½Å‚ï¿½ï¿½ï¿½iï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½È‚ï¿½ï¿½j
                 return false;
             }
         }

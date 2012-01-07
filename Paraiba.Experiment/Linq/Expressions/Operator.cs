@@ -19,14 +19,12 @@
 using System;
 using System.Linq.Expressions;
 using Binary =
-        System.Func
-                <System.Linq.Expressions.ParameterExpression,
-                        System.Linq.Expressions.ParameterExpression,
-                        System.Linq.Expressions.BinaryExpression>;
+        System.Func<System.Linq.Expressions.ParameterExpression,
+                System.Linq.Expressions.ParameterExpression,
+                System.Linq.Expressions.BinaryExpression>;
 using Unary =
-        System.Func
-                <System.Linq.Expressions.ParameterExpression,
-                        System.Linq.Expressions.UnaryExpression>;
+        System.Func<System.Linq.Expressions.ParameterExpression,
+                System.Linq.Expressions.UnaryExpression>;
 
 namespace Paraiba.Linq.Expressions {
     /// <summary>
