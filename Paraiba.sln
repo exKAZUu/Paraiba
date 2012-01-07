@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paraiba", "Paraiba.Core\Paraiba.csproj", "{A83D76C2-AB7F-4D49-A9A4-67C781AACBE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paraiba.Core", "Paraiba.Core\Paraiba.Core.csproj", "{A83D76C2-AB7F-4D49-A9A4-67C781AACBE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paraiba.Tests", "Paraiba.Core.Tests\Paraiba.Tests.csproj", "{5B211880-9BE9-4EC5-9B22-F7D73CE2854B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paraiba.Core.Tests", "Paraiba.Core.Tests\Paraiba.Core.Tests.csproj", "{5B211880-9BE9-4EC5-9B22-F7D73CE2854B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paraiba.Experiment", "Paraiba.Experiment\Paraiba.Experiment.csproj", "{21CE6D61-2E01-46BE-977A-D99D50CC2A3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paraiba.Experiment.Tests", "Paraiba.Experiment.Tests\Paraiba.Experiment.Tests.csproj", "{9E5ADAB0-C497-4EE7-B3A8-04C2673BFAE1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{397BAE81-55E8-43DE-BC3E-F97A1853E187}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Experiment", "Experiment", "{18FC17ED-DF5D-4832-B9B3-89FA20181615}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,16 +35,10 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5B211880-9BE9-4EC5-9B22-F7D73CE2854B} = {397BAE81-55E8-43DE-BC3E-F97A1853E187}
-		{A83D76C2-AB7F-4D49-A9A4-67C781AACBE9} = {397BAE81-55E8-43DE-BC3E-F97A1853E187}
-		{9E5ADAB0-C497-4EE7-B3A8-04C2673BFAE1} = {18FC17ED-DF5D-4832-B9B3-89FA20181615}
-		{21CE6D61-2E01-46BE-977A-D99D50CC2A3E} = {18FC17ED-DF5D-4832-B9B3-89FA20181615}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = None.None.Increment.TimeStamp
-		BuildVersion_UpdateAssemblyVersion = True
-		BuildVersion_UpdateFileVersion = True
 		BuildVersion_UseGlobalSettings = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_BuildVersioningStyle = None.None.Increment.TimeStamp
 	EndGlobalSection
 EndGlobal

@@ -56,7 +56,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Paraiba.Core\Paraiba.csproj">
+    <ProjectReference Include="..\Paraiba.Core\Paraiba.Core.csproj">
       <Project>{A83D76C2-AB7F-4D49-A9A4-67C781AACBE9}</Project>
       <Name>Paraiba</Name>
     </ProjectReference>
