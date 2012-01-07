@@ -21,16 +21,20 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Paraiba.Linq {
+    /// <summary>
+    /// Provides a set of <c>static</c> methods for querying objects that implement <see cref="IEnumerable(Of T)"/>.
+    /// </summary>
     public static class EnumerableExtensions {
         /// <summary>
-        ///   Applies an accumulator function over a sequence without the first element. The first element is used as the initial accumulator value.
+        /// Applies an accumulator function over a sequence without the first element.
+        /// The specified function is used to transform the first element into the initial accumulator value.
         /// </summary>
-        /// <typeparam name="T"> The type of the elements of <c>source</c> . </typeparam>
-        /// <typeparam name="TAccumulate"> </typeparam>
-        /// <param name="source"> </param>
-        /// <param name="firstSelector"> </param>
-        /// <param name="func"> </param>
-        /// <returns> </returns>
+        /// <typeparam name="T">The type of the elements of <c>source</c>.</typeparam>
+        /// <typeparam name="TAccumulate">The type of the elements of <c>source</c>.</typeparam>
+        /// <param name="source">An <see cref="IEnumerable(Of T)"/> to aggregate over.</param>
+        /// <param name="firstSelector">A function to transform the first element into the initial accumulator value.</param>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <returns></returns>
         public static TAccumulate AggregateApartFirst<T, TAccumulate>(
                 this IEnumerable<T> source, Func<T, TAccumulate> firstSelector,
                 Func<TAccumulate, T, TAccumulate> func) {
@@ -47,16 +51,17 @@ namespace Paraiba.Linq {
         }
 
         /// <summary>
-        ///   指定したシーケンスに対して最初の要素をシード(seed)としてAggregateを計算します．
+        /// Applies an accumulator function over a sequence without the first element.
+        /// The specified function is used to transform the first element into the initial accumulator value, and the specified function is used to select the result value.
         /// </summary>
-        /// <typeparam name="T"> </typeparam>
-        /// <typeparam name="TAccumulate"> </typeparam>
-        /// <typeparam name="TResult"> </typeparam>
-        /// <param name="source"> </param>
-        /// <param name="firstSelector"> </param>
-        /// <param name="func"> </param>
-        /// <param name="resultSelector"> </param>
-        /// <returns> </returns>
+        /// <typeparam name="T">The type of the elements of <c>source</c>.</typeparam>
+        /// <typeparam name="TAccumulate">The type of the elements of <c>source</c>.</typeparam>
+        /// <typeparam name="TResult">The type of the resulting value.</typeparam>
+        /// <param name="source">An <see cref="IEnumerable(Of T)"/> to aggregate over.</param>
+        /// <param name="firstSelector">A function to transform the first element into the initial accumulator value.</param>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
+        /// <returns>The transformed final accumulator value.</returns>
         public static TResult AggregateApartFirst<T, TAccumulate, TResult>(
                 this IEnumerable<T> source, Func<T, TAccumulate> firstSelector,
                 Func<TAccumulate, T, TAccumulate> func,
