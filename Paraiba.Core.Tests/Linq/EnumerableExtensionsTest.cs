@@ -16,6 +16,8 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Paraiba.Linq;
 
@@ -23,6 +25,7 @@ namespace Paraiba.Core.Tests.Linq {
     [TestFixture]
     public class EnumerableExtensionsTest {
         [Test]
+        [TestCase(new int[0], ExpectedException = typeof(InvalidOperationException))]
         [TestCase(new[] { 2 }, Result = 3)]
         [TestCase(new[] { 1, 2 }, Result = 4)]
         [TestCase(new[] { 0, 1, 2 }, Result = 2)]
@@ -31,12 +34,46 @@ namespace Paraiba.Core.Tests.Linq {
         }
 
         [Test]
+        [TestCase(new int[0], ExpectedException = typeof(InvalidOperationException))]
         [TestCase(new[] { 2 }, Result = -3)]
         [TestCase(new[] { 1, 2 }, Result = -4)]
         [TestCase(new[] { 0, 1, 2 }, Result = -2)]
         public int AggregateApartFirst2(int[] values) {
             return values.AggregateApartFirst(
                     v => v + 1, (i, j) => i * j, v => -v);
+        }
+
+        [Test]
+        [TestCase(new int[0], ExpectedException = typeof(InvalidOperationException))]
+        [TestCase(new[] { 2 }, Result = 2)]
+        [TestCase(new[] { 1, 2 }, Result = 1)]
+        [TestCase(new[] { 0, 1, 2 }, Result = 1)]
+        public int AggregateRight(int[] values) {
+            return values.AggregateRight((i, j) => i - j);
+        }
+
+        [Test]
+        [TestCase(new int[0], Result = 0)]
+        [TestCase(new[] { 2 }, Result = -2)]
+        [TestCase(new[] { 1, 2 }, Result = -3)]
+        [TestCase(new[] { 0, 1, 2 }, Result = -3)]
+        public int AggregateRight2(int[] values) {
+            return values.AggregateRight(0, (i, j) => i - j);
+        }
+
+        [Test]
+        [TestCase(new int[0], Result = new int[0])]
+        [TestCase(new[] { 1 }, Result = new int[0])]
+        [TestCase(new[] { 1, 2 }, Result = new[] { 1, 2 })]
+        [TestCase(new[] { 1, 2, 3 }, Result = new[] { 1, 2 })]
+        [TestCase(new[] { 1, 2, 3, 4 }, Result = new[] { 1, 2, 3, 4 })]
+        public int[] Split2(int[] values) {
+            var result = new List<int>();
+            foreach (var t in values.Split2()) {
+                result.Add(t.Item1);
+                result.Add(t.Item2);
+            }
+            return result.ToArray();
         }
     }
 }

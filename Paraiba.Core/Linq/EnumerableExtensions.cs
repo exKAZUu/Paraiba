@@ -40,7 +40,7 @@ namespace Paraiba.Linq {
                 Func<TAccumulate, T, TAccumulate> func) {
             using (var enumerator = source.GetEnumerator()) {
                 if (!enumerator.MoveNext()) {
-                    throw new ArgumentException();
+                    throw new InvalidOperationException("The specified sequence is empty.");
                 }
                 var seed = firstSelector(enumerator.Current);
                 while (enumerator.MoveNext()) {
@@ -68,7 +68,7 @@ namespace Paraiba.Linq {
                 Func<TAccumulate, TResult> resultSelector) {
             using (var enumerator = source.GetEnumerator()) {
                 if (!enumerator.MoveNext()) {
-                    throw new ArgumentException();
+                    throw new InvalidOperationException("The specified sequence is empty.");
                 }
                 var seed = firstSelector(enumerator.Current);
                 while (enumerator.MoveNext()) {

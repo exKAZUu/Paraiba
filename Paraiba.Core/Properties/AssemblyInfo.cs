@@ -23,11 +23,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Paraiba.Core")]
-[assembly:
-        AssemblyDescription("The core library of Paraiba that is well tested.")]
+[assembly: AssemblyTitle("Paraiba")]
+[assembly: AssemblyDescription("The core library of Paraiba that is well tested.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Waseda University")]
+[assembly: AssemblyCompany("Kazunori Sakamoto")]
 [assembly: AssemblyProduct("Paraiba.Core")]
 [assembly: AssemblyCopyright("Copyright © Kazunori Sakamoto 2011-2012")]
 [assembly: AssemblyTrademark("")]
@@ -54,5 +53,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]
