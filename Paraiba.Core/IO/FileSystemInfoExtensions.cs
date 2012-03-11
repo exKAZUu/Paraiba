@@ -19,6 +19,7 @@
 using System.IO;
 
 namespace Paraiba.IO {
+	//TODO: Write comments
 	public static class FileSystemInfoExtensions {
 		/// <summary>
 		///   Returns a value indicating whether the file or directory exists null-safely.
