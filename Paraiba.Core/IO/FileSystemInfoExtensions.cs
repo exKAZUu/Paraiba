@@ -19,47 +19,94 @@
 using System.IO;
 
 namespace Paraiba.IO {
-	//TODO: Write comments
+	/// <summary>
+	///   Provides a set of extension methods for <see cref="FileSystemInfo" /> , <see cref="FileInfo" /> and <see
+	///    cref="DirectoryInfo" /> .
+	/// </summary>
 	public static class FileSystemInfoExtensions {
 		/// <summary>
 		///   Returns a value indicating whether the file or directory exists null-safely.
 		/// </summary>
-		/// <param name="info"> the </param>
-		/// <returns> </returns>
+		/// <param name="info"> A <c>FileSystemInfo</c> instance to check existing. </param>
+		/// <returns> The value indicating whether the file or directory exists. </returns>
 		public static bool SafeExists(this FileSystemInfo info) {
 			return info != null && info.Exists;
 		}
 
+		/// <summary>
+		///   Returns a value indicating whether the file exists null-safely.
+		/// </summary>
+		/// <param name="info"> A <c>FileSystemInfo</c> instance to check existing. </param>
+		/// <returns> The value indicating whether the file exists. </returns>
 		public static bool SafeFileExists(this FileSystemInfo info) {
 			return info.SafeExists() && (info.Attributes & FileAttributes.Directory) == 0;
 		}
 
+		/// <summary>
+		///   Returns a value indicating whether the file exists null-safely.
+		/// </summary>
+		/// <param name="info"> A <c>FileInfo</c> instance to check existing. </param>
+		/// <returns> The value indicating whether the file exists. </returns>
 		public static bool SafeFileExists(this FileInfo info) {
 			return info.SafeExists();
 		}
 
+		/// <summary>
+		///   Returns a value indicating whether the file exists null-safely.
+		/// </summary>
+		/// <param name="info"> A <c>DirectoryInfo</c> instance to check existing. </param>
+		/// <returns> <c>false</c> . </returns>
 		public static bool SafeFileExists(this DirectoryInfo info) {
 			return false;
 		}
 
+		/// <summary>
+		///   Returns a value indicating whether the directory exists null-safely.
+		/// </summary>
+		/// <param name="info"> A <c>FileSystemInfo</c> instance to check existing. </param>
+		/// <returns> The value indicating whether the directory exists. </returns>
 		public static bool SafeDirectoryExists(this FileSystemInfo info) {
 			return info.SafeExists() && (info.Attributes & FileAttributes.Directory) != 0;
 		}
 
+		/// <summary>
+		///   Returns a value indicating whether the directory exists null-safely.
+		/// </summary>
+		/// <param name="info"> A <c>DirectoryInfo</c> instance to check existing. </param>
+		/// <returns> The value indicating whether the directory exists. </returns>
 		public static bool SafeDirectoryExists(this DirectoryInfo info) {
 			return info.SafeExists();
 		}
 
+		/// <summary>
+		///   Returns a value indicating whether the directory exists null-safely.
+		/// </summary>
+		/// <param name="info"> A <c>FileInfo</c> instance to check existing. </param>
+		/// <returns> <c>false</c> . </returns>
 		public static bool SafeDirectoryExists(this FileInfo info) {
 			return false;
 		}
 
-		public static FileInfo GetFile(this DirectoryInfo info, string path) {
-			return new FileInfo(Path.Combine(info.FullName, path));
+		/// <summary>
+		///   Returns a <c>FileInfo</c> combining a base <c>DirectoryInfo</c> and a relative file path.
+		/// </summary>
+		/// <param name="baseDirInfo"> A base <c>DirectoryInfo</c> . </param>
+		/// <param name="relativeFilePath"> A relative file path. </param>
+		/// <returns> The <c>FileInfo</c> for the combined path. </returns>
+		public static FileInfo GetFile(
+				this DirectoryInfo baseDirInfo, string relativeFilePath) {
+			return new FileInfo(Path.Combine(baseDirInfo.FullName, relativeFilePath));
 		}
 
-		public static DirectoryInfo GetDirectory(this DirectoryInfo info, string path) {
-			return new DirectoryInfo(Path.Combine(info.FullName, path));
+		/// <summary>
+		///   Returns a <c>DirectoryInfo</c> combining a base <c>DirectoryInfo</c> and a relative directory path.
+		/// </summary>
+		/// <param name="baseDirInfo"> A base <c>DirectoryInfo</c> . </param>
+		/// <param name="relativeDirPath"> A relative directory path. </param>
+		/// <returns> The <c>DirectoryInfo</c> for the combined path. </returns>
+		public static DirectoryInfo GetDirectory(
+				this DirectoryInfo baseDirInfo, string relativeDirPath) {
+			return new DirectoryInfo(Path.Combine(baseDirInfo.FullName, relativeDirPath));
 		}
 	}
 }
