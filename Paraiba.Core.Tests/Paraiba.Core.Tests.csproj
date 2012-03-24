@@ -52,6 +52,7 @@
     <Compile Include="IO\FileSystemInfoExtensionsTest.cs" />
     <Compile Include="Linq\EnumerableExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xml\Linq\XElementUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

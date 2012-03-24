@@ -148,7 +148,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionExtension.cs" />
     <Compile Include="Reflection\ReflectionUtil.cs" />
-    <Compile Include="SealException.cs" />
     <Compile Include="Structures\BinaryIndexedTree.cs" />
     <Compile Include="Structures\DisjointSets.cs" />
     <Compile Include="TaskList\TaskList.cs" />
