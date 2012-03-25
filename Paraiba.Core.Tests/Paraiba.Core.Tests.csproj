@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\Generic\BinarySearchExtensionsTest.cs" />
     <Compile Include="IO\FileSystemInfoExtensionsTest.cs" />
     <Compile Include="Linq\EnumerableExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
