@@ -23,7 +23,7 @@ namespace Paraiba.Xml.Linq {
 	/// <summary>
 	///   A utility class for <see cref="XElement" /> .
 	/// </summary>
-	public static class XmlUtil {
+	public static class ParaibaXml {
 		/// <summary>
 		///   Returns a value whether <see cref="XElement" /> values are equal using descendant elements and values.
 		/// </summary>

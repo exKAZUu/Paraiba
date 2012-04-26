@@ -31,19 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Paraiba, Version=1.0.0.10, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Paraiba.1.0.0.10\lib\net40\Paraiba.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -130,7 +123,7 @@
     <Compile Include="Geometry\Vector2.cs" />
     <Compile Include="Geometry\Vector2F.cs" />
     <Compile Include="IO\BinaryReaderExtensions.cs" />
-    <Compile Include="IO\DirectoryInfoExtensions.cs" />
+    <Compile Include="IO\DirectoryInfoExtensions2.cs" />
     <Compile Include="IO\FileUtility.cs" />
     <Compile Include="IO\IniReader.cs" />
     <Compile Include="IO\Scanner.cs" />

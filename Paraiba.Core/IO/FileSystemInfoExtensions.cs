@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,10 +20,23 @@ using System.IO;
 
 namespace Paraiba.IO {
 	/// <summary>
-	///   Provides a set of extension methods for <see cref="FileSystemInfo" /> , <see cref="FileInfo" /> and <see
-	///    cref="DirectoryInfo" /> .
+	/// Provides a set of extension methods for <see cref="FileSystemInfo" />,
+	/// <see cref="FileInfo" /> and <see cref="DirectoryInfo" />.
 	/// </summary>
 	public static class FileSystemInfoExtensions {
+		/// <summary>
+		/// Deletes a file or directory null-safely and returns true if it exists.
+		/// </summary>
+		/// <param name="info">A <c>FileSystemInfo</c> instance to delete.</param>
+		/// <returns>The value indicating whether the file or directory exists.</returns>
+		public static bool SafeDelete(this FileSystemInfo info) {
+			if (info != null && info.Exists) {
+				info.Delete();
+				return true;
+			}
+			return false;
+		}
+
 		/// <summary>
 		///   Returns a value indicating whether the file or directory exists null-safely.
 		/// </summary>

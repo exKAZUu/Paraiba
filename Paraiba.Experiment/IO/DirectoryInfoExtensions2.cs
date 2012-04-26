@@ -20,22 +20,16 @@ using System.IO;
 using System.Linq;
 
 namespace Paraiba.IO {
-    public static class DirectoryInfoExtensions {
-        public static void CreateIfNotExist(this DirectoryInfo directoryInfo) {
-            if (!directoryInfo.Exists) {
-                directoryInfo.Create();
-            }
-        }
-
-        public static void DeleteIfNotExist(this DirectoryInfo directoryInfo) {
-            if (!directoryInfo.Exists) {
+    public static class DirectoryInfoExtensions2 {
+        public static void DeleteIfExist(this DirectoryInfo directoryInfo) {
+            if (directoryInfo.Exists) {
                 directoryInfo.Delete();
             }
         }
 
-        public static void DeleteIfNotExist(
+        public static void DeleteIfExist(
                 this DirectoryInfo directoryInfo, bool recursive) {
-            if (!directoryInfo.Exists) {
+            if (directoryInfo.Exists) {
                 directoryInfo.Delete(recursive);
             }
         }

@@ -22,28 +22,28 @@ using Paraiba.Xml.Linq;
 
 namespace Paraiba.Tests.Xml.Linq {
 	/// <summary>
-	///   Tests for <see cref="XmlUtil" /> .
+	///   Tests for <see cref="ParaibaXml" /> .
 	/// </summary>
 	[TestFixture]
-	public class XmlUtilTest {
+	public class ParaibaXmlTest {
 		[Test]
 		public void TestSingleElement() {
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement("a"), new XElement("a")), Is.True);
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement("a"), new XElement("b")), Is.False);
 		}
 
 		[Test]
 		public void TestTwoElements() {
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement("a", new XElement("b")),
 							new XElement("a", new XElement("b"))), Is.True);
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement("a", new XElement("b")),
 							new XElement("b", new XElement("a"))), Is.False);
 		}
@@ -51,19 +51,19 @@ namespace Paraiba.Tests.Xml.Linq {
 		[Test]
 		public void TestFourElements() {
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement(
 									"a", new XElement("b", new XElement("c")), new XElement("d")),
 							new XElement(
 									"a", new XElement("b", new XElement("c")), new XElement("d"))), Is.True);
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement("a", new XElement("b"), new XElement("d")),
 							new XElement(
 									"a", new XElement("b", new XElement("c")), new XElement("d"))),
 					Is.False);
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement(
 									"a", new XElement("b", new XElement("d")), new XElement("c")),
 							new XElement(
@@ -74,10 +74,10 @@ namespace Paraiba.Tests.Xml.Linq {
 		[Test]
 		public void TestElementsOfDifferentSizes() {
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement("a"), new XElement("a", new XElement("b"))), Is.False);
 			Assert.That(
-					XmlUtil.EqualsElementsAndValues(
+					ParaibaXml.EqualsElementsAndValues(
 							new XElement("a"), new XElement("b", new XElement("a"))), Is.False);
 		}
 	}
