@@ -124,7 +124,6 @@
     <Compile Include="Geometry\Vector2F.cs" />
     <Compile Include="IO\BinaryReaderExtensions.cs" />
     <Compile Include="IO\DirectoryInfoExtensions2.cs" />
-    <Compile Include="IO\FileUtility.cs" />
     <Compile Include="IO\IniReader.cs" />
     <Compile Include="IO\Scanner.cs" />
     <Compile Include="IO\TextReaderExtensions.cs" />

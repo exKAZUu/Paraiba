@@ -21,7 +21,28 @@ using System.IO;
 
 namespace Paraiba.IO {
     public static class FileUtility {
+		/// <summary>
+		/// Copy files and directories in the specified directory.
+		/// </summary>
+		/// <param name="srcPath"></param>
+		/// <param name="dstPath"></param>
         public static void CopyRecursively(string srcPath, string dstPath) {
+            Contract.Requires(Directory.Exists(srcPath));
+            var files = Directory.GetFiles(srcPath);
+            Directory.CreateDirectory(dstPath);
+            foreach (var file in files) {
+                File.Copy(
+                        file, Path.Combine(dstPath, Path.GetFileName(file)),
+                        true);
+            }
+            var dirs = Directory.GetDirectories(srcPath);
+            foreach (var dir in dirs) {
+                CopyRecursively(
+                        dir, Path.Combine(dstPath, Path.GetFileName(dir)));
+            }
+        }
+
+        public static void CopyRecursivelyContentsOnly(string srcPath, string dstPath) {
             Contract.Requires(Directory.Exists(srcPath));
             var files = Directory.GetFiles(srcPath);
             Directory.CreateDirectory(dstPath);
