@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Paraiba">
-      <HintPath>..\packages\Paraiba.1.0.3.55\lib\net40\Paraiba.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -235,6 +232,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Paraiba.Core\Paraiba.Core.csproj">
+      <Project>{A83D76C2-AB7F-4D49-A9A4-67C781AACBE9}</Project>
+      <Name>Paraiba.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

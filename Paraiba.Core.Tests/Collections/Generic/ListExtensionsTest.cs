@@ -11,6 +11,13 @@ namespace Paraiba.Tests.Collections.Generic
 	public class ListExtensionsTest
 	{
 		[Test]
+		[TestCase(new[] {1, 2}, 5, 3, Result = new[] {1, 2, 3, 3, 3})]
+		[TestCase(new[] {1, 2}, 1, 3, Result = new[] {1, 2})]
+		public int[] Extend(int[] list, int count, int defaultValue) {
+			return list.ToList().Extend(count, defaultValue).ToArray();
+		}
+
+		[Test]
 		public void Shuffle() {
 			var rand1 = new Random(0);
 			var rand2 = new Random(1);

@@ -55,27 +55,6 @@ namespace Paraiba.Collections.Generic {
             }
         }
 
-        /// <summary>
-        ///   リストに指定した要素を追加して、有効要素数を拡張する
-        /// </summary>
-        /// <param name="count"> 拡張するリストのサイズ </param>
-        public static List<T> Extend<T>(this List<T> list, int count) {
-            return Extend(list, count, default(T));
-        }
-
-        /// <summary>
-        ///   リストに指定した要素を追加して、有効要素数を拡張する
-        /// </summary>
-        /// <param name="count"> 拡張するリストのサイズ </param>
-        /// <param name="defaultElement"> 拡張する際に追加する要素 </param>
-        public static List<T> Extend<T>(
-                this List<T> list, int count, T defaultElement) {
-            for (int i = list.Count; i < count; i++) {
-                list.Add(defaultElement);
-            }
-            return list;
-        }
-
         public static IEnumerable<T> GetEnumerable<T>(
                 this IList<T> list, int startIndex) {
             for (int i = startIndex; i < list.Count; i++) {

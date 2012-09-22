@@ -22,6 +22,58 @@ using System.Collections.Generic;
 namespace Paraiba.Collections.Generic {
 	public static class ListExtensions {
 		/// <summary>
+		/// Extends the list to the specified size adding the default value.
+		/// </summary>
+		/// <typeparam name="T">The type of the list element</typeparam>
+		/// <param name="list">The list to be extended</param>
+		/// <param name="count">The size to extend</param>
+		/// <returns>The extended list</returns>
+		public static IList<T> Extend<T>(this IList<T> list, int count) {
+			return Extend(list, count, default(T));
+		}
+
+		/// <summary>
+		/// Extends the list to the specified size adding the specified value.
+		/// </summary>
+		/// <typeparam name="T">The type of the list element</typeparam>
+		/// <param name="list">The list to be extended</param>
+		/// <param name="count">The size to extend</param>
+		/// <param name="defaultValue">The value to be added</param>
+		/// <returns>The extended list</returns>
+		public static IList<T> Extend<T>(
+				this IList<T> list, int count, T defaultValue) {
+			for (int i = list.Count; i < count; i++) {
+				list.Add(defaultValue);
+			}
+			return list;
+		}
+
+		/// <summary>
+		/// Extends the list to the specified size adding the default value.
+		/// </summary>
+		/// <typeparam name="T">The type of the list element</typeparam>
+		/// <param name="list">The list to be extended</param>
+		/// <param name="count">The size to extend</param>
+		/// <returns>The extended list</returns>
+		public static List<T> Extend<T>(this List<T> list, int count) {
+			return Extend(list, count, default(T));
+		}
+
+		/// <summary>
+		/// Extends the list to the specified size adding the specified value.
+		/// </summary>
+		/// <typeparam name="T">The type of the list element</typeparam>
+		/// <param name="list">The list to be extended</param>
+		/// <param name="count">The size to extend</param>
+		/// <param name="defaultValue">The value to be added</param>
+		/// <returns>The extended list</returns>
+		public static List<T> Extend<T>(
+				this List<T> list, int count, T defaultValue) {
+			Extend((IList<T>)list, count, defaultValue);
+			return list;
+		}
+
+		/// <summary>
 		/// Shuffles the specified array with the default <see cref="Random"/> using Fisher-Yates algorithm.
 		/// </summary>
 		/// <typeparam name="T">The type of elements in the array.</typeparam>
