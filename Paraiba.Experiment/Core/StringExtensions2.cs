@@ -22,7 +22,7 @@ using System.Diagnostics.Contracts;
 using Paraiba.Text;
 
 namespace Paraiba.Core {
-    public static class StringExtensions {
+    public static class StringExtensions2 {
         public static char EndChar(this string str) {
             Contract.Requires(str != null);
             Contract.Requires(str.Length > 0);

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Paraiba.Collections.Generic {
-    public static class ListExtensions {
+    public static class ListExtensions2 {
         public static bool SequenceEqual<T>(
                 this IList<T> list, IEnumerable<T> that, int startIndex = 0) {
             return
