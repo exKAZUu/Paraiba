@@ -33,3 +33,5 @@ output
 download
 *.docstates
 *.nupkg
+packages/N*
+packages/P*
