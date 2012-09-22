@@ -24,7 +24,7 @@ namespace Paraiba.Core {
 		/// <summary>
 		/// Reports the zero-based indexes of the occurrence of the specified character in the current String object.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">A Unicode character to seek.</param>
 		/// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
 		public static IEnumerable<int> IndicesOf(this string text, char value) {
@@ -35,7 +35,7 @@ namespace Paraiba.Core {
 		/// Reports the zero-based indexes of the occurrence of the specified character in the current String object.
 		/// The search starts at a specified character position.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">A Unicode character to seek.</param>
 		/// <param name="startIndex">The search	starting position.</param>
 		/// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
@@ -48,7 +48,7 @@ namespace Paraiba.Core {
 		/// Reports the zero-based indexes of the occurrence of the specified character in the current String object.
 		/// The search starts at a specified character position and examines a specified number of character positions.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">A Unicode character to seek.</param>
 		/// <param name="startIndex">The search	starting position.</param>
 		/// <param name="count">The number of character positions to examine.</param>
@@ -66,7 +66,7 @@ namespace Paraiba.Core {
 		/// <summary>
 		/// Reports the zero-based indexes of the occurrence of the specified string in the current String object.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">The string to seek.</param>
 		/// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
 		public static IEnumerable<int> IndicesOf(this string text, string value) {
@@ -77,7 +77,7 @@ namespace Paraiba.Core {
 		/// Reports the zero-based indexes of the occurrence of the specified string in the current String object.
 		/// The search starts at a specified character position.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">The string to seek.</param>
 		/// <param name="startIndex">The search	starting position.</param>
 		/// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
@@ -90,7 +90,7 @@ namespace Paraiba.Core {
 		/// Reports the zero-based indexes of the occurrence of the specified string in the current String object.
 		/// The search starts at a specified character position and examines a specified number of character positions.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">The string to seek.</param>
 		/// <param name="startIndex">The search	starting position.</param>
 		/// <param name="count">The number of character positions to examine.</param>
@@ -104,7 +104,7 @@ namespace Paraiba.Core {
 		/// Reports the zero-based indexes of the occurrence of the specified string in the current <see cref="String" /> object.
 		/// A parameter specifies the type of search to use for the specified string.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">The string to seek.</param>
 		/// <param name="stringComparison">One of the enumeration values that specifies the rules for the search.</param>
 		/// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
@@ -116,7 +116,7 @@ namespace Paraiba.Core {
 		/// Reports the zero-based indexes of the occurrence of the specified string in the current <see cref="String" /> object.
 		/// Parameters specify the starting search position in the current string and the type of search to use for the specified string.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">The string to seek.</param>
 		/// <param name="startIndex">The search	starting position.</param>
 		/// <param name="stringComparison">One of the enumeration values that specifies the rules for the search.</param>
@@ -130,7 +130,7 @@ namespace Paraiba.Core {
 		/// Reports the zero-based indexes of the occurrence of the specified string in the current String object.
 		/// Parameters specify the starting search position in the current string, the number of characters in the current string to search, and the type of search to use for the specified string.
 		/// </summary>
-		/// <param name="text">The string to be seek.</param>
+		/// <param name="text">The string to be seeked.</param>
 		/// <param name="value">The string to seek.</param>
 		/// <param name="startIndex">The search	starting position.</param>
 		/// <param name="count">The number of character positions to examine.</param>
