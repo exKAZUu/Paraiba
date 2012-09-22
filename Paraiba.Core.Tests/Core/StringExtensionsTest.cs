@@ -14,8 +14,8 @@ namespace Paraiba.Tests.Core
 		[TestCase("a a a", "a", 0, 5, Result = new[] {0, 2, 4})]
 		[TestCase("abcdefg", "h", 0, 7, Result = new int[] {})]
 		[TestCase("aa aa aa aa", "aa", 1, 9, Result = new[] {3, 6})]
-		public int[] IndexesOf(string text, string value, int startIndex, int count) {
-			return text.IndexesOf(value, startIndex, count).ToArray();
+		public int[] IndicesOf(string text, string value, int startIndex, int count) {
+			return text.IndicesOf(value, startIndex, count).ToArray();
 		}
 	}
 }
