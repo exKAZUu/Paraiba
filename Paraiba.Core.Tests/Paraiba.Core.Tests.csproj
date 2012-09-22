@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\Generic\BinarySearchExtensionsTest.cs" />
+    <Compile Include="Core\StringExtensionsTest.cs" />
     <Compile Include="IO\DirectoryInfoExtensionsTest.cs" />
     <Compile Include="IO\FileSystemInfoExtensionsTest.cs" />
     <Compile Include="IO\FileUtility.cs" />

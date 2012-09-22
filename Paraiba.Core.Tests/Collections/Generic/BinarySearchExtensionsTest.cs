@@ -34,6 +34,7 @@ namespace Paraiba.Tests.Collections.Generic {
 			Assert.That(values.FindLowerBound(1), Is.EqualTo(0));
 			Assert.That(values.FindLowerBound(0), Is.EqualTo(0));
 		}
+
 		[Test]
 		public void FindUpperBound() {
 			var values = new[] { 1, 1, 3, 3 };
