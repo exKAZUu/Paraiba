@@ -31,9 +31,12 @@ namespace Paraiba.Tests.IO {
 		public void SafeDelete() {
 			var dir = new DirectoryInfo("abc");
 			dir.SafeDelete(true);
+			dir.Refresh();
 			Assert.That(dir.SafeDelete(true), Is.False);
-			dir.GetDirectory("test2").Create();
+			Directory.CreateDirectory(dir.GetDirectory("test2").FullName);
+			dir.Refresh();
 			Assert.That(dir.SafeDelete(true), Is.True);
+			dir.Refresh();
 			Assert.That(dir.Exists, Is.False);
 		}
 

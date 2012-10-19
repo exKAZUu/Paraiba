@@ -38,7 +38,6 @@ namespace Paraiba.IO {
 				return false;
 			}
 			info.Delete(recursive);
-			info.Refresh();
 			return true;
 		}
 

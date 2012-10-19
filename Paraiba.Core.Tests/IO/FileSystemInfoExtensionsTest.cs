@@ -26,7 +26,7 @@ namespace Paraiba.Tests.IO {
 	/// </summary>
 	[TestFixture]
 	public class FileSystemInfoExtensionsTest {
-		private const string FilePath = @"./CI-build.msbuild";
+		private const string FilePath = @"./Paraiba.dll";
 		private const string DirPath = @".";
 
 		[Test]
