@@ -359,10 +359,7 @@ namespace Paraiba.IO {
             }
             // •ÏŠ·
             BigInteger value;
-            if (
-                    !BigInteger.TryParse(
-                            _lastToken, style, NumberFormatInfo.CurrentInfo,
-                            out value)) {
+            if (!BigInteger.TryParse(_lastToken, out value)) {
                 return false;
             }
             _cache = value;
@@ -588,7 +585,7 @@ namespace Paraiba.IO {
                 return (BigInteger)_cache;
             }
 
-            var value = BigInteger.Parse(_lastToken, style);
+            var value = BigInteger.Parse(_lastToken);
             _cache = value;
             return value;
         }
@@ -870,7 +867,7 @@ namespace Paraiba.IO {
             var token = _lastToken;
             _lastToken = null;
 
-            return BigInteger.Parse(token, style);
+            return BigInteger.Parse(token);
         }
     }
 }
