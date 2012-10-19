@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,62 +26,55 @@ namespace Paraiba.Tests.IO {
 	/// </summary>
 	[TestFixture]
 	public class FileSystemInfoExtensionsTest {
+		private const string FilePath = @"./CI-build.msbuild";
+		private const string DirPath = @".";
+
 		[Test]
 		public void SafeExistsForFileInfo() {
 			Assert.That(((FileInfo)null).SafeExists(), Is.False);
-			Assert.That(new FileInfo(@"C:\").SafeExists(), Is.False);
-			Assert.That(new FileInfo(@"C:\").SafeFileExists(), Is.False);
-			Assert.That(new FileInfo(@"C:\").SafeDirectoryExists(), Is.False);
-			Assert.That(new FileInfo(@"C:\Windows\notepad.exe").SafeExists(), Is.True);
-			Assert.That(
-					new FileInfo(@"C:\Windows\notepad.exe").SafeFileExists(), Is.True);
-			Assert.That(
-					new FileInfo(@"C:\Windows\notepad.exe").SafeDirectoryExists(), Is.False);
+			Assert.That(new FileInfo(DirPath).SafeExists(), Is.False);
+			Assert.That(new FileInfo(DirPath).SafeFileExists(), Is.False);
+			Assert.That(new FileInfo(DirPath).SafeDirectoryExists(), Is.False);
+			Assert.That(new FileInfo(FilePath).SafeExists(), Is.True);
+			Assert.That(new FileInfo(FilePath).SafeFileExists(), Is.True);
+			Assert.That(new FileInfo(FilePath).SafeDirectoryExists(), Is.False);
 		}
 
 		[Test]
 		public void SafeExistsForDirectoryInfo() {
 			Assert.That(((DirectoryInfo)null).SafeExists(), Is.False);
-			Assert.That(new DirectoryInfo(@"C:\").SafeExists(), Is.True);
-			Assert.That(new DirectoryInfo(@"C:\").SafeFileExists(), Is.False);
-			Assert.That(new DirectoryInfo(@"C:\").SafeDirectoryExists(), Is.True);
-			Assert.That(
-					new DirectoryInfo(@"C:\Windows\notepad.exe").SafeExists(), Is.False);
-			Assert.That(
-					new DirectoryInfo(@"C:\Windows\notepad.exe").SafeFileExists(), Is.False);
-			Assert.That(
-					new DirectoryInfo(@"C:\Windows\notepad.exe").SafeDirectoryExists(),
-					Is.False);
+			Assert.That(new DirectoryInfo(DirPath).SafeExists(), Is.True);
+			Assert.That(new DirectoryInfo(DirPath).SafeFileExists(), Is.False);
+			Assert.That(new DirectoryInfo(DirPath).SafeDirectoryExists(), Is.True);
+			Assert.That(new DirectoryInfo(FilePath).SafeExists(), Is.False);
+			Assert.That(new DirectoryInfo(FilePath).SafeFileExists(), Is.False);
+			Assert.That(new DirectoryInfo(FilePath).SafeDirectoryExists(), Is.False);
 		}
 
 		[Test]
 		public void SafeExistsForFileSystemInfo() {
 			Assert.That(((FileSystemInfo)null).SafeExists(), Is.False);
-			Assert.That((new FileInfo(@"C:\")).SafeExists(), Is.False);
+			Assert.That((new FileInfo(DirPath)).SafeExists(), Is.False);
 			Assert.That(
-					((FileSystemInfo)new FileInfo(@"C:\")).SafeFileExists(), Is.False);
+					((FileSystemInfo)new FileInfo(DirPath)).SafeFileExists(), Is.False);
 			Assert.That(
-					((FileSystemInfo)new FileInfo(@"C:\")).SafeDirectoryExists(), Is.False);
-			Assert.That((new FileInfo(@"C:\Windows\notepad.exe")).SafeExists(), Is.True);
+					((FileSystemInfo)new FileInfo(DirPath)).SafeDirectoryExists(), Is.False);
+			Assert.That((new FileInfo(FilePath)).SafeExists(), Is.True);
 			Assert.That(
-					((FileSystemInfo)new FileInfo(@"C:\Windows\notepad.exe")).SafeFileExists(),
-					Is.True);
+					((FileSystemInfo)new FileInfo(FilePath)).SafeFileExists(), Is.True);
 			Assert.That(
-					((FileSystemInfo)new FileInfo(@"C:\Windows\notepad.exe")).
-							SafeDirectoryExists(), Is.False);
-			Assert.That((new DirectoryInfo(@"C:\")).SafeExists(), Is.True);
+					((FileSystemInfo)new FileInfo(FilePath)).SafeDirectoryExists(), Is.False);
+			Assert.That((new DirectoryInfo(DirPath)).SafeExists(), Is.True);
 			Assert.That(
-					((FileSystemInfo)new DirectoryInfo(@"C:\")).SafeFileExists(), Is.False);
+					((FileSystemInfo)new DirectoryInfo(DirPath)).SafeFileExists(), Is.False);
 			Assert.That(
-					((FileSystemInfo)new DirectoryInfo(@"C:\")).SafeDirectoryExists(), Is.True);
+					((FileSystemInfo)new DirectoryInfo(DirPath)).SafeDirectoryExists(), Is.True);
+			Assert.That((new DirectoryInfo(FilePath)).SafeExists(), Is.False);
 			Assert.That(
-					(new DirectoryInfo(@"C:\Windows\notepad.exe")).SafeExists(), Is.False);
+					((FileSystemInfo)new DirectoryInfo(FilePath)).SafeFileExists(), Is.False);
 			Assert.That(
-					((FileSystemInfo)new DirectoryInfo(@"C:\Windows\notepad.exe")).
-							SafeFileExists(), Is.False);
-			Assert.That(
-					((FileSystemInfo)new DirectoryInfo(@"C:\Windows\notepad.exe")).
-							SafeDirectoryExists(), Is.False);
+					((FileSystemInfo)new DirectoryInfo(FilePath)).SafeDirectoryExists(),
+					Is.False);
 		}
 
 		[Test]
