@@ -79,14 +79,16 @@ namespace Paraiba.Tests.IO {
 
 		[Test]
 		public void GetFile() {
-			var info = new DirectoryInfo("C:/test").GetFile("test.txt");
-			Assert.That(info.FullName, Is.EqualTo("C:\\test\\test.txt"));
+			var info = new DirectoryInfo(".").GetFile("test.txt");
+			var info2 = new FileInfo("./test.txt");
+			Assert.That(info.FullName, Is.EqualTo(info2.FullName));
 		}
 
 		[Test]
 		public void GetDirectory() {
-			var info = new DirectoryInfo("C:/test").GetDirectory("test");
-			Assert.That(info.FullName, Is.EqualTo("C:\\test\\test"));
+			var info = new DirectoryInfo(".").GetDirectory("test");
+			var info2 = new FileInfo("./test");
+			Assert.That(info.FullName, Is.EqualTo(info2.FullName));
 		}
 	}
 }
