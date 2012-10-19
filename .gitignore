@@ -32,5 +32,6 @@ target
 output
 download
 *.docstates
+*.dotCover
 *.nupkg
 .nuget/NuGet*
