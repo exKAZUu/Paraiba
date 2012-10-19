@@ -33,5 +33,4 @@ output
 download
 *.docstates
 *.nupkg
-.nuget
-packages
+.nuget/NuGet*
