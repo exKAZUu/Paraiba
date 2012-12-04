@@ -99,7 +99,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Paraiba, Version=1.0.3.58, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Paraiba.1.0.3.58\lib\net40\Paraiba.dll</HintPath>
     </Reference>
     <Reference Include="System" />

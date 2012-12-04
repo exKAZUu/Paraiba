@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Paraiba</id>
+    <version>1.0.3.58</version>
+    <title>Paraiba</title>
+    <authors>Kazunori Sakamoto</authors>
+    <owners>Kazunori Sakamoto</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The core library of Paraiba that is well tested.</description>
+    <copyright>Copyright © Kazunori Sakamoto 2011-2012</copyright>
+  </metadata>
+</package>
