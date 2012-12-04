@@ -22,10 +22,10 @@ using Paraiba.IO;
 
 namespace Paraiba.Tests.IO {
 	/// <summary>
-	///   Tests for <see cref="FileUtility" /> .
+	///   Tests for <see cref="FileUtils" /> .
 	/// </summary>
 	[TestFixture]
-	public class FileUtilityTest {
+	public class FileUtilsTest {
 		[Test]
 		public void TestCopyRecursively() {
 			var tempPath = Path.GetTempPath();
@@ -41,7 +41,7 @@ namespace Paraiba.Tests.IO {
 			}
 			var outDirPath1 = Path.Combine(tempPath, "paraiba_out");
 			var outDirPath2 = Path.Combine(outDirPath1, "paraiba_test2");
-			FileUtility.CopyRecursively(srcDirPath1, outDirPath1);
+			FileUtils.CopyRecursively(srcDirPath1, outDirPath1);
 			Assert.That(
 					File.ReadAllText(Path.Combine(srcDirPath1, "test.txt")),
 					Is.EqualTo(File.ReadAllText(Path.Combine(outDirPath1, "test.txt"))));

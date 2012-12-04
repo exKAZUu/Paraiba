@@ -20,30 +20,17 @@ using System.Diagnostics.Contracts;
 using System.IO;
 
 namespace Paraiba.IO {
-	public static class FileUtility {
+	/// <summary>
+	/// A utility class for operating files and directories.
+	/// </summary>
+	public static class FileUtils {
 		/// <summary>
-		/// Copy files and directories in the specified directory.
+		/// Copy files and directories in the specified directory creating.
 		/// </summary>
-		/// <param name="srcPath"></param>
-		/// <param name="dstPath"></param>
+		/// <param name="srcPath">The source directory path.</param>
+		/// <param name="dstPath">The destination directory path.</param>
 		public static void CopyRecursively(string srcPath, string dstPath) {
-			Contract.Requires(Directory.Exists(srcPath));
-			var files = Directory.GetFiles(srcPath);
-			Directory.CreateDirectory(dstPath);
-			foreach (var file in files) {
-				File.Copy(
-						file, Path.Combine(dstPath, Path.GetFileName(file)),
-						true);
-			}
-			var dirs = Directory.GetDirectories(srcPath);
-			foreach (var dir in dirs) {
-				CopyRecursively(
-						dir, Path.Combine(dstPath, Path.GetFileName(dir)));
-			}
-		}
-
-		public static void CopyRecursivelyContentsOnly(string srcPath, string dstPath) {
-			Contract.Requires(Directory.Exists(srcPath));
+			//Contract.Requires(Directory.Exists(srcPath));
 			var files = Directory.GetFiles(srcPath);
 			Directory.CreateDirectory(dstPath);
 			foreach (var file in files) {
