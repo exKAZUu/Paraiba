@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@
 using System.Collections.Generic;
 
 namespace Paraiba.Collections.Generic {
-    public static class StackExtensions {
-        public static void PushRange<T>(
-                this Stack<T> stack, IEnumerable<T> source) {
-            foreach (var item in source) {
-                stack.Push(item);
-            }
-        }
-    }
+	public static class StackExtensions {
+		public static void PushRange<T>(
+				this Stack<T> stack, IEnumerable<T> source) {
+			foreach (var item in source) {
+				stack.Push(item);
+			}
+		}
+	}
 }

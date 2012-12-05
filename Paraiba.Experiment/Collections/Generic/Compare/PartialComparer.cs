@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,24 +20,24 @@ using System;
 using System.Collections.Generic;
 
 namespace Paraiba.Collections.Generic.Compare {
-    public class PartialComparer<TSource, TKey> : IComparer<TSource>
-            where TKey : IComparable<TKey> {
-        private readonly Func<TSource, TKey> _selectFunc;
+	public class PartialComparer<TSource, TKey> : IComparer<TSource>
+			where TKey : IComparable<TKey> {
+		private readonly Func<TSource, TKey> _selectFunc;
 
-        public PartialComparer(Func<TSource, TKey> selectFunc) {
-            _selectFunc = selectFunc;
-        }
+		public PartialComparer(Func<TSource, TKey> selectFunc) {
+			_selectFunc = selectFunc;
+		}
 
-        public Func<TSource, TKey> SelectFunc {
-            get { return _selectFunc; }
-        }
+		public Func<TSource, TKey> SelectFunc {
+			get { return _selectFunc; }
+		}
 
-        #region IComparer<TSource> Members
+		#region IComparer<TSource> Members
 
-        public int Compare(TSource x, TSource y) {
-            return _selectFunc(x).CompareTo(_selectFunc(y));
-        }
+		public int Compare(TSource x, TSource y) {
+			return _selectFunc(x).CompareTo(_selectFunc(y));
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

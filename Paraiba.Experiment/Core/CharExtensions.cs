@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,29 +21,29 @@ using System.Text;
 using Paraiba.Text;
 
 namespace Paraiba.Core {
-    public static class CharExtensions {
-        public static int ToInt(this char ch) {
-            return ch - '0';
-        }
+	public static class CharExtensions {
+		public static int ToInt(this char ch) {
+			return ch - '0';
+		}
 
-        public static string JoinString(this IEnumerable<char> chars) {
-            return JoinStringBuilder(chars).ToString();
-        }
+		public static string JoinString(this IEnumerable<char> chars) {
+			return JoinStringBuilder(chars).ToString();
+		}
 
-        public static StringBuilder JoinStringBuilder(
-                this IEnumerable<char> chars) {
-            var buffer = new StringBuilder();
-            return buffer.Appends(chars);
-        }
+		public static StringBuilder JoinStringBuilder(
+				this IEnumerable<char> chars) {
+			var buffer = new StringBuilder();
+			return buffer.Appends(chars);
+		}
 
-        public static string JoinString(this ICollection<char> chars) {
-            return JoinStringBuilder(chars).ToString();
-        }
+		public static string JoinString(this ICollection<char> chars) {
+			return JoinStringBuilder(chars).ToString();
+		}
 
-        public static StringBuilder JoinStringBuilder(
-                this ICollection<char> chars) {
-            var buffer = new StringBuilder(chars.Count);
-            return buffer.Appends(chars);
-        }
-    }
+		public static StringBuilder JoinStringBuilder(
+				this ICollection<char> chars) {
+			var buffer = new StringBuilder(chars.Count);
+			return buffer.Appends(chars);
+		}
+	}
 }

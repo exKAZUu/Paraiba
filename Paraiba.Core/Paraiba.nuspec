@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/exKAZUu/Paraiba</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>.</releaseNotes>
     <copyright>Copyright (C) Kazunori Sakamoto 2011-2012</copyright>
     <tags>.NET Library LINQ</tags>
   </metadata>

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,35 +20,35 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace Paraiba.Xml.Linq {
-    public static class XNodeExtension {
-        public static IEnumerable<XNode> PreviousNodes(this XNode node) {
-            node = node.PreviousNode;
-            while (node != null) {
-                yield return node;
-                node = node.PreviousNode;
-            }
-        }
+	public static class XNodeExtension {
+		public static IEnumerable<XNode> PreviousNodes(this XNode node) {
+			node = node.PreviousNode;
+			while (node != null) {
+				yield return node;
+				node = node.PreviousNode;
+			}
+		}
 
-        public static IEnumerable<XNode> NextNodes(this XNode node) {
-            node = node.NextNode;
-            while (node != null) {
-                yield return node;
-                node = node.NextNode;
-            }
-        }
+		public static IEnumerable<XNode> NextNodes(this XNode node) {
+			node = node.NextNode;
+			while (node != null) {
+				yield return node;
+				node = node.NextNode;
+			}
+		}
 
-        public static IEnumerable<XNode> PreviousNodesAndSelf(this XNode node) {
-            do {
-                yield return node;
-                node = node.PreviousNode;
-            } while (node != null);
-        }
+		public static IEnumerable<XNode> PreviousNodesAndSelf(this XNode node) {
+			do {
+				yield return node;
+				node = node.PreviousNode;
+			} while (node != null);
+		}
 
-        public static IEnumerable<XNode> NextNodesAndSelf(this XNode node) {
-            do {
-                yield return node;
-                node = node.NextNode;
-            } while (node != null);
-        }
-    }
+		public static IEnumerable<XNode> NextNodesAndSelf(this XNode node) {
+			do {
+				yield return node;
+				node = node.NextNode;
+			} while (node != null);
+		}
+	}
 }

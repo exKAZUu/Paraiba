@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,23 +20,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Paraiba.Collections.Generic {
-    public class EnumerableUnit<T> : IEnumerable<T> {
-        private readonly T _unit;
+	public class EnumerableUnit<T> : IEnumerable<T> {
+		private readonly T _unit;
 
-        public EnumerableUnit(T unit) {
-            _unit = unit;
-        }
+		public EnumerableUnit(T unit) {
+			_unit = unit;
+		}
 
-        #region IEnumerable<T> Members
+		#region IEnumerable<T> Members
 
-        public IEnumerator<T> GetEnumerator() {
-            yield return _unit;
-        }
+		public IEnumerator<T> GetEnumerator() {
+			yield return _unit;
+		}
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return GetEnumerator();
-        }
+		IEnumerator IEnumerable.GetEnumerator() {
+			return GetEnumerator();
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

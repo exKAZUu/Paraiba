@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Paraiba")]
 [assembly:
-        AssemblyDescription("The core library of Paraiba that is well tested.")]
+		AssemblyDescription("The core library of Paraiba that is well tested.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kazunori Sakamoto")]
 [assembly: AssemblyProduct("Paraiba.Core")]

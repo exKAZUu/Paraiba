@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,41 +19,41 @@
 using System;
 
 namespace Paraiba.Core {
-    public static class EnumExtensions {
-        public static int GetCount(this Enum e) {
-            return e.GetType().GetFields().Length - 1;
-        }
+	public static class EnumExtensions {
+		public static int GetCount(this Enum e) {
+			return e.GetType().GetFields().Length - 1;
+		}
 
-        public static int GetMaxInt(this Enum e) {
-            int max = 0;
-            var fields = e.GetType().GetFields();
-            for (int i = 1; i < fields.Length; i++) {
-                max = Math.Max(max, (int)fields[i].GetValue(null));
-            }
-            return max;
-        }
+		public static int GetMaxInt(this Enum e) {
+			int max = 0;
+			var fields = e.GetType().GetFields();
+			for (int i = 1; i < fields.Length; i++) {
+				max = Math.Max(max, (int)fields[i].GetValue(null));
+			}
+			return max;
+		}
 
-        public static int GetMinInt(this Enum e) {
-            int max = 0;
-            var fields = e.GetType().GetFields();
-            for (int i = 1; i < fields.Length; i++) {
-                max = Math.Max(max, (int)fields[i].GetValue(null));
-            }
-            return max;
-        }
+		public static int GetMinInt(this Enum e) {
+			int max = 0;
+			var fields = e.GetType().GetFields();
+			for (int i = 1; i < fields.Length; i++) {
+				max = Math.Max(max, (int)fields[i].GetValue(null));
+			}
+			return max;
+		}
 
-        public static Tuple<int, int> GetMinMaxInt(this Enum e) {
-            int min = 0, max = 0;
-            var fields = e.GetType().GetFields();
-            for (int i = 1; i < fields.Length; i++) {
-                var value = (int)fields[i].GetValue(null);
-                if (value < min) {
-                    min = value;
-                } else if (max < value) {
-                    max = value;
-                }
-            }
-            return Tuple.Create(min, max);
-        }
-    }
+		public static Tuple<int, int> GetMinMaxInt(this Enum e) {
+			int min = 0, max = 0;
+			var fields = e.GetType().GetFields();
+			for (int i = 1; i < fields.Length; i++) {
+				var value = (int)fields[i].GetValue(null);
+				if (value < min) {
+					min = value;
+				} else if (max < value) {
+					max = value;
+				}
+			}
+			return Tuple.Create(min, max);
+		}
+	}
 }

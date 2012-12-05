@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@ using NUnit.Framework;
 using Paraiba.Core;
 
 namespace Paraiba.Tests.Core {
-    [TestFixture]
-    public class StringExtensionsTest {
-        [Test]
-        [TestCase("a a a", "a", 0, 5, Result = new[] { 0, 2, 4 })]
-        [TestCase("abcdefg", "h", 0, 7, Result = new int[] { })]
-        [TestCase("aa aa aa aa", "aa", 1, 9, Result = new[] { 3, 6 })]
-        public int[] IndicesOf(string text, string value, int startIndex, int count) {
-            return text.IndicesOf(value, startIndex, count).ToArray();
-        }
-    }
+	[TestFixture]
+	public class StringExtensionsTest {
+		[Test]
+		[TestCase("a a a", "a", 0, 5, Result = new[] { 0, 2, 4 })]
+		[TestCase("abcdefg", "h", 0, 7, Result = new int[] { })]
+		[TestCase("aa aa aa aa", "aa", 1, 9, Result = new[] { 3, 6 })]
+		public int[] IndicesOf(string text, string value, int startIndex, int count) {
+			return text.IndicesOf(value, startIndex, count).ToArray();
+		}
+	}
 }

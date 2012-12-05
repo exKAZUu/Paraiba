@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@
 using System.Drawing;
 
 namespace Paraiba.Drawing.Surfaces {
-    public class NullSurface : Surface {
-        public override Size Size {
-            get { return new Size(0, 0); }
-        }
+	public class NullSurface : Surface {
+		public override Size Size {
+			get { return new Size(0, 0); }
+		}
 
-        public override void Draw(Graphics g, int x, int y) {}
-    }
+		public override void Draw(Graphics g, int x, int y) {}
+	}
 }

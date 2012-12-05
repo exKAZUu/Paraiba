@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,39 +20,39 @@ using System;
 using System.IO;
 
 namespace Paraiba.IO {
-    public class XPath {
-        public static string NormalizeDirectorySeparatorChar(string path) {
-            return path.Replace(
-                    Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
-        }
+	public class XPath {
+		public static string NormalizeDirectorySeparatorChar(string path) {
+			return path.Replace(
+					Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+		}
 
-        public static string AddDirectorySeparatorChar(string path) {
-            if (!path.EndsWith(Path.DirectorySeparatorChar + "")) {
-                return path + Path.DirectorySeparatorChar;
-            }
-            return path;
-        }
+		public static string AddDirectorySeparatorChar(string path) {
+			if (!path.EndsWith(Path.DirectorySeparatorChar + "")) {
+				return path + Path.DirectorySeparatorChar;
+			}
+			return path;
+		}
 
-        public static string GetRelativePath(
-                string targetFullPath, string basePath) {
-            basePath = NormalizeDirectorySeparatorChar(basePath);
-            basePath = AddDirectorySeparatorChar(basePath);
-            var baseUri = new Uri(basePath);
-            var targetUri = new Uri(baseUri, targetFullPath);
-            var relativePath = baseUri.MakeRelativeUri(targetUri).ToString();
-            // URLデコードして、'/'を'\'に変更する)
-            return
-                    NormalizeDirectorySeparatorChar(
-                            Uri.UnescapeDataString(relativePath));
-        }
+		public static string GetRelativePath(
+				string targetFullPath, string basePath) {
+			basePath = NormalizeDirectorySeparatorChar(basePath);
+			basePath = AddDirectorySeparatorChar(basePath);
+			var baseUri = new Uri(basePath);
+			var targetUri = new Uri(baseUri, targetFullPath);
+			var relativePath = baseUri.MakeRelativeUri(targetUri).ToString();
+			// URLデコードして、'/'を'\'に変更する)
+			return
+					NormalizeDirectorySeparatorChar(
+							Uri.UnescapeDataString(relativePath));
+		}
 
-        public static string GetFullPath(
-                string targetRelativePath, string basePath) {
-            basePath = NormalizeDirectorySeparatorChar(basePath);
-            basePath = AddDirectorySeparatorChar(basePath);
-            var baseUri = new Uri(basePath);
-            var targetUri = new Uri(baseUri, targetRelativePath);
-            return NormalizeDirectorySeparatorChar(targetUri.LocalPath);
-        }
-    }
+		public static string GetFullPath(
+				string targetRelativePath, string basePath) {
+			basePath = NormalizeDirectorySeparatorChar(basePath);
+			basePath = AddDirectorySeparatorChar(basePath);
+			var baseUri = new Uri(basePath);
+			var targetUri = new Uri(baseUri, targetRelativePath);
+			return NormalizeDirectorySeparatorChar(targetUri.LocalPath);
+		}
+	}
 }

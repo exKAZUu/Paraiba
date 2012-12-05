@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,39 +21,39 @@ using NUnit.Framework;
 using Paraiba.IO;
 
 namespace Paraiba.Tests.IO {
-    /// <summary>
-    ///   Tests for <see cref="DirectoryInfoExtensions" /> .
-    /// </summary>
-    [TestFixture]
-    public class DirectoryInfoExtensionsTest {
-        [Test]
-        public void SafeDelete() {
-            var dir = new DirectoryInfo("abc");
-            dir.SafeDelete(true);
-            dir.Refresh();
-            Assert.That(dir.SafeDelete(true), Is.False);
-            Directory.CreateDirectory(dir.GetDirectory("test2").FullName);
-            dir.Refresh();
-            Assert.That(dir.SafeDelete(true), Is.True);
-            dir.Refresh();
-            Assert.That(dir.Exists, Is.False);
-        }
+	/// <summary>
+	///   Tests for <see cref="DirectoryInfoExtensions" /> .
+	/// </summary>
+	[TestFixture]
+	public class DirectoryInfoExtensionsTest {
+		[Test]
+		public void SafeDelete() {
+			var dir = new DirectoryInfo("abc");
+			dir.SafeDelete(true);
+			dir.Refresh();
+			Assert.That(dir.SafeDelete(true), Is.False);
+			Directory.CreateDirectory(dir.GetDirectory("test2").FullName);
+			dir.Refresh();
+			Assert.That(dir.SafeDelete(true), Is.True);
+			dir.Refresh();
+			Assert.That(dir.Exists, Is.False);
+		}
 
-        [Test]
-        public void Clear() {
-            var dir = new DirectoryInfo("abc");
-            var subdir = dir.GetDirectory("test2");
-            subdir.Create();
-            using (var fs = new FileStream(subdir.GetFile("test3.txt").FullName, FileMode.Create)) {
-                fs.WriteByte(1);
-            }
-            dir.Clear();
-            Assert.That(dir.Exists, Is.True);
-            Assert.That(dir.SafeClear(), Is.True);
-            Assert.That(dir.SafeDelete(), Is.True);
-            dir.Refresh();
-            Assert.That(dir.Exists, Is.False);
-            Assert.That(dir.SafeClear(), Is.False);
-        }
-    }
+		[Test]
+		public void Clear() {
+			var dir = new DirectoryInfo("abc");
+			var subdir = dir.GetDirectory("test2");
+			subdir.Create();
+			using (var fs = new FileStream(subdir.GetFile("test3.txt").FullName, FileMode.Create)) {
+				fs.WriteByte(1);
+			}
+			dir.Clear();
+			Assert.That(dir.Exists, Is.True);
+			Assert.That(dir.SafeClear(), Is.True);
+			Assert.That(dir.SafeDelete(), Is.True);
+			dir.Refresh();
+			Assert.That(dir.Exists, Is.False);
+			Assert.That(dir.SafeClear(), Is.False);
+		}
+	}
 }

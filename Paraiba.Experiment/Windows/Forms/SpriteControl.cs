@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,14 +20,14 @@ using System.Windows.Forms;
 using Paraiba.Drawing.Surfaces.Sprites;
 
 namespace Paraiba.Windows.Forms {
-    public class SpriteControl : BasicSpriteControl<Sprite> {
-        public SpriteControl(Sprite sprite)
-                : base(sprite) {}
+	public class SpriteControl : BasicSpriteControl<Sprite> {
+		public SpriteControl(Sprite sprite)
+				: base(sprite) {}
 
-        protected override void OnPaint(PaintEventArgs e) {
-            ArrangeSizeAndLocation();
+		protected override void OnPaint(PaintEventArgs e) {
+			ArrangeSizeAndLocation();
 
-            base.OnPaint(e);
-        }
-    }
+			base.OnPaint(e);
+		}
+	}
 }

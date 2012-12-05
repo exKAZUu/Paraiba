@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,14 +19,14 @@
 using System;
 
 namespace Paraiba {
-    public class PropertyChangeEventArgs<T> : EventArgs {
-        public PropertyChangeEventArgs(T newValue, T oldValue) {
-            NewValue = newValue;
-            OldValue = oldValue;
-        }
+	public class PropertyChangeEventArgs<T> : EventArgs {
+		public PropertyChangeEventArgs(T newValue, T oldValue) {
+			NewValue = newValue;
+			OldValue = oldValue;
+		}
 
-        public T NewValue { get; private set; }
+		public T NewValue { get; private set; }
 
-        public T OldValue { get; private set; }
-    }
+		public T OldValue { get; private set; }
+	}
 }

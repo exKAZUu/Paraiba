@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,14 +17,14 @@
 #endregion
 
 namespace Paraiba.Geometry {
-    public interface I2Dimension<T> {
-        T X { get; set; }
-        T Y { get; set; }
-    }
+	public interface I2Dimension<T> {
+		T X { get; set; }
+		T Y { get; set; }
+	}
 
-    public interface I3Dimension<T> {
-        T X { get; set; }
-        T Y { get; set; }
-        T Z { get; set; }
-    }
+	public interface I3Dimension<T> {
+		T X { get; set; }
+		T Y { get; set; }
+		T Z { get; set; }
+	}
 }

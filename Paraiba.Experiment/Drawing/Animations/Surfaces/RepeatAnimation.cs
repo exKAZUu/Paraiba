@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,59 +20,59 @@ using System.Diagnostics.Contracts;
 using System.Drawing;
 
 namespace Paraiba.Drawing.Animations.Surfaces {
-    public class RepeatAnimation : AnimationSurface {
-        private readonly AnimationSurface _animationSurface;
-        private readonly int _nRepeat;
-        private int _repeatCount;
+	public class RepeatAnimation : AnimationSurface {
+		private readonly AnimationSurface _animationSurface;
+		private readonly int _nRepeat;
+		private int _repeatCount;
 
-        public RepeatAnimation(AnimationSurface animationSurface, int nRepeat) {
-            Contract.Requires(animationSurface != null);
+		public RepeatAnimation(AnimationSurface animationSurface, int nRepeat) {
+			Contract.Requires(animationSurface != null);
 
-            _animationSurface = animationSurface;
-            _nRepeat = nRepeat;
-        }
+			_animationSurface = animationSurface;
+			_nRepeat = nRepeat;
+		}
 
-        public override Size Size {
-            get { return _animationSurface.Size; }
-        }
+		public override Size Size {
+			get { return _animationSurface.Size; }
+		}
 
-        public override void Draw(Graphics g, int x, int y) {
-            _animationSurface.Draw(g, x, y);
-        }
+		public override void Draw(Graphics g, int x, int y) {
+			_animationSurface.Draw(g, x, y);
+		}
 
-        public override Image GetImage() {
-            return _animationSurface.GetImage();
-        }
+		public override Image GetImage() {
+			return _animationSurface.GetImage();
+		}
 
-        #region IAnimation メンバ
+		#region IAnimation メンバ
 
-        public override bool Ended {
-            get { return _repeatCount < _nRepeat; }
-        }
+		public override bool Ended {
+			get { return _repeatCount < _nRepeat; }
+		}
 
-        public override float ExcessTime {
-            get { return _animationSurface.ExcessTime; }
-        }
+		public override float ExcessTime {
+			get { return _animationSurface.ExcessTime; }
+		}
 
-        public override bool Elapse(float time) {
-            var result = _animationSurface.Elapse(time);
-            if (_animationSurface.Ended) {
-                _repeatCount++;
-                if (_repeatCount < _nRepeat) {
-                    var excessTime = _animationSurface.ExcessTime;
-                    _animationSurface.Reset();
-                    _animationSurface.Elapse(excessTime);
-                    return true;
-                }
-            }
-            return result;
-        }
+		public override bool Elapse(float time) {
+			var result = _animationSurface.Elapse(time);
+			if (_animationSurface.Ended) {
+				_repeatCount++;
+				if (_repeatCount < _nRepeat) {
+					var excessTime = _animationSurface.ExcessTime;
+					_animationSurface.Reset();
+					_animationSurface.Elapse(excessTime);
+					return true;
+				}
+			}
+			return result;
+		}
 
-        public override void Reset() {
-            _animationSurface.Reset();
-            _repeatCount = 0;
-        }
+		public override void Reset() {
+			_animationSurface.Reset();
+			_repeatCount = 0;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

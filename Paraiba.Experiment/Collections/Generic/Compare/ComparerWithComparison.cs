@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,25 +21,25 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
 namespace Paraiba.Collections.Generic.Compare {
-    public class ComparerWithComparison<T> : IComparer<T> {
-        private readonly Comparison<T> _comparison;
+	public class ComparerWithComparison<T> : IComparer<T> {
+		private readonly Comparison<T> _comparison;
 
-        public ComparerWithComparison(Comparison<T> comparison) {
-            Contract.Requires(comparison != null);
+		public ComparerWithComparison(Comparison<T> comparison) {
+			Contract.Requires(comparison != null);
 
-            _comparison = comparison;
-        }
+			_comparison = comparison;
+		}
 
-        #region IComparer<TValue> メンバ
+		#region IComparer<TValue> メンバ
 
-        public int Compare(T x, T y) {
-            return _comparison(x, y);
-        }
+		public int Compare(T x, T y) {
+			return _comparison(x, y);
+		}
 
-        #endregion
+		#endregion
 
-        public Comparison<T> Comparison {
-            get { return _comparison; }
-        }
-    }
+		public Comparison<T> Comparison {
+			get { return _comparison; }
+		}
+	}
 }

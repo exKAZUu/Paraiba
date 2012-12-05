@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,26 +20,26 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
 namespace Paraiba.Collections.Generic.Compare {
-    public class ReverseComparer<T> : IComparer<T> {
-        private readonly IComparer<T> _cmp;
+	public class ReverseComparer<T> : IComparer<T> {
+		private readonly IComparer<T> _cmp;
 
-        public ReverseComparer(IComparer<T> cmp) {
-            Contract.Requires(cmp != null);
+		public ReverseComparer(IComparer<T> cmp) {
+			Contract.Requires(cmp != null);
 
-            _cmp = cmp;
-        }
+			_cmp = cmp;
+		}
 
-        public IComparer<T> OriginalComparer {
-            get { return _cmp; }
-            //set { _cmp = value; }	// 状態変化できない方が良いかな
-        }
+		public IComparer<T> OriginalComparer {
+			get { return _cmp; }
+			//set { _cmp = value; }	// 状態変化できない方が良いかな
+		}
 
-        #region IComparer<T> Members
+		#region IComparer<T> Members
 
-        public int Compare(T x, T y) {
-            return _cmp.Compare(x, y) * -1;
-        }
+		public int Compare(T x, T y) {
+			return _cmp.Compare(x, y) * -1;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -1,6 +1,6 @@
 #region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@
 using System;
 
 namespace Paraiba.Monads {
-    public interface IMonad<T> {
-        IMonad<T2> Bind<T2>(Func<T, IMonad<T2>> func);
-        IMonad<T> Return(T value);
-    }
+	public interface IMonad<T> {
+		IMonad<T2> Bind<T2>(Func<T, IMonad<T2>> func);
+		IMonad<T> Return(T value);
+	}
 }

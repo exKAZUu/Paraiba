@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2008-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@
 using System;
 
 namespace Paraiba.Core {
-    public static class TupleExtensions {
-        public static bool IsInclude<T>(this Tuple<T, T> tuple, T value)
-                where T : IComparable<T> {
-            return tuple.Item1.CompareTo(value) <= 0
-                    && value.CompareTo(tuple.Item2) < 0;
-        }
-    }
+	public static class TupleExtensions {
+		public static bool IsInclude<T>(this Tuple<T, T> tuple, T value)
+				where T : IComparable<T> {
+			return tuple.Item1.CompareTo(value) <= 0
+					&& value.CompareTo(tuple.Item2) < 0;
+		}
+	}
 }
