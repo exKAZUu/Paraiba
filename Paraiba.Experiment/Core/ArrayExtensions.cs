@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,7 +23,8 @@ namespace Paraiba.Core {
     public static class ArrayExtensions {
         public static T AtOrDefault<T>(this T[] array, int index) {
             return 0 <= index && index < array.Length
-                           ? array[index] : default(T);
+                    ? array[index]
+                    : default(T);
         }
 
         public static T At<T>(this T[][] array, Tuple<int, int> index) {
@@ -251,7 +252,7 @@ namespace Paraiba.Core {
         public static bool IsValidIndex<T>(
                 this T[,] array, int index0, int index1) {
             return 0 <= index0 && index0 < array.GetLength(0) && 0 <= index1
-                   && index1 <= array.GetLength(1);
+                    && index1 <= array.GetLength(1);
         }
     }
 }

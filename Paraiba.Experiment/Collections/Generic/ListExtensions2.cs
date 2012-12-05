@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ namespace Paraiba.Collections.Generic {
             return
                     that.All(
                             item =>
-                            startIndex < list.Count
-                            && list[startIndex++].Equals(item))
-                    && startIndex == list.Count;
+                                    startIndex < list.Count
+                                            && list[startIndex++].Equals(item))
+                            && startIndex == list.Count;
         }
 
         public static bool IsSubSequence<T>(
@@ -46,7 +46,8 @@ namespace Paraiba.Collections.Generic {
 
         public static T AtOrDefault<T>(this IList<T> list, int index) {
             return 0 <= index && index < list.Count()
-                           ? list[index] : default(T);
+                    ? list[index]
+                    : default(T);
         }
 
         public static IEnumerable<T> AsReverse<T>(this IList<T> list) {
@@ -172,8 +173,8 @@ namespace Paraiba.Collections.Generic {
         /// <returns> </returns>
         public static T ElementAtOrDefault<T>(this IList<T> list, int index) {
             return 0 <= index && index < list.Count
-                           ? list[index]
-                           : default(T);
+                    ? list[index]
+                    : default(T);
         }
 
         /// <summary>

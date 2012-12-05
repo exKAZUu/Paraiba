@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,8 +41,10 @@ namespace Paraiba.Collections.Generic.Compare {
                 where T3 : IComparable<T3> {
             var result = x1.CompareTo(y1);
             return result != 0
-                           ? result : (result = x2.CompareTo(y2)) != 0
-                                              ? result : x3.CompareTo(y3);
+                    ? result
+                    : (result = x2.CompareTo(y2)) != 0
+                            ? result
+                            : x3.CompareTo(y3);
         }
 
         public static int Compare<T1, T2, T3, T4>(
@@ -53,11 +55,12 @@ namespace Paraiba.Collections.Generic.Compare {
                 where T4 : IComparable<T4> {
             var result = x1.CompareTo(y1);
             return result != 0
-                           ? result : (result = x2.CompareTo(y2)) != 0
-                                              ? result
-                                              : (result = x3.CompareTo(y3)) != 0
-                                                        ? result
-                                                        : x4.CompareTo(y4);
+                    ? result
+                    : (result = x2.CompareTo(y2)) != 0
+                            ? result
+                            : (result = x3.CompareTo(y3)) != 0
+                                    ? result
+                                    : x4.CompareTo(y4);
         }
 
         public static Comparison<T> Integrate<T>(params Comparison<T>[] cmps) {

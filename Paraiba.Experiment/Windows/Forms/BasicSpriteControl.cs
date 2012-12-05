@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -68,10 +68,10 @@ namespace Paraiba.Windows.Forms {
             }
 
             // コンポーネント位置の調整
-            Location = getControlLocationFunc_ != null ?
-                                                               getControlLocationFunc_
-                                                                       (this)
-                               : sprite.Location;
+            Location = getControlLocationFunc_ != null
+                    ? getControlLocationFunc_
+                            (this)
+                    : sprite.Location;
         }
 
         protected override void OnLayout(LayoutEventArgs levent) {
@@ -91,10 +91,10 @@ namespace Paraiba.Windows.Forms {
                 sprite.Draw(
                         g,
                         -(Vector2)sprite.Location
-                        + (Vector2)getDrawOffsetFunc_(this) + GetOffset());
+                                + (Vector2)getDrawOffsetFunc_(this) + GetOffset());
             } else {
                 sprite.Draw(g, -(Vector2)sprite.Location + GetOffset());
             }
         }
-            }
+    }
 }

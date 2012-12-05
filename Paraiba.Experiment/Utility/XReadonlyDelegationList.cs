@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,14 +26,14 @@ namespace Paraiba.Utility {
             : ReadonlyListWrapper<IList<TItem>, TItem> {
         public ReadonlyListWrapper(IWrap<IList<TItem>> wrap)
                 : base(wrap) {}
-            }
+    }
 
     public class ReadonlyListWrapper<TList, TItem>
             : ReadonlyListWrapper<IWrap<TList>, TList, TItem>
             where TList : IList<TItem> {
         public ReadonlyListWrapper(IWrap<TList> wrap)
                 : base(wrap) {}
-            }
+    }
 
     public class ReadonlyListWrapper<TWrap, TList, TItem>
             : XReadonlyListWrapper<TWrap, TList, TItem, TItem>
@@ -41,14 +41,14 @@ namespace Paraiba.Utility {
             where TList : IList<TItem> {
         public ReadonlyListWrapper(TWrap wrap)
                 : base(wrap) {}
-            }
+    }
 
     public class XReadonlyListWrapper<TOrgItem, TItem>
             : XReadonlyListWrapper<IList<TOrgItem>, TOrgItem, TItem>
             where TOrgItem : TItem {
         public XReadonlyListWrapper(IWrap<IList<TOrgItem>> wrap)
                 : base(wrap) {}
-            }
+    }
 
     public class XReadonlyListWrapper<TList, TOrgItem, TItem>
             : XReadonlyListWrapper<IWrap<TList>, TList, TOrgItem, TItem>
@@ -56,7 +56,7 @@ namespace Paraiba.Utility {
             where TOrgItem : TItem {
         public XReadonlyListWrapper(IWrap<TList> wrap)
                 : base(wrap) {}
-            }
+    }
 
     /// <summary>
     ///   IListをラップしたIWrap型のオブジェクトを与えることで、 委譲により読み込み専用の IList インタフェースの実装を提供します。 なお、ジェネリクスの型引数における共変性も実現します。
@@ -96,9 +96,9 @@ namespace Paraiba.Utility {
 
         public bool Contains(TItem item) {
             if (item is TOrgItem
-                ||
-                (default(TOrgItem) == null && default(TItem) == null
-                 && item == null)) {
+                    ||
+                    (default(TOrgItem) == null && default(TItem) == null
+                            && item == null)) {
                 return _wrap.Value.Contains((TOrgItem)item);
             }
             return false;
@@ -137,9 +137,9 @@ namespace Paraiba.Utility {
 
         public int IndexOf(TItem item) {
             if (item is TOrgItem
-                ||
-                (default(TOrgItem) == null && default(TItem) == null
-                 && item == null)) {
+                    ||
+                    (default(TOrgItem) == null && default(TItem) == null
+                            && item == null)) {
                 return _wrap.Value.IndexOf((TOrgItem)item);
             }
             return -1;
@@ -159,5 +159,5 @@ namespace Paraiba.Utility {
         }
 
         #endregion
-            }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -133,7 +133,7 @@ namespace Paraiba.Collections {
             }
             return false;
         }
-            }
+    }
 
     public class SortedLinkedList<TKey, TValue>
             : ICollection<KeyValuePair<TKey, TValue>> {
@@ -240,7 +240,7 @@ namespace Paraiba.Collections {
             do {
                 node = node.next_;
             } while (_cmp.Compare(node.item_.Key, key) != 0
-                     || node.item_.Value.Equals(value) == false);
+                    || node.item_.Value.Equals(value) == false);
 
             return node != head_ ? node : null;
         }
@@ -277,7 +277,7 @@ namespace Paraiba.Collections {
             do {
                 node = node.prev_;
             } while (_cmp.Compare(node.item_.Key, key) != 0
-                     || node.item_.Value.Equals(value) == false);
+                    || node.item_.Value.Equals(value) == false);
 
             return node != head_ ? node : null;
         }
@@ -348,7 +348,7 @@ namespace Paraiba.Collections {
             do {
                 node = node.next_;
             } while (_cmp.Compare(node.item_.Key, key) != 0
-                     || node.item_.Value.Equals(value) == false);
+                    || node.item_.Value.Equals(value) == false);
 
             // �ԕ��łȂ���΍폜
             if (node != head_) {
@@ -471,5 +471,5 @@ namespace Paraiba.Collections {
         }
 
         #endregion
-            }
+    }
 }

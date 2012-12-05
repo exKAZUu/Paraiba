@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -123,21 +123,21 @@ namespace Paraiba.Text {
         public static Encoding GetEncodingFromMagicComment(string text) {
             const string codingString = "coding:";
             var magicComment = text.Replace("\r\n", "\n")
-                    .Replace("\r", "\n")
-                    .Split(
-                            new[] { '\n' },
-                            StringSplitOptions.RemoveEmptyEntries)
-                    .Select(s => s.Trim())
-                    .Where(s => s.StartsWith("#"))
-                    .Take(10)
-                    .FirstOrDefault(s => s.Contains(codingString));
+                                   .Replace("\r", "\n")
+                                   .Split(
+                                           new[] { '\n' },
+                                           StringSplitOptions.RemoveEmptyEntries)
+                                   .Select(s => s.Trim())
+                                   .Where(s => s.StartsWith("#"))
+                                   .Take(10)
+                                   .FirstOrDefault(s => s.Contains(codingString));
             if (magicComment == null) {
                 return null;
             }
             var index = magicComment.IndexOf(codingString);
             magicComment =
                     magicComment.Substring(index + codingString.Length).
-                            TrimStart();
+                                 TrimStart();
             index = magicComment.IndexOf(' ');
             if (index < 0) {
                 index = magicComment.IndexOf('　');
@@ -162,7 +162,7 @@ namespace Paraiba.Text {
 
         public static Encoding GetEncoding(byte[] bytes) {
             return GetEncodingFromMagicComment(bytes)
-                   ?? GetEncodingUsingGauche(bytes);
+                    ?? GetEncodingUsingGauche(bytes);
         }
 
         public static string GetStringFromBytes(byte[] bytes) {

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -85,13 +85,13 @@ namespace Paraiba.Collections {
                 // downheap ����ɂ�荪�̒l��K�؂Ȉʒu�ֈړ�����
                 int i = 1, j = 2,
                         k = j
-                            -
-                            (cmp.Compare(
-                                    array[endIndex - (j + 1)],
-                                    array[endIndex - (j)]) >> 31);
+                                -
+                                (cmp.Compare(
+                                        array[endIndex - (j + 1)],
+                                        array[endIndex - (j)]) >> 31);
                 T tmp;
                 while ((j = k * 2) < n
-                       && cmp.Compare(item, (tmp = array[endIndex - (j)])) > 0) {
+                        && cmp.Compare(item, (tmp = array[endIndex - (j)])) > 0) {
                     array[endIndex - (i)] = array[endIndex - (k)];
                     i = k;
                     k = j - (cmp.Compare(array[endIndex - (j + 1)], tmp) >> 31);

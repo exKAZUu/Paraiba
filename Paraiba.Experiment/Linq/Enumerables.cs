@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ namespace Paraiba.Linq {
             Contract.Requires(cmp != null);
 
             return source.Zip2Chain()
-                    .All(t => cmp.Compare(t.Item1, t.Item2) <= 0);
+                         .All(t => cmp.Compare(t.Item1, t.Item2) <= 0);
         }
 
         /// <summary>
@@ -113,11 +113,11 @@ namespace Paraiba.Linq {
             Contract.Ensures(
                     source1.All(
                             e =>
-                            Contract.Result<IEnumerable<TSource>>().Contains(e)));
+                                    Contract.Result<IEnumerable<TSource>>().Contains(e)));
             Contract.Ensures(
                     source2.All(
                             e =>
-                            Contract.Result<IEnumerable<TSource>>().Contains(e)));
+                                    Contract.Result<IEnumerable<TSource>>().Contains(e)));
 
             using (var itr1 = source1.GetEnumerator()) {
                 using (var itr2 = source2.GetEnumerator()) {
@@ -769,7 +769,7 @@ namespace Paraiba.Linq {
                 using (var itr2 = source2.GetEnumerator()) {
                     while (itr1.MoveNext()) {
                         if (!itr2.MoveNext()
-                            || !ReferenceEquals(itr1.Current, itr2.Current)) {
+                                || !ReferenceEquals(itr1.Current, itr2.Current)) {
                             return false;
                         }
                     }
@@ -791,7 +791,7 @@ namespace Paraiba.Linq {
                 using (var itr2 = source2.GetEnumerator()) {
                     while (itr1.MoveNext()) {
                         if (!itr2.MoveNext()
-                            || !eqcmp.Equals(itr1.Current, itr2.Current)) {
+                                || !eqcmp.Equals(itr1.Current, itr2.Current)) {
                             return false;
                         }
                     }
@@ -808,7 +808,7 @@ namespace Paraiba.Linq {
                 using (var itr2 = source2.GetEnumerator()) {
                     while (itr1.MoveNext()) {
                         if (!itr2.MoveNext()
-                            || !eqcmpFunc(itr1.Current, itr2.Current)) {
+                                || !eqcmpFunc(itr1.Current, itr2.Current)) {
                             return false;
                         }
                     }

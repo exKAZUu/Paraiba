@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,40 +73,40 @@ namespace Paraiba.Core {
                 this string str, char delimiter) {
             var index = str.IndexOf(delimiter);
             return index >= 0
-                           ? Tuple.Create(
-                                   str.Substring(0, index),
-                                   str.Substring(index + 1))
-                           : Tuple.Create(str, string.Empty);
+                    ? Tuple.Create(
+                            str.Substring(0, index),
+                            str.Substring(index + 1))
+                    : Tuple.Create(str, string.Empty);
         }
 
         public static Tuple<string, string> Halve(
                 this string str, string delimiter) {
             var index = str.IndexOf(delimiter);
             return index >= 0
-                           ? Tuple.Create(
-                                   str.Substring(0, index),
-                                   str.Substring(index + delimiter.Length))
-                           : Tuple.Create(str, string.Empty);
+                    ? Tuple.Create(
+                            str.Substring(0, index),
+                            str.Substring(index + delimiter.Length))
+                    : Tuple.Create(str, string.Empty);
         }
 
         public static Tuple<string, string> HalveLast(
                 this string str, char delimiter) {
             var index = str.LastIndexOf(delimiter);
             return index >= 0
-                           ? Tuple.Create(
-                                   str.Substring(0, index),
-                                   str.Substring(index + 1))
-                           : Tuple.Create(str, string.Empty);
+                    ? Tuple.Create(
+                            str.Substring(0, index),
+                            str.Substring(index + 1))
+                    : Tuple.Create(str, string.Empty);
         }
 
         public static Tuple<string, string> HalveLast(
                 this string str, string delimiter) {
             var index = str.LastIndexOf(delimiter);
             return index >= 0
-                           ? Tuple.Create(
-                                   str.Substring(0, index),
-                                   str.Substring(index + delimiter.Length))
-                           : Tuple.Create(str, string.Empty);
+                    ? Tuple.Create(
+                            str.Substring(0, index),
+                            str.Substring(index + delimiter.Length))
+                    : Tuple.Create(str, string.Empty);
         }
 
         public static string[] HalveToArray(this string str, char delimiter) {

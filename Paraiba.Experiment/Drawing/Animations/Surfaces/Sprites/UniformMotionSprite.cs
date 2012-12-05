@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -92,7 +92,8 @@ namespace Paraiba.Drawing.Animations.Surfaces.Sprites {
                         new StaticAnimation(surface), startLocation, endLocation,
                         isSpeed
                                 ? (float)(endLocation - startLocation).Length
-                                  / speedOrTotalTime : speedOrTotalTime) {}
+                                        / speedOrTotalTime
+                                : speedOrTotalTime) {}
 
         public UniformMotionSprite(
                 AnimationSurface animationSurface, Point2 startLocation,
@@ -101,7 +102,8 @@ namespace Paraiba.Drawing.Animations.Surfaces.Sprites {
                         animationSurface, startLocation, endLocation,
                         isSpeed
                                 ? (float)(endLocation - startLocation).Length
-                                  / speedOrTotalTime : speedOrTotalTime) {}
+                                        / speedOrTotalTime
+                                : speedOrTotalTime) {}
 
         #region Sprite メンバ
 
@@ -119,9 +121,9 @@ namespace Paraiba.Drawing.Animations.Surfaces.Sprites {
             set {
                 _location = value;
                 _startLocation = value
-                                 -
-                                 (Vector2)
-                                 (_diffVector * (_lapseTime / _totalTime));
+                        -
+                        (Vector2)
+                                (_diffVector * (_lapseTime / _totalTime));
             }
         }
 
@@ -171,7 +173,7 @@ namespace Paraiba.Drawing.Animations.Surfaces.Sprites {
             if (_lapseTime < _totalTime) {
                 // 毎回合計値と除算することで誤差を防ぐ
                 _location = _startLocation
-                            + (Vector2)(_diffVector * (_lapseTime / _totalTime));
+                        + (Vector2)(_diffVector * (_lapseTime / _totalTime));
             } else {
                 _location = _startLocation + _diffVector;
             }

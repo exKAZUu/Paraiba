@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -193,7 +193,7 @@ namespace Paraiba.Utility {
             } else {
                 list = loadBitmapsFunc(filePath).SelectToArray(
                         (bmp, i) =>
-                        new MutableLazyFlagWrap<Bitmap>(
+                                new MutableLazyFlagWrap<Bitmap>(
                                 bmp, lazyFunc.GetCurrying(i), true));
             }
             AddNode(filePath, list);
@@ -207,8 +207,8 @@ namespace Paraiba.Utility {
 
             Func<IList<Surface>> func =
                     () =>
-                    GetRowList(filePath, loadBitmapsFunc).SelectToArray(
-                            wrap => wrap.ToSurface());
+                            GetRowList(filePath, loadBitmapsFunc).SelectToArray(
+                                    wrap => wrap.ToSurface());
             return func.ToLazyWrap().ToReadonlyListWrap();
         }
 
@@ -255,8 +255,8 @@ namespace Paraiba.Utility {
             return GetSurfaces(
                     filePath,
                     path =>
-                    splitBitmapFunc(
-                            LoadBitmap(path, loadBitmapFunc), width, height));
+                            splitBitmapFunc(
+                                    LoadBitmap(path, loadBitmapFunc), width, height));
         }
 
         public IList<Surface> GetSurfaces(string filePath, Size size) {
@@ -285,5 +285,5 @@ namespace Paraiba.Utility {
         }
 
         #endregion
-            }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ namespace Paraiba.Utility {
             foreach (var action in _actions) {
                 var paramList = action.Method.GetParameters();
                 if (paramList[0].ParameterType.IsAssignableFrom(typeof(TSub1)) &&
-                    paramList[1].ParameterType.IsAssignableFrom(typeof(TSub2))) {
+                        paramList[1].ParameterType.IsAssignableFrom(typeof(TSub2))) {
                     action.DynamicInvoke(value1, value2);
                     return;
                 }
@@ -103,7 +103,7 @@ namespace Paraiba.Utility {
             foreach (var action in _actions) {
                 var paramList = action.Method.GetParameters();
                 if (paramList[0].ParameterType.IsAssignableFrom(typeof(TSub1)) &&
-                    paramList[1].ParameterType.IsAssignableFrom(typeof(TSub2))) {
+                        paramList[1].ParameterType.IsAssignableFrom(typeof(TSub2))) {
                     return (TResult)action.DynamicInvoke(value1, value2);
                 }
             }

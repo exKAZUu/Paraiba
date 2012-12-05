@@ -34,4 +34,4 @@ download
 *.docstates
 *.dotCover
 *.nupkg
-.nuget/NuGet*
+packages

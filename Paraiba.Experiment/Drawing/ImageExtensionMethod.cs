@@ -1,6 +1,6 @@
 #region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ namespace Paraiba.Drawing {
     public static class ImageExtensionMethod {
         public static int EstimateMemorySize(this Image image) {
             return image.Width * image.Height
-                   * Image.GetPixelFormatSize(image.PixelFormat) / 8;
+                    * Image.GetPixelFormatSize(image.PixelFormat) / 8;
         }
 
         public static Surface ToSurface(this Image bmp) {

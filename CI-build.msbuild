@@ -12,6 +12,12 @@
   </Target>
 
   <Target Name="Build" DependsOnTargets="Clean">
+    <Exec Condition=" ('$(OS)' != 'Windows_NT') " Command="mono .nuget/NuGet.exe install .nuget/packages.config -o packages" />
+    <Exec Condition=" ('$(OS)' != 'Windows_NT') " Command="mono .nuget/NuGet.exe install Paraiba.Core.Tests/packages.config -o packages" />
+    <Exec Condition=" ('$(OS)' != 'Windows_NT') " Command="mono .nuget/NuGet.exe install Paraiba.Experiment/packages.config -o packages" />
+    <Exec Condition=" ('$(OS)' == 'Windows_NT') " Command="&quot;.nuget/NuGet.exe&quot; install .nuget/packages.config -o packages" />
+    <Exec Condition=" ('$(OS)' == 'Windows_NT') " Command="&quot;.nuget/NuGet.exe&quot; install Paraiba.Core.Tests/packages.config -o packages" />
+    <Exec Condition=" ('$(OS)' == 'Windows_NT') " Command="&quot;.nuget/NuGet.exe&quot; install Paraiba.Experiment/packages.config -o packages" />
     <MSBuild
       Projects="Paraiba.sln"
       Targets="Build"

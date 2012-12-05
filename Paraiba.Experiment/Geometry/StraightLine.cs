@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -57,17 +57,17 @@ namespace Paraiba.Geometry {
                        isXRange
                                ? interval
                                : new IntervalF(
-                                         (-b * interval._min - c) / a,
-                                         (-b * interval._max - c) / a),
+                               (-b * interval._min - c) / a,
+                               (-b * interval._max - c) / a),
                        isXRange == false
                                ? interval
                                : new IntervalF(
-                                         (-a * interval._min - c) / b,
-                                         (-a * interval._max - c) / b)) {}
+                               (-a * interval._min - c) / b,
+                               (-a * interval._max - c) / b)) {}
 
         public bool IsOverlap(Point2F p) {
             return a_ * p.X + b_ * p.Y + c_ == 0 &&
-                   xInterval_.InRange(p.X) && yInterval_.InRange(p.Y);
+                    xInterval_.InRange(p.X) && yInterval_.InRange(p.Y);
         }
 
         public bool IsOverlap(StraightLine line) {

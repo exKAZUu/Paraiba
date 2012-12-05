@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ namespace Paraiba.Drawing {
                 bool allowTransparentIfHasAlpha) {
             var bmp = new Bitmap(fpath);
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 bmp.MakeTransparent(transparentColor);
             } else {
                 bmp.SetResolution();
@@ -109,7 +109,7 @@ namespace Paraiba.Drawing {
                 bool allowTransparentIfHasAlpha) {
             var bmp = new Bitmap(fpath);
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 bmp.TryMakeTransparent(transparentColorPoint);
             }
             bmp.SetResolution();
@@ -166,7 +166,7 @@ namespace Paraiba.Drawing {
                 bmp.SetResolution();
             }
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 var hres = bmp.HorizontalResolution;
                 var vres = bmp.VerticalResolution;
                 bmp.MakeTransparent(transparentColor);
@@ -212,7 +212,7 @@ namespace Paraiba.Drawing {
                 bmp.SetResolution();
             }
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 var hres = bmp.HorizontalResolution;
                 var vres = bmp.VerticalResolution;
                 if (bmp.TryMakeTransparent(transparentColorPoint)) {
@@ -240,7 +240,7 @@ namespace Paraiba.Drawing {
                 bool allowTransparentIfHasAlpha) {
             var bmp = new Bitmap(fpath);
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 bmp.MakeTransparent(transparentColor);
                 return bmp;
             }
@@ -269,7 +269,7 @@ namespace Paraiba.Drawing {
                 bool allowTransparentIfHasAlpha) {
             var bmp = new Bitmap(fpath);
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 if (bmp.TryMakeTransparent(transparentColorPoint)) {
                     return bmp;
                 }
@@ -303,7 +303,7 @@ namespace Paraiba.Drawing {
                 bmp.SetResolution();
             }
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 var hres = bmp.HorizontalResolution;
                 var vres = bmp.VerticalResolution;
                 bmp.MakeTransparent(transparentColor);
@@ -343,7 +343,7 @@ namespace Paraiba.Drawing {
             }
 
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 var hres = bmp.HorizontalResolution;
                 var vres = bmp.VerticalResolution;
                 if (bmp.TryMakeTransparent(transparentColorPoint)) {
@@ -374,7 +374,7 @@ namespace Paraiba.Drawing {
                 bool allowTransparentIfHasAlpha) {
             var bmp = PrivateLoadOnMemory(fpath);
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 bmp.MakeTransparent(transparentColor);
                 return bmp;
             }
@@ -403,7 +403,7 @@ namespace Paraiba.Drawing {
                 bool allowTransparentIfHasAlpha) {
             var bmp = PrivateLoadOnMemory(fpath);
             if (allowTransparentIfHasAlpha
-                || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
+                    || (bmp.Flags & (int)ImageFlags.HasAlpha) == 0) {
                 if (bmp.TryMakeTransparent(transparentColorPoint)) {
                     return bmp;
                 }

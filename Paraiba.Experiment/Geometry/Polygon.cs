@@ -1,6 +1,6 @@
 #region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ namespace Paraiba.Geometry {
 					 * isP2yBigger == false ÅÃ p1.x_(p2.y_ - q.y_) - p2.x_(p1.y_ - q.y_) <= q.x_(p2.y_ - p1.y_)
 					 */
                     if (((p2.Y - q.Y) * (p1.X - p2.X)
-                         >= (p2.X - q.X) * (p1.Y - p2.Y)) == isP2yBigger) {
+                            >= (p2.X - q.X) * (p1.Y - p2.Y)) == isP2yBigger) {
                         inside = !inside;
                     }
                 }

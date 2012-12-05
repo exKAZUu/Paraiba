@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ namespace Paraiba.Reflection {
             var minfo = pinfo.GetGetMethod();
             return
                     (Func<T, TResult>)
-                    Delegate.CreateDelegate(typeof(Func<T, TResult>), minfo);
+                            Delegate.CreateDelegate(typeof(Func<T, TResult>), minfo);
         }
 
         public static Delegate GetSetDelegate(this PropertyInfo pinfo) {
@@ -97,7 +97,7 @@ namespace Paraiba.Reflection {
             var minfo = pinfo.GetSetMethod();
             return
                     (Action<T, TValue>)
-                    Delegate.CreateDelegate(typeof(Action<T, TValue>), minfo);
+                            Delegate.CreateDelegate(typeof(Action<T, TValue>), minfo);
         }
     }
 }

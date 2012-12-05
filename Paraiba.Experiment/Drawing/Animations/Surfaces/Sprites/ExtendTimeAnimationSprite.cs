@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -87,14 +87,14 @@ namespace Paraiba.Drawing.Animations.Surfaces.Sprites {
         public override bool Ended {
             get {
                 return _lapseFrontSpanTime + _animationSprite.ExcessTime
-                       >= _frontSpanTime + _backSpanTime;
+                        >= _frontSpanTime + _backSpanTime;
             }
         }
 
         public override float ExcessTime {
             get {
                 return _lapseFrontSpanTime + _animationSprite.ExcessTime
-                       - (_frontSpanTime + _backSpanTime);
+                        - (_frontSpanTime + _backSpanTime);
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2008-2012 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,8 +37,8 @@ namespace Paraiba.Core {
         public static string SubstringAfter(this string str, string separator) {
             var index = str.IndexOf(separator);
             return index >= 0
-                           ? str.Substring(index + separator.Length)
-                           : string.Empty;
+                    ? str.Substring(index + separator.Length)
+                    : string.Empty;
         }
 
         public static string SubstringBeforeLast(
@@ -51,13 +51,13 @@ namespace Paraiba.Core {
                 this string str, string separator) {
             var index = str.LastIndexOf(separator);
             return index >= 0
-                           ? str.Substring(index + separator.Length)
-                           : string.Empty;
+                    ? str.Substring(index + separator.Length)
+                    : string.Empty;
         }
 
         public static string StripMargin(this string str) {
             return str.Split(new[] { "\r\n" }, StringSplitOptions.None)
-                    .Select(l => l.TrimStart().Substring(1)).JoinString("\r\n");
+                      .Select(l => l.TrimStart().Substring(1)).JoinString("\r\n");
         }
     }
 }
