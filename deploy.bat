@@ -14,3 +14,4 @@ FOR %%f IN (*.nupkg) DO (
 	nuget push %%f
 )
 del *.nupkg
+cd ..
