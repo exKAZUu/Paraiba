@@ -14,7 +14,7 @@
     <copyright>Copyright (C) Kazunori Sakamoto 2011-2012</copyright>
     <tags>.NET Library LINQ</tags>
     <dependencies>
-      <dependency id="Paraiba.Experiment" version="1.0" />
+      <dependency id="Paraiba" version="1.0" />
     </dependencies>
   </metadata>
 </package>

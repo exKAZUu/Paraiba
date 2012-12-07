@@ -104,7 +104,7 @@
   <ItemGroup>
     <Compile Include="Collections\Generic\BinarySearchExtensions.cs" />
     <Compile Include="Collections\Generic\ListExtensions.cs" />
-    <Compile Include="Core\EnvironmentUtils.cs" />
+    <Compile Include="Core\ParaibaEnvironment.cs" />
     <Compile Include="Core\StringExtensions.cs" />
     <Compile Include="IO\DirectoryInfoExtensions.cs" />
     <Compile Include="IO\FileSystemInfoExtensions.cs" />
@@ -116,7 +116,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" BuildVersion_AssemblyInfoFilename="" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="" BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
