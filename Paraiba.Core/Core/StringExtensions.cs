@@ -150,5 +150,23 @@ namespace Paraiba.Core {
 				startIndex = index + 1;
 			}
 		}
+
+		/// <summary>
+		/// Returns a new string in which newlines for unix-like systems are replaced with ones for windows.
+		/// </summary>
+		/// <param name="text">The string to be replaced.</param>
+		/// <returns>The new string.</returns>
+		public static string ReplaceNewlinesForUnix(this string text) {
+			return text.Replace("\r\n", "\n");
+		}
+
+		/// <summary>
+		/// Returns a new string in which newlines for windws are replaced with ones for unix-like systems.
+		/// </summary>
+		/// <param name="text">The string to be replaced.</param>
+		/// <returns>The new string.</returns>
+		public static string ReplaceNewlinesForWindows(this string text) {
+			return text.Replace("\r\n", "\n").Replace("\n", "\r\n");
+		}
 	}
 }

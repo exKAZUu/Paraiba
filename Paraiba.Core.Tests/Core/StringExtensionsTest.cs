@@ -21,6 +21,9 @@ using NUnit.Framework;
 using Paraiba.Core;
 
 namespace Paraiba.Tests.Core {
+	/// <summary>
+	///   Tests for <see cref="StringExtensions" /> .
+	/// </summary>
 	[TestFixture]
 	public class StringExtensionsTest {
 		[Test]
@@ -29,6 +32,16 @@ namespace Paraiba.Tests.Core {
 		[TestCase("aa aa aa aa", "aa", 1, 9, Result = new[] { 3, 6 })]
 		public int[] IndicesOf(string text, string value, int startIndex, int count) {
 			return text.IndicesOf(value, startIndex, count).ToArray();
+		}
+
+		[Test]
+		public void ReplaceNewlinesForWindows() {
+			Assert.That("aa\r\na\n".ReplaceNewlinesForWindows(), Is.EqualTo("aa\r\na\r\n"));
+		}
+
+		[Test]
+		public void ReplaceNewlinesForUnix() {
+			Assert.That("aa\r\na\n".ReplaceNewlinesForUnix(), Is.EqualTo("aa\na\n"));
 		}
 	}
 }

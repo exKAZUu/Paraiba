@@ -2,6 +2,6 @@
 
 # Requirements
 * NuGet
-Install via Extension Manager
+Install NuGet with Extension Manager
 * Code Contracts
 http://research.microsoft.com/en-us/projects/contracts/
