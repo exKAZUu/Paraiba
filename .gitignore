@@ -1,4 +1,3 @@
-
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
@@ -29,11 +28,13 @@ _ReSharper*/
 *.sdf
 ipch/
 target
-output
-download
-*.docstates
-*.dotCover
-*.nupkg
-packages
 *~
 *.swp
+
+*.docstates
+*.dotCover
+nuspec
+packages
+
+output
+download
