@@ -82,6 +82,7 @@
     <Compile Include="Collections\Generic\BinarySearchExtensionsTest.cs" />
     <Compile Include="Collections\Generic\ListExtensionsTest.cs" />
     <Compile Include="Core\StringExtensionsTest.cs" />
+    <Compile Include="IO\ParaibaPathTest.cs" />
     <Compile Include="IO\DirectoryInfoExtensionsTest.cs" />
     <Compile Include="IO\FileSystemInfoExtensionsTest.cs" />
     <Compile Include="IO\ParaibaFileTest.cs" />

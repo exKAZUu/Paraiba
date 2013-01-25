@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2013 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,14 +33,11 @@ namespace Paraiba.IO {
 			var files = Directory.GetFiles(srcPath);
 			Directory.CreateDirectory(dstPath);
 			foreach (var file in files) {
-				File.Copy(
-						file, Path.Combine(dstPath, Path.GetFileName(file)),
-						true);
+				File.Copy(file, Path.Combine(dstPath, Path.GetFileName(file)), true);
 			}
 			var dirs = Directory.GetDirectories(srcPath);
 			foreach (var dir in dirs) {
-				CopyRecursively(
-						dir, Path.Combine(dstPath, Path.GetFileName(dir)));
+				CopyRecursively(dir, Path.Combine(dstPath, Path.GetFileName(dir)));
 			}
 		}
 
@@ -50,8 +47,7 @@ namespace Paraiba.IO {
 		/// </summary>
 		/// <param name="fileInfo">The <c>FileInfo</c> instance to be written.</param>
 		/// <param name="byteArray">The byte array to be written.</param>
-		public static void WriteIfDifferentSize(
-				FileInfo fileInfo, byte[] byteArray) {
+		public static void WriteIfDifferentSize(FileInfo fileInfo, byte[] byteArray) {
 			Contract.Requires(fileInfo != null);
 			if (fileInfo.Exists && fileInfo.Length == byteArray.Length) {
 				return;
@@ -66,8 +62,7 @@ namespace Paraiba.IO {
 		/// </summary>
 		/// <param name="path">The file path to be written.</param>
 		/// <param name="byteArray">The byte array to be written.</param>
-		public static void WriteIfDifferentSize(
-				string path, byte[] byteArray) {
+		public static void WriteIfDifferentSize(string path, byte[] byteArray) {
 			WriteIfDifferentSize(new FileInfo(path), byteArray);
 		}
 	}
