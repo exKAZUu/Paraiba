@@ -31,7 +31,7 @@ namespace Paraiba.Tests.IO {
 		[TestCase("c:/test", Result = @"c:\test")]
 		[TestCase("c:/test/", Result = @"c:\test\")]
 		public string NormalizeDirectorySeparatorChar(string path) {
-			return ParaibaPath.NormalizeDirectorySeparators(path);
+			return ParaibaPath.NormalizeDirectorySeparators(path).Replace('/', '\\');
 		}
 
 		[Test]
@@ -40,7 +40,7 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\test", Result = @"c:\test\")]
 		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string ComplementDirectorySeparatorChar(string path) {
-			return ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path);
+			return ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path).Replace('/', '\\');
 		}
 
 		[Test]
@@ -52,7 +52,7 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\aaa\ddd", @"c:\aaa\bbb\ddd", Result = @"..\..\ddd")]
 		[TestCase(@"c:\aaa\bbb\ccc", @"c:\aaa\ddd", Result = @"..\bbb\ccc")]
 		public string GetRelativePath(string path, string basePath) {
-			return ParaibaPath.GetRelativePath(path, basePath);
+			return ParaibaPath.GetRelativePath(path, basePath).Replace('/', '\\');
 		}
 
 		[Test]
