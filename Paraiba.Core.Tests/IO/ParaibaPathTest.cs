@@ -18,6 +18,7 @@
 
 using System.IO;
 using NUnit.Framework;
+using Paraiba.Core;
 using Paraiba.IO;
 
 namespace Paraiba.Tests.IO {
@@ -35,10 +36,8 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\test", Result = @"c:\test")]
 		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string NormalizeDirectorySeparatorChar(string path) {
-			path = path.Replace('\\', Path.DirectorySeparatorChar)
-					.Replace('/', Path.AltDirectorySeparatorChar);
-			return ParaibaPath.NormalizeDirectorySeparators(path)
-					.Replace(Path.DirectorySeparatorChar, '\\');
+			path = Serialize(path);
+			return Deserialize(ParaibaPath.NormalizeDirectorySeparators(path));
 		}
 
 		[Test]
@@ -47,12 +46,12 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\test", Result = @"c:\test\")]
 		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string ComplementDirectorySeparatorChar(string path) {
-			path = path.Replace('\\', Path.DirectorySeparatorChar);
-			return ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path)
-					.Replace(Path.DirectorySeparatorChar, '\\');
+			path = Serialize(path);
+			return Deserialize(ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path));
 		}
 
 		[Test]
+		[TestCase(@"c:\aaa\bbb\", @"c:\aaa\ccc\", Result = @"..\bbb\")]
 		[TestCase(@"c:\aaa\bbb", @"c:\aaa", Result = @"bbb")]
 		[TestCase(@"c:\aaa\bbb\", @"c:\aaa\", Result = @"bbb\")]
 		[TestCase(@"c:\あいう\えお", @"c:\あいう", Result = @"えお")]
@@ -61,10 +60,9 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\aaa\ddd", @"c:\aaa\bbb\ddd", Result = @"..\..\ddd")]
 		[TestCase(@"c:\aaa\bbb\ccc", @"c:\aaa\ddd", Result = @"..\bbb\ccc")]
 		public string GetRelativePath(string path, string basePath) {
-			path = path.Replace('\\', Path.DirectorySeparatorChar);
-			basePath = basePath.Replace('\\', Path.DirectorySeparatorChar);
-			return ParaibaPath.GetRelativePath(path, basePath)
-					.Replace(Path.DirectorySeparatorChar, '\\');
+			path = Serialize(path);
+			basePath = Serialize(basePath);
+			return Deserialize(ParaibaPath.GetRelativePath(path, basePath));
 		}
 
 		[Test]
@@ -83,12 +81,28 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\aaa\bbb", @"c:\aaa\bbb\")]
 		[TestCase(@"c:\a a\ db", @"c:\a　 \b b\")]
 		public void GetFullPath(string path, string basePath) {
-			var modPath = path.Replace('\\', Path.DirectorySeparatorChar);
-			var modBasePath = basePath.Replace('\\', Path.DirectorySeparatorChar);
+			path = Serialize(path);
+			basePath = Serialize(basePath);
 			Assert.That(
-					ParaibaPath.GetFullPath(ParaibaPath.GetRelativePath(modPath, modBasePath), modBasePath)
-							.Replace(Path.DirectorySeparatorChar, '\\'),
+					ParaibaPath.GetFullPath(ParaibaPath.GetRelativePath(path, basePath), basePath),
 					Is.EqualTo(path));
+		}
+
+		private static string Serialize(string path) {
+			path = path.Replace('/', Path.AltDirectorySeparatorChar)
+					.Replace('\\', Path.DirectorySeparatorChar);
+			if (ParaibaEnvironment.OnUnixLike()) {
+				path = path.Substring(2);
+			}
+			return path;
+		}
+
+		private static string Deserialize(string path) {
+			path = path.Replace(Path.DirectorySeparatorChar, '\\');
+			if (ParaibaEnvironment.OnUnixLike()) {
+				path = "c:" + path;
+			}
+			return path;
 		}
 	}
 }

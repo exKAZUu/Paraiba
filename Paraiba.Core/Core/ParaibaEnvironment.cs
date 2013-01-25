@@ -24,11 +24,11 @@ namespace Paraiba.Core {
 	/// </summary>
 	public static class ParaibaEnvironment {
 		/// <summary>
-		/// Returns the boolean whether this program runs on Mono or not.
+		/// Returns the boolean whether this program runs on Unix like OS or not.
 		/// </summary>
-		/// <returns>The boolean whether this program runs on Mono or not.</returns>
-		public static bool OnMono() {
-			int p = (int)Environment.OSVersion.Platform;
+		/// <returns>The boolean whether this program runs on Unix like OS or not.</returns>
+		public static bool OnUnixLike() {
+			var p = (int)Environment.OSVersion.Platform;
 			return (p == 4) || (p == 6) || (p == 128);
 		}
 	}

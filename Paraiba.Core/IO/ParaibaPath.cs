@@ -54,11 +54,17 @@ namespace Paraiba.IO {
 		/// <returns>The relative path of the specified path with the specified base path.</returns>
 		public static string GetRelativePath(string targetFullPath, string basePath) {
 			basePath = NormalizeDirectorySeparatorsAddingToTail(basePath);
-			var baseUri = new Uri(basePath);
-			var targetUri = new Uri(baseUri, targetFullPath);
+			var baseUri = new Uri(basePath + "a");
+			var targetUri = new Uri(targetFullPath);
 			var relativePath = baseUri.MakeRelativeUri(targetUri).ToString();
 			// Unescape and normalize the path
-			return NormalizeDirectorySeparators(Uri.UnescapeDataString(relativePath));
+			var ret = NormalizeDirectorySeparators(Uri.UnescapeDataString(relativePath));
+			if (!targetFullPath.EndsWith(Path.DirectorySeparatorChar + "") &&
+					!targetFullPath.EndsWith(Path.AltDirectorySeparatorChar + "")
+					&& ret.EndsWith(Path.DirectorySeparatorChar + "")) {
+				ret = ret.Substring(0, ret.Length - 1);
+			}
+			return ret;
 		}
 
 		/// <summary>
