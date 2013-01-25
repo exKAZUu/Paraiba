@@ -31,7 +31,7 @@ namespace Paraiba.Tests.IO {
 		[TestCase("c:/test", Result = @"c:\test")]
 		[TestCase("c:/test/", Result = @"c:\test\")]
 		public string NormalizeDirectorySeparatorChar(string path) {
-			return ParaibaPath.NormalizeDirectorySeparatorChar(path);
+			return ParaibaPath.NormalizeDirectorySeparators(path);
 		}
 
 		[Test]
@@ -40,7 +40,7 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\test", Result = @"c:\test\")]
 		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string ComplementDirectorySeparatorChar(string path) {
-			return ParaibaPath.ComplementDirectorySeparatorChar(path);
+			return ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path);
 		}
 
 		[Test]

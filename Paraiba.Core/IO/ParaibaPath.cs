@@ -25,20 +25,21 @@ namespace Paraiba.IO {
 	/// </summary>
 	public static class ParaibaPath {
 		/// <summary>
-		/// Returns the path where directory separator chars in the specified path are replaced with a primary one.
+		/// Returns the path where alternative directory separator chars in the specified path are replaced with the primary one.
 		/// </summary>
 		/// <param name="path">The path to be normaized.</param>
-		/// <returns>The path where directory separator chars in the specified path are replaced with a primary one.</returns>
-		public static string NormalizeDirectorySeparatorChar(string path) {
+		/// <returns>The path where alternative directory separator chars in the specified path are replaced with the primary one.</returns>
+		public static string NormalizeDirectorySeparators(string path) {
 			return path.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
 		}
 
 		/// <summary>
-		/// Return the path which is complemented with a directory separator char.
+		/// Return the directory path which is normalized and complemented with the primary directory separator char.
 		/// </summary>
 		/// <param name="path">The path to be complemented.</param>
-		/// <returns>The path which is complemented with a directory separator char</returns>
-		public static string ComplementDirectorySeparatorChar(string path) {
+		/// <returns>The directory path which is normalized and complemented with the primary directory separator char.</returns>
+		public static string NormalizeDirectorySeparatorsAddingToTail(string path) {
+			path = NormalizeDirectorySeparators(path);
 			if (!path.EndsWith(Path.DirectorySeparatorChar + "")) {
 				return path + Path.DirectorySeparatorChar;
 			}
@@ -52,13 +53,12 @@ namespace Paraiba.IO {
 		/// <param name="basePath">The base path to acquire the relative path.</param>
 		/// <returns>The relative path of the specified path with the specified base path.</returns>
 		public static string GetRelativePath(string targetFullPath, string basePath) {
-			basePath = NormalizeDirectorySeparatorChar(basePath);
-			basePath = ComplementDirectorySeparatorChar(basePath);
+			basePath = NormalizeDirectorySeparatorsAddingToTail(basePath);
 			var baseUri = new Uri(basePath);
 			var targetUri = new Uri(baseUri, targetFullPath);
 			var relativePath = baseUri.MakeRelativeUri(targetUri).ToString();
-			// URLデコードして、'/'を'\'に変更する)
-			return NormalizeDirectorySeparatorChar(Uri.UnescapeDataString(relativePath));
+			// Unescape and normalize the path
+			return NormalizeDirectorySeparators(Uri.UnescapeDataString(relativePath));
 		}
 
 		/// <summary>
@@ -68,11 +68,10 @@ namespace Paraiba.IO {
 		/// <param name="basePath">The base path to acquire the full path.</param>
 		/// <returns>The full path of the specified relative path with the specified base path.</returns>
 		public static string GetFullPath(string targetRelativePath, string basePath) {
-			basePath = NormalizeDirectorySeparatorChar(basePath);
-			basePath = ComplementDirectorySeparatorChar(basePath);
+			basePath = NormalizeDirectorySeparatorsAddingToTail(basePath);
 			var baseUri = new Uri(basePath);
 			var targetUri = new Uri(baseUri, targetRelativePath);
-			return NormalizeDirectorySeparatorChar(targetUri.LocalPath);
+			return NormalizeDirectorySeparators(targetUri.LocalPath);
 		}
 	}
 }
