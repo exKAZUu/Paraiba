@@ -16,6 +16,7 @@
 
 #endregion
 
+using System.IO;
 using NUnit.Framework;
 using Paraiba.IO;
 
@@ -26,12 +27,18 @@ namespace Paraiba.Tests.IO {
 	[TestFixture]
 	public class ParaibaPathTest {
 		[Test]
-		[TestCase("c:", Result = @"c:")]
-		[TestCase("c:/", Result = @"c:\")]
-		[TestCase("c:/test", Result = @"c:\test")]
-		[TestCase("c:/test/", Result = @"c:\test\")]
+		[TestCase(@"c:", Result = @"c:")]
+		[TestCase(@"c:/", Result = @"c:\")]
+		[TestCase(@"c:/test", Result = @"c:\test")]
+		[TestCase(@"c:/test/", Result = @"c:\test\")]
+		[TestCase(@"c:\", Result = @"c:\")]
+		[TestCase(@"c:\test", Result = @"c:\test")]
+		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string NormalizeDirectorySeparatorChar(string path) {
-			return ParaibaPath.NormalizeDirectorySeparators(path).Replace('/', '\\');
+			path = path.Replace('\\', Path.DirectorySeparatorChar)
+					.Replace('/', Path.AltDirectorySeparatorChar);
+			return ParaibaPath.NormalizeDirectorySeparators(path)
+					.Replace(Path.DirectorySeparatorChar, '\\');
 		}
 
 		[Test]
@@ -40,7 +47,9 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\test", Result = @"c:\test\")]
 		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string ComplementDirectorySeparatorChar(string path) {
-			return ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path).Replace('/', '\\');
+			path = path.Replace('\\', Path.DirectorySeparatorChar);
+			return ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path)
+					.Replace(Path.DirectorySeparatorChar, '\\');
 		}
 
 		[Test]
@@ -52,7 +61,10 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\aaa\ddd", @"c:\aaa\bbb\ddd", Result = @"..\..\ddd")]
 		[TestCase(@"c:\aaa\bbb\ccc", @"c:\aaa\ddd", Result = @"..\bbb\ccc")]
 		public string GetRelativePath(string path, string basePath) {
-			return ParaibaPath.GetRelativePath(path, basePath).Replace('/', '\\');
+			path = path.Replace('\\', Path.DirectorySeparatorChar);
+			basePath = basePath.Replace('\\', Path.DirectorySeparatorChar);
+			return ParaibaPath.GetRelativePath(path, basePath)
+					.Replace(Path.DirectorySeparatorChar, '\\');
 		}
 
 		[Test]
@@ -71,8 +83,11 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\aaa\bbb", @"c:\aaa\bbb\")]
 		[TestCase(@"c:\a a\ db", @"c:\a　 \b b\")]
 		public void GetFullPath(string path, string basePath) {
+			var modPath = path.Replace('\\', Path.DirectorySeparatorChar);
+			var modBasePath = basePath.Replace('\\', Path.DirectorySeparatorChar);
 			Assert.That(
-					ParaibaPath.GetFullPath(ParaibaPath.GetRelativePath(path, basePath), basePath),
+					ParaibaPath.GetFullPath(ParaibaPath.GetRelativePath(modPath, modBasePath), modBasePath)
+							.Replace(Path.DirectorySeparatorChar, '\\'),
 					Is.EqualTo(path));
 		}
 	}
