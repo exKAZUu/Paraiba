@@ -37,7 +37,7 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string NormalizeDirectorySeparatorChar(string path) {
 			path = Serialize(path);
-			return Deserialize(ParaibaPath.NormalizeDirectorySeparators(path));
+			return DeserializeAbsolutePath(ParaibaPath.NormalizeDirectorySeparators(path));
 		}
 
 		[Test]
@@ -47,7 +47,7 @@ namespace Paraiba.Tests.IO {
 		[TestCase(@"c:\test\", Result = @"c:\test\")]
 		public string ComplementDirectorySeparatorChar(string path) {
 			path = Serialize(path);
-			return Deserialize(ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path));
+			return DeserializeAbsolutePath(ParaibaPath.NormalizeDirectorySeparatorsAddingToTail(path));
 		}
 
 		[Test]
@@ -62,7 +62,7 @@ namespace Paraiba.Tests.IO {
 		public string GetRelativePath(string path, string basePath) {
 			path = Serialize(path);
 			basePath = Serialize(basePath);
-			return Deserialize(ParaibaPath.GetRelativePath(path, basePath));
+			return DeserializeRelativePath(ParaibaPath.GetRelativePath(path, basePath));
 		}
 
 		[Test]
@@ -97,12 +97,16 @@ namespace Paraiba.Tests.IO {
 			return path;
 		}
 
-		private static string Deserialize(string path) {
+		private static string DeserializeAbsolutePath(string path) {
 			path = path.Replace(Path.DirectorySeparatorChar, '\\');
 			if (ParaibaEnvironment.OnUnixLike()) {
 				path = "c:" + path;
 			}
 			return path;
+		}
+
+		private static string DeserializeRelativePath(string path) {
+			return path.Replace(Path.DirectorySeparatorChar, '\\');
 		}
 	}
 }
