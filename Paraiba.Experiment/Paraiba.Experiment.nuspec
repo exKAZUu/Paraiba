@@ -11,10 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial release.</releaseNotes>
-    <copyright>Copyright (C) Kazunori Sakamoto 2011-2012</copyright>
+    <copyright>Copyright (C) Kazunori Sakamoto 2011-2013</copyright>
     <tags>.NET Library LINQ</tags>
     <dependencies>
-      <dependency id="Paraiba" version="1.0" />
+      <dependency id="Paraiba" version="1.1.0" />
     </dependencies>
   </metadata>
 </package>

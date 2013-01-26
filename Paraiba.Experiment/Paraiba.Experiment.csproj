@@ -195,7 +195,6 @@
     <Compile Include="IO\Scanner.cs" />
     <Compile Include="IO\TextReaderExtensions.cs" />
     <Compile Include="IO\TextWriterExtensions.cs" />
-    <Compile Include="IO\XPath.cs" />
     <Compile Include="Linq\Enumerables.cs" />
     <Compile Include="Linq\Expressions\ExpressionUtil.cs" />
     <Compile Include="Linq\Expressions\Operator.cs" />
