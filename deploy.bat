@@ -1,3 +1,7 @@
+cd .nuget
+nuget Update -self
+del *.old
+cd ..
 cd Paraiba.Core
 FOR %%f IN (*.csproj) DO (
 	nuget pack %%f -Prop Configuration=Release

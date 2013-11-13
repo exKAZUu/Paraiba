@@ -84,7 +84,7 @@ namespace Paraiba.Xml.Linq {
 		/// <param name="element"> </param>
 		/// <returns> </returns>
 		[Pure, DebuggerStepThrough]
-		public static string Name(this XElement element) {
+		public static string LocalName(this XElement element) {
 			return element.Name.LocalName;
 		}
 
