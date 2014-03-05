@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kazunori Sakamoto")]
 [assembly: AssemblyProduct("Paraiba.Core")]
-[assembly: AssemblyCopyright("Copyright © Kazunori Sakamoto 2011-2012")]
+[assembly: AssemblyCopyright("Copyright © Kazunori Sakamoto 2011-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -54,5 +54,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.1.1.91")]
-[assembly: AssemblyFileVersion("1.1.1.91")]
+[assembly: AssemblyVersion("1.1.2.92")]
+[assembly: AssemblyFileVersion("1.1.2.92")]

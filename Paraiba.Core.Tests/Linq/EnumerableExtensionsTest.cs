@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2014 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -77,6 +77,72 @@ namespace Paraiba.Tests.Linq {
 				result.Add(t.Item2);
 			}
 			return result.ToArray();
+		}
+
+		[Test]
+		[TestCase(new int[0], ExpectedException = typeof(InvalidOperationException))]
+		[TestCase(new[] { 1 }, Result = new[] { 1, 1 })]
+		[TestCase(new[] { 1, 2 }, Result = new[] { 1, 2 })]
+		[TestCase(new[] { 1, 2, 3 }, Result = new[] { 1, 3 })]
+		[TestCase(new[] { 1, 2, 3, 4 }, Result = new[] { 1, 4 })]
+		public int[] FirstAndLast(int[] values) {
+			var tuple = values.FirstAndLast();
+			return new[] { tuple.Item1, tuple.Item2 };
+		}
+
+		[Test]
+		[TestCase(new int[0], ExpectedException = typeof(InvalidOperationException))]
+		[TestCase(new[] { 1 }, ExpectedException = typeof(InvalidOperationException))]
+		[TestCase(new[] { 1, 2 }, Result = new[] { 2, 2 })]
+		[TestCase(new[] { 1, 2, 3 }, Result = new[] { 2, 2 })]
+		[TestCase(new[] { 1, 2, 3, 4 }, Result = new[] { 2, 4 })]
+		public int[] FirstAndLastWithPredicate(int[] values) {
+			var tuple = values.FirstAndLast(i => i % 2 == 0);
+			return new[] { tuple.Item1, tuple.Item2 };
+		}
+
+		[Test]
+		[TestCase(new int[0], Result = null)]
+		[TestCase(new[] { 1 }, Result = new[] { 1, 1 })]
+		[TestCase(new[] { 1, 2 }, Result = new[] { 1, 2 })]
+		[TestCase(new[] { 1, 2, 3 }, Result = new[] { 1, 3 })]
+		[TestCase(new[] { 1, 2, 3, 4 }, Result = new[] { 1, 4 })]
+		public int[] FirstAndLastOrNull(int[] values) {
+			var tuple = values.FirstAndLastOrNull();
+			return tuple != null ? new[] { tuple.Item1, tuple.Item2 } : null;
+		}
+
+		[Test]
+		[TestCase(new int[0], Result = null)]
+		[TestCase(new[] { 1 }, Result = null)]
+		[TestCase(new[] { 1, 2 }, Result = new[] { 2, 2 })]
+		[TestCase(new[] { 1, 2, 3 }, Result = new[] { 2, 2 })]
+		[TestCase(new[] { 1, 2, 3, 4 }, Result = new[] { 2, 4 })]
+		public int[] FirstAndLastOrNullWithPredicate(int[] values) {
+			var tuple = values.FirstAndLastOrNull(i => i % 2 == 0);
+			return tuple != null ? new[] { tuple.Item1, tuple.Item2 } : null;
+		}
+
+		[Test]
+		[TestCase(new int[0], Result = new[] { 0, 0 })]
+		[TestCase(new[] { 1 }, Result = new[] { 1, 1 })]
+		[TestCase(new[] { 1, 2 }, Result = new[] { 1, 2 })]
+		[TestCase(new[] { 1, 2, 3 }, Result = new[] { 1, 3 })]
+		[TestCase(new[] { 1, 2, 3, 4 }, Result = new[] { 1, 4 })]
+		public int[] FirstAndLastOrDefault(int[] values) {
+			var tuple = values.FirstAndLastOrDefault();
+			return tuple != null ? new[] { tuple.Item1, tuple.Item2 } : null;
+		}
+
+		[Test]
+		[TestCase(new int[0], Result = new[] { 0, 0 })]
+		[TestCase(new[] { 1 }, Result = new[] { 0, 0 })]
+		[TestCase(new[] { 1, 2 }, Result = new[] { 2, 2 })]
+		[TestCase(new[] { 1, 2, 3 }, Result = new[] { 2, 2 })]
+		[TestCase(new[] { 1, 2, 3, 4 }, Result = new[] { 2, 4 })]
+		public int[] FirstAndLastOrDefaultWithPredicate(int[] values) {
+			var tuple = values.FirstAndLastOrDefault(i => i % 2 == 0);
+			return tuple != null ? new[] { tuple.Item1, tuple.Item2 } : null;
 		}
 	}
 }
