@@ -20,7 +20,7 @@ before_install:
 
 script:
  - xbuild 
- - sh .ci/nunit.sh TravisTemplateForMono.Tests/bin/Debug/TravisTemplateForMono.Tests.dll
+ - sh .ci/nunit.sh *.Tests/bin/Debug/*.Tests.dll
 
 # Notify development list when needed
 notifications:
