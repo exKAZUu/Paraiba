@@ -21,14 +21,6 @@ using System.Linq;
 
 namespace Paraiba.Core {
 	public static class ApacheStringUtils {
-		public static string Left(this string str, int length) {
-			return str.Substring(0, length);
-		}
-
-		public static string Right(this string str, int length) {
-			return str.Substring(str.Length - length, length);
-		}
-
 		public static string SubstringBefore(this string str, string separator) {
 			var index = str.IndexOf(separator);
 			return index >= 0 ? str.Substring(0, index) : str;
