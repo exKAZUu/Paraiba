@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,23 +19,23 @@
 using System;
 
 namespace Paraiba.Wrap {
-	public abstract class MutableWrap<T> : Wrap<T>, IMutableWrap<T> {
-		#region IMutableWrap<TValue> メンバ
+    public abstract class MutableWrap<T> : Wrap<T>, IMutableWrap<T> {
+        #region IMutableWrap<TValue> メンバ
 
-		public abstract void Set(T value);
+        public abstract void Set(T value);
 
-		#endregion
+        #endregion
 
-		public static implicit operator MutableWrap<T>(T value) {
-			return new MutableValueWrap<T>(value);
-		}
+        public static implicit operator MutableWrap<T>(T value) {
+            return new MutableValueWrap<T>(value);
+        }
 
-		public static implicit operator MutableWrap<T>(Func<T> evaluator) {
-			return new MutableLazyWrap<T>(evaluator);
-		}
+        public static implicit operator MutableWrap<T>(Func<T> evaluator) {
+            return new MutableLazyWrap<T>(evaluator);
+        }
 
-		public static implicit operator T(MutableWrap<T> wrap) {
-			return wrap.Value;
-		}
-	}
+        public static implicit operator T(MutableWrap<T> wrap) {
+            return wrap.Value;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,19 +19,19 @@
 using System.Windows.Forms;
 
 namespace Paraiba.Windows.Forms {
-	public static class ListBoxExtensions {
-		public static void SelectAll(this ListBox listBox) {
-			int count = listBox.Items.Count;
-			for (int i = 0; i < count; i++) {
-				listBox.SetSelected(i, true);
-			}
-		}
+    public static class ListBoxExtensions {
+        public static void SelectAll(this ListBox listBox) {
+            int count = listBox.Items.Count;
+            for (int i = 0; i < count; i++) {
+                listBox.SetSelected(i, true);
+            }
+        }
 
-		public static void UnSelectAll(this ListBox listBox) {
-			int count = listBox.Items.Count;
-			for (int i = 0; i < count; i++) {
-				listBox.SetSelected(i, false);
-			}
-		}
-	}
+        public static void UnSelectAll(this ListBox listBox) {
+            int count = listBox.Items.Count;
+            for (int i = 0; i < count; i++) {
+                listBox.SetSelected(i, false);
+            }
+        }
+    }
 }

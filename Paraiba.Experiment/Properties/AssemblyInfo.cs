@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Paraiba.Experiment")]
 [assembly:
-		AssemblyDescription(
-				"The experimental library of Paraiba that is not well tested.")]
+    AssemblyDescription(
+        "The experimental library of Paraiba that is not well tested.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kazunori Sakamoto")]
 [assembly: AssemblyProduct("Paraiba.Experiment")]
@@ -55,5 +55,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.1.3.93")]
-[assembly: AssemblyFileVersion("1.1.3.93")]
+[assembly: AssemblyVersion("1.1.5.95")]
+[assembly: AssemblyFileVersion("1.1.5.95")]

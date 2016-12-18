@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,25 +19,25 @@
 using System;
 
 namespace Paraiba.Wrap {
-	public class LazyFlagWrap<T> : Wrap<T> {
-		private T _value;
+    public class LazyFlagWrap<T> : Wrap<T> {
+        private T _value;
 
-		public LazyFlagWrap(Func<T> evaluator) {
-			Evaluator = evaluator;
-		}
+        public LazyFlagWrap(Func<T> evaluator) {
+            Evaluator = evaluator;
+        }
 
-		public bool Evaluated { get; set; }
+        public bool Evaluated { get; set; }
 
-		public Func<T> Evaluator { get; set; }
+        public Func<T> Evaluator { get; set; }
 
-		public override T Value {
-			get {
-				if (Evaluated == false) {
-					_value = Evaluator();
-					Evaluated = true;
-				}
-				return _value;
-			}
-		}
-	}
+        public override T Value {
+            get {
+                if (Evaluated == false) {
+                    _value = Evaluator();
+                    Evaluated = true;
+                }
+                return _value;
+            }
+        }
+    }
 }

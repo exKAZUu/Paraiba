@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,23 +20,23 @@ using System.Collections.Generic;
 using System.IO;
 
 namespace Paraiba.IO {
-	public static class TextReaderExtensions {
-		/// <summary>
-		///   Reads all lines of characters from the current stream and returns the data as a enumerable of strings.
-		/// </summary>
-		/// <param name="reader"> The input stream </param>
-		/// <returns> The following all lines from the input stream </returns>
-		public static IEnumerable<string> ReadLines(this TextReader reader) {
-			string line;
-			while ((line = reader.ReadLine()) != null) {
-				yield return line;
-			}
-		}
+    public static class TextReaderExtensions {
+        /// <summary>
+        ///   Reads all lines of characters from the current stream and returns the data as a enumerable of strings.
+        /// </summary>
+        /// <param name="reader"> The input stream </param>
+        /// <returns> The following all lines from the input stream </returns>
+        public static IEnumerable<string> ReadLines(this TextReader reader) {
+            string line;
+            while ((line = reader.ReadLine()) != null) {
+                yield return line;
+            }
+        }
 
-		public static void SkipChars(this TextReader reader, int count) {
-			while (--count >= 0) {
-				reader.Read();
-			}
-		}
-	}
+        public static void SkipChars(this TextReader reader, int count) {
+            while (--count >= 0) {
+                reader.Read();
+            }
+        }
+    }
 }

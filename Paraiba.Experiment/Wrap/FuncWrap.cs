@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,15 +19,15 @@
 using System;
 
 namespace Paraiba.Wrap {
-	public class FuncWrap<T> : Wrap<T> {
-		public FuncWrap(Func<T> func) {
-			Func = func;
-		}
+    public class FuncWrap<T> : Wrap<T> {
+        public FuncWrap(Func<T> func) {
+            Func = func;
+        }
 
-		public Func<T> Func { get; set; }
+        public Func<T> Func { get; set; }
 
-		public override T Value {
-			get { return Func(); }
-		}
-	}
+        public override T Value {
+            get { return Func(); }
+        }
+    }
 }

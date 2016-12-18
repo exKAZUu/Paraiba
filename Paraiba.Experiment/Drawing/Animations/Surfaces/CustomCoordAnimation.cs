@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,52 +22,52 @@ using System.Drawing;
 using Paraiba.Geometry;
 
 namespace Paraiba.Drawing.Animations.Surfaces {
-	public class CustomCoordAnimation : AnimationSurface {
-		private readonly AnimationSurface _animationSurface;
-		private readonly Func<Point2, Size, Point2> _coordinateTransformer;
+    public class CustomCoordAnimation : AnimationSurface {
+        private readonly AnimationSurface _animationSurface;
+        private readonly Func<Point2, Size, Point2> _coordinateTransformer;
 
-		public CustomCoordAnimation(
-				AnimationSurface animationSurface,
-				Func<Point2, Size, Point2> coordinateTransformer) {
-			Contract.Requires(animationSurface != null);
-			Contract.Requires(coordinateTransformer != null);
+        public CustomCoordAnimation(
+            AnimationSurface animationSurface,
+            Func<Point2, Size, Point2> coordinateTransformer) {
+            Contract.Requires(animationSurface != null);
+            Contract.Requires(coordinateTransformer != null);
 
-			_animationSurface = animationSurface;
-			_coordinateTransformer = coordinateTransformer;
-		}
+            _animationSurface = animationSurface;
+            _coordinateTransformer = coordinateTransformer;
+        }
 
-		public override Size Size {
-			get { return _animationSurface.Size; }
-		}
+        public override Size Size {
+            get { return _animationSurface.Size; }
+        }
 
-		public override void Draw(Graphics g, int x, int y) {
-			var p = _coordinateTransformer(
-					new Point2(x, y), _animationSurface.Size);
-			_animationSurface.Draw(g, p.X, p.Y);
-		}
+        public override void Draw(Graphics g, int x, int y) {
+            var p = _coordinateTransformer(
+                new Point2(x, y), _animationSurface.Size);
+            _animationSurface.Draw(g, p.X, p.Y);
+        }
 
-		public override Image GetImage() {
-			return _animationSurface.GetImage();
-		}
+        public override Image GetImage() {
+            return _animationSurface.GetImage();
+        }
 
-		#region IAnimation メンバ
+        #region IAnimation メンバ
 
-		public override bool Ended {
-			get { return _animationSurface.Ended; }
-		}
+        public override bool Ended {
+            get { return _animationSurface.Ended; }
+        }
 
-		public override float ExcessTime {
-			get { return _animationSurface.ExcessTime; }
-		}
+        public override float ExcessTime {
+            get { return _animationSurface.ExcessTime; }
+        }
 
-		public override bool Elapse(float time) {
-			return _animationSurface.Elapse(time);
-		}
+        public override bool Elapse(float time) {
+            return _animationSurface.Elapse(time);
+        }
 
-		public override void Reset() {
-			_animationSurface.Reset();
-		}
+        public override void Reset() {
+            _animationSurface.Reset();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

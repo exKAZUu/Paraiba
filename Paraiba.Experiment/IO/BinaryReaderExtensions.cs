@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@
 using System.IO;
 
 namespace Paraiba.IO {
-	public static class BinaryReaderExtensions {
-		public static void SkipBytes(this BinaryReader reader, int count) {
-			while (--count >= 0) {
-				reader.Read();
-			}
-		}
-	}
+    public static class BinaryReaderExtensions {
+        public static void SkipBytes(this BinaryReader reader, int count) {
+            while (--count >= 0) {
+                reader.Read();
+            }
+        }
+    }
 }

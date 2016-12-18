@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,43 +21,43 @@ using System.Drawing;
 using Paraiba.Drawing.Surfaces;
 
 namespace Paraiba.Drawing.Animations.Surfaces {
-	public class StaticAnimation : AnimationSurface {
-		private readonly Surface _surface;
+    public class StaticAnimation : AnimationSurface {
+        private readonly Surface _surface;
 
-		public StaticAnimation(Surface surface) {
-			Contract.Requires(surface != null);
+        public StaticAnimation(Surface surface) {
+            Contract.Requires(surface != null);
 
-			_surface = surface;
-		}
+            _surface = surface;
+        }
 
-		public override Size Size {
-			get { return _surface.Size; }
-		}
+        public override Size Size {
+            get { return _surface.Size; }
+        }
 
-		public override void Draw(Graphics g, int x, int y) {
-			_surface.Draw(g, x, y);
-		}
+        public override void Draw(Graphics g, int x, int y) {
+            _surface.Draw(g, x, y);
+        }
 
-		public override Image GetImage() {
-			return _surface.GetImage();
-		}
+        public override Image GetImage() {
+            return _surface.GetImage();
+        }
 
-		#region IAnimation メンバ
+        #region IAnimation メンバ
 
-		public override bool Ended {
-			get { return false; }
-		}
+        public override bool Ended {
+            get { return false; }
+        }
 
-		public override float ExcessTime {
-			get { return float.NegativeInfinity; }
-		}
+        public override float ExcessTime {
+            get { return float.NegativeInfinity; }
+        }
 
-		public override bool Elapse(float time) {
-			return false;
-		}
+        public override bool Elapse(float time) {
+            return false;
+        }
 
-		public override void Reset() {}
+        public override void Reset() {}
 
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2014 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,9 +53,9 @@ namespace Paraiba.Core {
         /// <param name="str">The string whose substring is returned.</param>
         /// <param name="length">The length of the substring.</param>
         /// <returns>The substring that has the same prefix of the specified string.</returns>
-		public static string Left(this string str, int length) {
-			return str.Substring(0, length);
-		}
+        public static string Left(this string str, int length) {
+            return str.Substring(0, length);
+        }
 
         /// <summary>
         /// Returns the substring that has the same suffix of the specified string.
@@ -63,9 +63,9 @@ namespace Paraiba.Core {
         /// <param name="str">The string whose substring is returned.</param>
         /// <param name="length">The length of the substring.</param>
         /// <returns>The substring that has the same suffix of the specified string.</returns>
-		public static string Right(this string str, int length) {
-			return str.Substring(str.Length - length, length);
-		}
+        public static string Right(this string str, int length) {
+            return str.Substring(str.Length - length, length);
+        }
 
         /// <summary>
         /// Reports the zero-based indexes of the occurrence of the specified character in the current String object.
@@ -86,7 +86,7 @@ namespace Paraiba.Core {
         /// <param name="startIndex">The search	starting position.</param>
         /// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
         public static IEnumerable<int> IndicesOf(
-                this string text, char value, int startIndex) {
+            this string text, char value, int startIndex) {
             return IndicesOf(text, value, startIndex, text.Length);
         }
 
@@ -100,7 +100,7 @@ namespace Paraiba.Core {
         /// <param name="count">The number of character positions to examine.</param>
         /// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
         public static IEnumerable<int> IndicesOf(
-                this string text, char value, int startIndex, int count) {
+            this string text, char value, int startIndex, int count) {
             int index;
             var endIndex = startIndex + count;
             while ((index = text.IndexOf(value, startIndex, endIndex - startIndex)) >= 0) {
@@ -128,7 +128,7 @@ namespace Paraiba.Core {
         /// <param name="startIndex">The search	starting position.</param>
         /// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
         public static IEnumerable<int> IndicesOf(
-                this string text, string value, int startIndex) {
+            this string text, string value, int startIndex) {
             return IndicesOf(text, value, startIndex, text.Length, StringComparison.Ordinal);
         }
 
@@ -142,7 +142,7 @@ namespace Paraiba.Core {
         /// <param name="count">The number of character positions to examine.</param>
         /// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
         public static IEnumerable<int> IndicesOf(
-                this string text, string value, int startIndex, int count) {
+            this string text, string value, int startIndex, int count) {
             return IndicesOf(text, value, startIndex, count, StringComparison.Ordinal);
         }
 
@@ -155,7 +155,7 @@ namespace Paraiba.Core {
         /// <param name="stringComparison">One of the enumeration values that specifies the rules for the search.</param>
         /// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
         public static IEnumerable<int> IndicesOf(
-                this string text, string value, StringComparison stringComparison) {
+            this string text, string value, StringComparison stringComparison) {
             return IndicesOf(text, value, 0, text.Length, stringComparison);
         }
 
@@ -169,7 +169,7 @@ namespace Paraiba.Core {
         /// <param name="stringComparison">One of the enumeration values that specifies the rules for the search.</param>
         /// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
         public static IEnumerable<int> IndicesOf(
-                this string text, string value, int startIndex, StringComparison stringComparison) {
+            this string text, string value, int startIndex, StringComparison stringComparison) {
             return IndicesOf(text, value, startIndex, text.Length, stringComparison);
         }
 
@@ -184,14 +184,14 @@ namespace Paraiba.Core {
         /// <param name="stringComparison">One of the enumeration values that specifies the rules for the search.</param>
         /// <returns>The zero-based index position of the <c>value</c> parameter if that string is found, or -1 if it is not. If <c>value</c> is <see cref="Empty" />, the return value is <c>startIndex</c>.</returns>
         public static IEnumerable<int> IndicesOf(
-                this string text, string value, int startIndex, int count,
-                StringComparison stringComparison) {
+            this string text, string value, int startIndex, int count,
+            StringComparison stringComparison) {
             int index;
             var endIndex = startIndex + count;
             while (
-                    (index =
-                            text.IndexOf(value, startIndex, endIndex - startIndex, stringComparison))
-                    >= 0) {
+                (index =
+                        text.IndexOf(value, startIndex, endIndex - startIndex, stringComparison))
+                >= 0) {
                 yield return index;
                 startIndex = index + 1;
             }

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,17 +19,17 @@
 using System;
 
 namespace Paraiba.Core {
-	/// <summary>
-	/// A utility class for enhancing <see cref="Environment" />.
-	/// </summary>
-	public static class ParaibaEnvironment {
-		/// <summary>
-		/// Returns the boolean whether this program runs on Unix like OS or not.
-		/// </summary>
-		/// <returns>The boolean whether this program runs on Unix like OS or not.</returns>
-		public static bool OnUnixLike() {
-			var p = (int)Environment.OSVersion.Platform;
-			return (p == 4) || (p == 6) || (p == 128);
-		}
-	}
+    /// <summary>
+    /// A utility class for enhancing <see cref="Environment" />.
+    /// </summary>
+    public static class ParaibaEnvironment {
+        /// <summary>
+        /// Returns the boolean whether this program runs on Unix like OS or not.
+        /// </summary>
+        /// <returns>The boolean whether this program runs on Unix like OS or not.</returns>
+        public static bool OnUnixLike() {
+            var p = (int)Environment.OSVersion.Platform;
+            return (p == 4) || (p == 6) || (p == 128);
+        }
+    }
 }

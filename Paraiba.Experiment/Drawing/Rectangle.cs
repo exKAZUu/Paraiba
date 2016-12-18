@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,18 +20,18 @@ using System;
 using System.Drawing;
 
 namespace Paraiba.Drawing {
-	public static class RectangleExtensions {
-		public static Rectangle Circumscribed(this RectangleF rect) {
-			var left = (int)rect.Left;
-			var top = (int)rect.Top;
-			return new Rectangle(
-					left, top,
-					(int)Math.Ceiling(rect.Right) - left,
-					(int)Math.Ceiling(rect.Bottom) - top);
-		}
+    public static class RectangleExtensions {
+        public static Rectangle Circumscribed(this RectangleF rect) {
+            var left = (int)rect.Left;
+            var top = (int)rect.Top;
+            return new Rectangle(
+                left, top,
+                (int)Math.Ceiling(rect.Right) - left,
+                (int)Math.Ceiling(rect.Bottom) - top);
+        }
 
-		public static Rectangle Round(this RectangleF rect) {
-			return Rectangle.Round(rect);
-		}
-	}
+        public static Rectangle Round(this RectangleF rect) {
+            return Rectangle.Round(rect);
+        }
+    }
 }

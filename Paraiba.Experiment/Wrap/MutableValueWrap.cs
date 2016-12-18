@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,23 +17,23 @@
 #endregion
 
 namespace Paraiba.Wrap {
-	public class MutableValueWrap<T> : MutableWrap<T> {
-		private T _value;
+    public class MutableValueWrap<T> : MutableWrap<T> {
+        private T _value;
 
-		public MutableValueWrap(T value) {
-			_value = value;
-		}
+        public MutableValueWrap(T value) {
+            _value = value;
+        }
 
-		public override T Value {
-			get { return _value; }
-		}
+        public override T Value {
+            get { return _value; }
+        }
 
-		public override void Set(T value) {
-			_value = value;
-		}
+        public override void Set(T value) {
+            _value = value;
+        }
 
-		public static implicit operator MutableValueWrap<T>(T value) {
-			return new MutableValueWrap<T>(value);
-		}
-	}
+        public static implicit operator MutableValueWrap<T>(T value) {
+            return new MutableValueWrap<T>(value);
+        }
+    }
 }

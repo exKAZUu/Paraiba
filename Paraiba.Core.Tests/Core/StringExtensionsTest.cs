@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2014 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,42 +28,52 @@ namespace Paraiba.Tests.Core {
     [TestFixture]
     public class StringExtensionsTest {
         [Test]
-        [TestCase("", "", Result = 0)]
-        [TestCase("a", "", Result = -1)]
-        [TestCase("abc", "b", Result = -2)]
-        [TestCase("abc", "ac", Result = -1)]
-        [TestCase("abc", "abc", Result = 0)]
-        [TestCase("adbdc", "abc", Result = -2)]
+        [TestCase("", "", ExpectedResult = 0)]
+        [TestCase("a", "", ExpectedResult = -1)]
+        [TestCase("abc", "b", ExpectedResult = -2)]
+        [TestCase("abc", "ac", ExpectedResult = -1)]
+        [TestCase("abc", "abc", ExpectedResult = 0)]
+        [TestCase("adbdc", "abc", ExpectedResult = -2)]
         public int CalculateSimilarity(string str1, string str2) {
             return str1.CalculateSimilarity(str2);
         }
 
         [Test]
-        [TestCase("", 0, Result = "")]
-        [TestCase("abc", 0, Result = "")]
-        [TestCase("abc", 1, Result = "a")]
-        [TestCase("abc", 2, Result = "ab")]
-        [TestCase("abc", 3, Result = "abc")]
-        [TestCase("abc", 4, ExpectedException = typeof(ArgumentOutOfRangeException))]
-        public string Left(string text, int length) {
-            return text.Left(length);
+        [TestCase("", 0, ExpectedResult = "")]
+        [TestCase("abc", 0, ExpectedResult = "")]
+        [TestCase("abc", 1, ExpectedResult = "a")]
+        [TestCase("abc", 2, ExpectedResult = "ab")]
+        [TestCase("abc", 3, ExpectedResult = "abc")]
+        [TestCase("abc", 4, typeof(ArgumentOutOfRangeException), ExpectedResult = null)]
+        public string Left(string text, int length, Type expectedException = null) {
+            try {
+                return text.Left(length);
+            } catch (Exception e) {
+                Assert.That(e, Is.TypeOf(expectedException));
+                return null;
+            }
         }
 
         [Test]
-        [TestCase("", 0, Result = "")]
-        [TestCase("abc", 0, Result = "")]
-        [TestCase("abc", 1, Result = "c")]
-        [TestCase("abc", 2, Result = "bc")]
-        [TestCase("abc", 3, Result = "abc")]
-        [TestCase("abc", 4, ExpectedException = typeof(ArgumentOutOfRangeException))]
-        public string Right(string text, int length) {
-            return text.Right(length);
+        [TestCase("", 0, ExpectedResult = "")]
+        [TestCase("abc", 0, ExpectedResult = "")]
+        [TestCase("abc", 1, ExpectedResult = "c")]
+        [TestCase("abc", 2, ExpectedResult = "bc")]
+        [TestCase("abc", 3, ExpectedResult = "abc")]
+        [TestCase("abc", 4, typeof(ArgumentOutOfRangeException), ExpectedResult = null)]
+        public string Right(string text, int length, Type expectedException = null) {
+            try {
+                return text.Right(length);
+            } catch (Exception e) {
+                Assert.That(e, Is.TypeOf(expectedException));
+                return null;
+            }
         }
 
         [Test]
-        [TestCase("a a a", "a", 0, 5, Result = new[] { 0, 2, 4 })]
-        [TestCase("abcdefg", "h", 0, 7, Result = new int[] { })]
-        [TestCase("aa aa aa aa", "aa", 1, 9, Result = new[] { 3, 6 })]
+        [TestCase("a a a", "a", 0, 5, ExpectedResult = new[] { 0, 2, 4 })]
+        [TestCase("abcdefg", "h", 0, 7, ExpectedResult = new int[] { })]
+        [TestCase("aa aa aa aa", "aa", 1, 9, ExpectedResult = new[] { 3, 6 })]
         public int[] IndicesOf(string text, string value, int startIndex, int count) {
             return text.IndicesOf(value, startIndex, count).ToArray();
         }

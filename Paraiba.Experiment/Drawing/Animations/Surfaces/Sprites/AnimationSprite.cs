@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,17 +19,17 @@
 using Paraiba.Drawing.Surfaces.Sprites;
 
 namespace Paraiba.Drawing.Animations.Surfaces.Sprites {
-	/// <summary>
-	///   アニメーションする（時間経過とともに変化する）配置可能でかつ表示可能なオブジェクトを表します。
-	/// </summary>
-	public abstract class AnimationSprite : Sprite, IAnimation {
-		#region IAnimation Members
+    /// <summary>
+    ///   アニメーションする（時間経過とともに変化する）配置可能でかつ表示可能なオブジェクトを表します。
+    /// </summary>
+    public abstract class AnimationSprite : Sprite, IAnimation {
+        #region IAnimation Members
 
-		public abstract bool Ended { get; }
-		public abstract float ExcessTime { get; }
-		public abstract bool Elapse(float time);
-		public abstract void Reset();
+        public abstract bool Ended { get; }
+        public abstract float ExcessTime { get; }
+        public abstract bool Elapse(float time);
+        public abstract void Reset();
 
-		#endregion
-	}
+        #endregion
+    }
 }

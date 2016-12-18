@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,16 +17,16 @@
 #endregion
 
 namespace Paraiba.Wrap {
-	public class CastedWrap<T, TOrg> : Wrap<T>
-			where TOrg : T {
-		private readonly IWrap<TOrg> _wrap;
+    public class CastedWrap<T, TOrg> : Wrap<T>
+            where TOrg : T {
+        private readonly IWrap<TOrg> _wrap;
 
-		public CastedWrap(IWrap<TOrg> wrap) {
-			_wrap = wrap;
-		}
+        public CastedWrap(IWrap<TOrg> wrap) {
+            _wrap = wrap;
+        }
 
-		public override T Value {
-			get { return _wrap.Value; }
-		}
-	}
+        public override T Value {
+            get { return _wrap.Value; }
+        }
+    }
 }

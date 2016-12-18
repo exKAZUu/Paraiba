@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,29 +17,29 @@
 #endregion
 
 namespace Paraiba.Structures {
-	public class BinaryIndexedTree {
-		private readonly int[] _frequencyTree;
+    public class BinaryIndexedTree {
+        private readonly int[] _frequencyTree;
 
-		public BinaryIndexedTree(int size) {
-			_frequencyTree = new int[size];
-		}
+        public BinaryIndexedTree(int size) {
+            _frequencyTree = new int[size];
+        }
 
-		public int sum(int from, int to) {
-			if (from == 0) {
-				int s = 0;
-				for (int i = to; i >= 0; i = (i & (i + 1)) - 1) {
-					s += _frequencyTree[i];
-				}
-				return s;
-			}
+        public int sum(int from, int to) {
+            if (from == 0) {
+                int s = 0;
+                for (int i = to; i >= 0; i = (i & (i + 1)) - 1) {
+                    s += _frequencyTree[i];
+                }
+                return s;
+            }
 
-			return sum(0, to) - sum(0, from - 1);
-		}
+            return sum(0, to) - sum(0, from - 1);
+        }
 
-		public void add(int place, int incVal) {
-			for (int i = place; i < _frequencyTree.Length; i |= i + 1) {
-				_frequencyTree[i] += incVal;
-			}
-		}
-	}
+        public void add(int place, int incVal) {
+            for (int i = place; i < _frequencyTree.Length; i |= i + 1) {
+                _frequencyTree[i] += incVal;
+            }
+        }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,19 +17,15 @@
 #endregion
 
 namespace Paraiba.Wrap {
-	public class ValueWrap<T> : Wrap<T> {
-		private readonly T _value;
+    public class ValueWrap<T> : Wrap<T> {
+        public ValueWrap(T value) {
+            Value = value;
+        }
 
-		public ValueWrap(T value) {
-			_value = value;
-		}
+        public override T Value { get; }
 
-		public override T Value {
-			get { return _value; }
-		}
-
-		public static implicit operator ValueWrap<T>(T value) {
-			return new ValueWrap<T>(value);
-		}
-	}
+        public static implicit operator ValueWrap<T>(T value) {
+            return new ValueWrap<T>(value);
+        }
+    }
 }

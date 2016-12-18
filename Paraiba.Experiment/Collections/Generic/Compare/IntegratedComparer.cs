@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,25 +19,25 @@
 using System.Collections.Generic;
 
 namespace Paraiba.Collections.Generic.Compare {
-	public class IntegratedComparer<T> : IComparer<T> {
-		private readonly IEnumerable<IComparer<T>> _cmps;
+    public class IntegratedComparer<T> : IComparer<T> {
+        private readonly IEnumerable<IComparer<T>> _cmps;
 
-		public IntegratedComparer(IEnumerable<IComparer<T>> cmps) {
-			_cmps = cmps;
-		}
+        public IntegratedComparer(IEnumerable<IComparer<T>> cmps) {
+            _cmps = cmps;
+        }
 
-		#region IComparer<T> Members
+        #region IComparer<T> Members
 
-		public int Compare(T x, T y) {
-			foreach (var cmp in _cmps) {
-				var result = cmp.Compare(x, y);
-				if (result != 0) {
-					return result;
-				}
-			}
-			return 0;
-		}
+        public int Compare(T x, T y) {
+            foreach (var cmp in _cmps) {
+                var result = cmp.Compare(x, y);
+                if (result != 0) {
+                    return result;
+                }
+            }
+            return 0;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

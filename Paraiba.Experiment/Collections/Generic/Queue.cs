@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@
 using System.Collections.Generic;
 
 namespace Paraiba.Collections.Generic {
-	public static class QueueExtensions {
-		public static void EnqueueRange<T>(
-				this Queue<T> queue, IEnumerable<T> source) {
-			foreach (var item in source) {
-				queue.Enqueue(item);
-			}
-		}
-	}
+    public static class QueueExtensions {
+        public static void EnqueueRange<T>(
+            this Queue<T> queue, IEnumerable<T> source) {
+            foreach (var item in source) {
+                queue.Enqueue(item);
+            }
+        }
+    }
 }

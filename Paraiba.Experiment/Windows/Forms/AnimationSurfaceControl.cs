@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,34 +20,34 @@ using Paraiba.Drawing.Animations;
 using Paraiba.Drawing.Animations.Surfaces;
 
 namespace Paraiba.Windows.Forms {
-	public class AnimationSurfaceControl
-			: BasicSurfaceControl<AnimationSurface>, IAnimation {
-		public AnimationSurfaceControl(AnimationSurface animationSurface)
-				: base(animationSurface) {}
+    public class AnimationSurfaceControl
+            : BasicSurfaceControl<AnimationSurface>, IAnimation {
+        public AnimationSurfaceControl(AnimationSurface animationSurface)
+            : base(animationSurface) {}
 
-		#region IAnimation メンバ
+        #region IAnimation メンバ
 
-		public bool Ended {
-			get { return surface_.Ended; }
-		}
+        public bool Ended {
+            get { return surface_.Ended; }
+        }
 
-		public float ExcessTime {
-			get { return surface_.ExcessTime; }
-		}
+        public float ExcessTime {
+            get { return surface_.ExcessTime; }
+        }
 
-		public bool Elapse(float time) {
-			if (surface_.Elapse(time)) {
-				ArrangeSizeAndLocation();
-				InvalidateEx();
-				return true;
-			}
-			return false;
-		}
+        public bool Elapse(float time) {
+            if (surface_.Elapse(time)) {
+                ArrangeSizeAndLocation();
+                InvalidateEx();
+                return true;
+            }
+            return false;
+        }
 
-		public void Reset() {
-			surface_.Reset();
-		}
+        public void Reset() {
+            surface_.Reset();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

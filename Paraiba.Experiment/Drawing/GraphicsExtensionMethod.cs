@@ -1,6 +1,6 @@
 #region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,20 +21,20 @@ using Paraiba.Drawing.Surfaces;
 using Paraiba.Geometry;
 
 namespace Paraiba.Drawing {
-	public static class GraphicsExtensionMethod {
-		public static void DrawSurface(
-				this Graphics g, Surface surface, Point p) {
-			surface.Draw(g, p);
-		}
+    public static class GraphicsExtensionMethod {
+        public static void DrawSurface(
+            this Graphics g, Surface surface, Point p) {
+            surface.Draw(g, p);
+        }
 
-		public static void DrawSurface(
-				this Graphics g, Surface surface, Point2 p) {
-			surface.Draw(g, p);
-		}
+        public static void DrawSurface(
+            this Graphics g, Surface surface, Point2 p) {
+            surface.Draw(g, p);
+        }
 
-		public static void DrawSurface(
-				this Graphics g, Surface surface, int x, int y) {
-			surface.Draw(g, x, y);
-		}
-	}
+        public static void DrawSurface(
+            this Graphics g, Surface surface, int x, int y) {
+            surface.Draw(g, x, y);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿#region License
 
-// Copyright (C) 2011-2012 Kazunori Sakamoto
+// Copyright (C) 2011-2016 Kazunori Sakamoto
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,27 +19,27 @@
 using System.Windows.Forms;
 
 namespace Paraiba.Windows.Forms {
-	public static class RichTextBoxExtensions {
-		public static void Select(
-				this RichTextBox richTextBox, int startLine, int endLine,
-				int startPos, int endPos) {
-			var text = richTextBox.Text;
+    public static class RichTextBoxExtensions {
+        public static void Select(
+            this RichTextBox richTextBox, int startLine, int endLine,
+            int startPos, int endPos) {
+            var text = richTextBox.Text;
 
-			var startLineHeadPos = 0;
-			var iLines = 1;
-			for (; iLines < startLine; iLines++) {
-				startLineHeadPos = text.IndexOf('\n', startLineHeadPos) + 1;
-			}
+            var startLineHeadPos = 0;
+            var iLines = 1;
+            for (; iLines < startLine; iLines++) {
+                startLineHeadPos = text.IndexOf('\n', startLineHeadPos) + 1;
+            }
 
-			var endLineHeadPos = startLineHeadPos;
-			for (; iLines < endLine; iLines++) {
-				endLineHeadPos = text.IndexOf('\n', endLineHeadPos) + 1;
-			}
+            var endLineHeadPos = startLineHeadPos;
+            for (; iLines < endLine; iLines++) {
+                endLineHeadPos = text.IndexOf('\n', endLineHeadPos) + 1;
+            }
 
-			var start = startLineHeadPos + startPos;
-			var end = endLineHeadPos + endPos;
+            var start = startLineHeadPos + startPos;
+            var end = endLineHeadPos + endPos;
 
-			richTextBox.Select(start, end - start);
-		}
-	}
+            richTextBox.Select(start, end - start);
+        }
+    }
 }
